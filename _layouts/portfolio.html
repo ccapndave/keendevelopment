@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<nav class="mb-4 text-sm text-right text-gray-500"><a href="/index.html#portfolio" class="underline">Portfolio</a> &gt; <span class="font-bold">{{ page.title }}<span></nav>
+
+<header class="text-xl font-bold text-blue-500">
+  {{ page.title }}
+  <ul class="flex my-2 text-xs text-blue-400 divide-x divide-blue-400 font-extralight">
+  {% for tag in page.tags %}
+  <li><span class="{% if forloop.first %} mr-2 {% elsif forloop.last %} ml-2 {% else %} mx-2 {% endif %}">{{ tag }}</span></li>
+  {% endfor %}
+  </ul>
+</header>
+
+{% if page.images %}
+<div class="flex flex-wrap justify-center gap-4 my-10">
+{% for image in page.images %}
+{% if image.large %}
+<a href="{{ image.large }}" data-group="portfolio" class="js-smart-photo"><img src="{{image.thumb}}" /></a>
+{% else %}
+<img src="{{image.thumb}}" />
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+
+<hr class="border-green-200" />
+
+<article class="my-8 prose-sm prose text-green-700  sm:prose">
+{{ content }}
+</article>
+
+<script>
+  window.addEventListener('DOMContentLoaded',function(){
+    new SmartPhoto(".js-smart-photo");
+  });
+</script>

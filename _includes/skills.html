@@ -1,0 +1,20 @@
+<div class="grid grid-cols-2 gap-2">
+  {% for skill in site.data.skills %}
+  <div>
+    <section>
+      <header
+        class="px-5 py-3 text-center bg-blue-500 rounded-t-lg font-title text-blue-50"
+      >
+        {{ skill.name }}
+      </header>
+      <ul
+        class="py-3 pl-8 pr-5 text-sm font-normal border-b-2 border-l-2 border-r-2 border-green-200 rounded-b-lg"
+      >
+        {% for sub_skill in skill.sub_skills %}
+        <li>{{ sub_skill }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+  {% endfor %}
+</div>

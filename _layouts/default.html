@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }}</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito|Poppins"
+    />
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link rel="stylesheet" href="/assets/css/native.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    {% seo %}
+  </head>
+  <body
+    class="lg:max-w-[1280px] container flex flex-col max-w-full min-h-full bg-green-300 sm:max-w-full md:flex-row md:gap-3 md:p-3 overscroll-none font-body"
+  >
+    <section
+      class="md:bg-green-200 md:shadow md:pb-6 md:w-80 md:rounded-xl"
+      style="height: fit-content"
+    >
+      {% include navigation.html %}
+    </section>
+    <section
+      class="flex-1 px-10 py-5 overflow-hidden shadow bg-green-50 md:rounded-xl"
+    >
+      {{ content }}
+    </section>
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+</html>

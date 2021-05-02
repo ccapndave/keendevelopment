@@ -1,0 +1,9 @@
+- name: Functional Programming
+  sub_skills:
+    - Elm
+    - ReasonML / ReScript
+
+- name: Object Oriented Programming
+  sub_skills:
+    - PHP
+    - Blah

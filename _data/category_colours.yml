@@ -1,0 +1,7 @@
+elm: "bg-blue-400 text-blue-50"
+js: "bg-pink-300 text-blue-50"
+ts: "bg-purple-300 text-blue-50"
+res: "bg-green-300 text-green-600"
+php: "bg-purple-400 text-purple-100"
+as3: "bg-green-400 text-green-50"
+misc: "bg-gray-200 text-gray-600"

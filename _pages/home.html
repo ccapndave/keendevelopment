@@ -1,0 +1,66 @@
+---
+title: Home
+layout: default
+permalink: /
+---
+
+<section class="mt-4 mb-10">
+  <header class="pb-5 text-xl font-bold font-title">
+    <span class="text-blue-400">About</span> me
+  </header>
+  <p class="prose-sm prose text-green-700 sm:prose">
+    I am a freelance full-stack web developer and consultant specialising in
+    Elm, Typescript, HTML5, PHP, Symfony 2, Flash and Flex. I am knowledgeable
+    and experienced in a wide variety of technologies, languages and platforms.
+    I am also highly skilled in software engineering and systems architecture
+    and my work is always robust, reliable, maintainable and elegantly coded. I
+    have over 15 years hands-on experience in the industry and hold a degree in
+    Computer Science from the University of Edinburgh.
+  </p>
+</section>
+
+<hr class="border-green-200" />
+
+<a name="skills"></a>
+<section class="my-10">
+  <header class="pb-5 text-xl font-bold font-title">
+    My <span class="text-blue-400">Skills</span>
+  </header>
+
+  {% include skills.html %}
+</section>
+
+<hr class="border-green-200" />
+
+<a name="portfolio"></a>
+<section class="my-10">
+  <header class="pb-5 text-lg font-bold font-title">
+    My <span class="text-blue-400">Portfolio</span>
+  </header>
+
+  {% include portfolio.html %}
+</section>
+
+<hr class="border-green-200" />
+
+<a name="blog"></a>
+<section class="my-10">
+  <header class="pb-5 text-lg font-bold font-title">
+    Latest <span class="text-blue-400">Blogs</span>
+  </header>
+
+  {% include blog.html limit=5 %}
+
+  <div class="mx-16">
+    <div class="flex justify-center text-lg text-red-500">⋮</div>
+    <div class="flex items-center">
+      <hr class="flex-1 border-red-500 rounded border-1" />
+      <a
+        class="px-6 py-1 mx-4 text-sm text-white transition-colors bg-red-500 rounded-lg font-title hover:bg-red-400"
+        href="/blog.html"
+        >More posts</a
+      >
+      <hr class="flex-1 border-red-500 rounded border-1" />
+    </div>
+  </div>
+</section>

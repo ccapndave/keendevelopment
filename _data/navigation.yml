@@ -1,0 +1,19 @@
+- label: Home
+  link: /
+
+- label: Blog
+  link: /blog
+  type: post
+
+# - label: Portfolio
+#   link: /portfolio
+#   type: portfolio
+
+# - label: Download CV
+#   link: cv.pdf
+
+- label: Contact
+  link: /contact
+
+- label: <div class="flex justify-center"><img src="/assets/images/github.svg" /></div>
+  link: "https://www.github.com/ccapndave"

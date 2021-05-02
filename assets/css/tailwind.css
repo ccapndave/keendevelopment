@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+pre.highlight {
+  @apply -mr-10;
+  @apply rounded-r-none !important;
+}

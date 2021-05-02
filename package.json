@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "NODE_ENV=production JEKYLL_ENV=production bundle exec jekyll build --trace",
+    "dev": "concurrently \"bundle exec jekyll serve --livereload\" \"TAILWIND_MODE=watch NODE_ENV=development postcss assets/css/tailwind.css -o ./_site/assets/css/tailwind.css -w\""
+  },
+  "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^10.2.5",
+    "concurrently": "^6.0.2",
+    "cssnano": "^5.0.1",
+    "postcss": "^8.2.10",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.1.1"
+  }
+}
