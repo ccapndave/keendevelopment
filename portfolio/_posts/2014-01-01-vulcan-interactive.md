@@ -9,7 +9,7 @@ tags:
   - Flex
   - AS3
   - PHP
-	- MySQL
+  - MySQL
   - Java
   - Wowza Streaming Engine
   - Capistrano
