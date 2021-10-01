@@ -34,7 +34,7 @@ Now that Flextrine has been configured we need to create our entities.  [Entiti
 
 The requirements for our simple address book are that we need to have groups containing contacts.  Unfortunately Group is a reserved word in SQL so we’ll call it ContactGroup.  ContactGroups have a name, and many Contacts, and Contacts have a name, telephone number, birthday and a contactGroup.  We are going to place all our entities in the **vo **package.  This gives us the class diagram below:
 
-[![Flextrine entities](/assets/uploads/2010/08/entities.jpg)]
+![Flextrine entities]({{ "/assets/uploads/2010/08/entities.jpg" | relative_url }})
 
 Create a folder called *vo* in the *entities* directory of the Flextrine server side component and create *ContactGroup.php* and *Contact.php* with the contents given below.  More information on writing entities can be found in the Doctrine documentation for [Basic Mapping](https://www.doctrine-project.org/projects/orm/2.0/docs/reference/basic-mapping/en#basic-mapping) and [Association Mapping](https://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en#association-mapping).  The main thing to remember when creating entities is that:
 

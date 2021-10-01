@@ -32,11 +32,11 @@ Once we have defined the entities in the *entities* directory of the Flextrine s
 
 Browse to [http://localhost/flextrinemanager](http://localhost/flextrinemanager) (or whatever URL you pointed to the *manager* directory).  You should see a screen like this:
 
-[![Flextrine Manager 1](/assets/uploads/2010/08/flextrinemanager1.jpg)](/assets/uploads/2010/08/flextrinemanager1.jpg)
+![Flextrine Manager 1]({{ "/assets/uploads/2010/08/flextrinemanager1.jpg" | relative_url }})
 
 Enter the URL of the Flextrine server side component ([http://localhost/contacts](http://localhost/contacts)) in the **FLEXTRINE PROJECT URL** input and **Click to refresh***.*  The Flextrine manager will examine your project and update the manager to show the entities and database.  Now click on **Create schema** to automatically generate the appropriate tables in the database.  The manager should now look like this:
 
-[![Flextrine Manager 2](/assets/uploads/2010/08/flextrinemanager2.jpg)](/assets/uploads/2010/08/flextrinemanager2.jpg)
+![Flextrine Manager 2]({{ "/assets/uploads/2010/08/flextrinemanager2.jpg" | relative_url }})
 
 Under the hood Doctrine 2 has parsed the annotations in ContactGroup and Contact and has determined the appropriate tables and columns that will be required to persist the objects.  Although you will never need to edit the schema manually, the following SQL is what was actually executed when you clicked **CREATE SCHEMA**.  Notice that Doctrine enforces referential integrity through MySQL constraints so that, for example, you cannot delete a ContactGroup which has any Contacts referring to it.
 

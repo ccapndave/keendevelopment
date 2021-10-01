@@ -1,14 +1,10 @@
 ---
 title: Blog
-layout: default
+layout: content
 permalink: /blog
 ---
 
-<section class="mt-4 mb-10">
-  <header class="pb-5 text-xl font-bold font-title">
-    My <span class="text-blue-400">Blog</span>
-  </header>
-  <p class="prose-sm prose text-green-700 sm:prose">Here is my blog.</p>
-</section>
-
-{% include blog.html %}
+{% assign blogs = site.posts | where: "type", "post" | sort: "date" | reverse %}
+<div class="w-full mt-8">
+  {% include blog.html blogs=blogs %}
+</div>

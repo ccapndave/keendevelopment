@@ -1,38 +1,42 @@
 ---
-layout: default
+layout: content
+date_format: "Project started in %Y"
 ---
 
-<nav class="mb-4 text-sm text-right text-gray-500"><a href="/index.html#portfolio" class="underline">Portfolio</a> &gt; <span class="font-bold">{{ page.title }}<span></nav>
-
-<header class="text-xl font-bold text-blue-500">
-  {{ page.title }}
-  <ul class="flex my-2 text-xs text-blue-400 divide-x divide-blue-400 font-extralight">
-  {% for tag in page.tags %}
-  <li><span class="{% if forloop.first %} mr-2 {% elsif forloop.last %} ml-2 {% else %} mx-2 {% endif %}">{{ tag }}</span></li>
-  {% endfor %}
-  </ul>
-</header>
+<div class="flex justify-between mt-2 text-sm">
+  {% if page.previous_in_category %}
+    <a class="text-orange" href="{{page.previous_in_category.url | relative_url }}">&laquo; Prev</a>
+  {% else %}
+    <div></div>
+  {% endif %}
+  {% if page.next_in_category %}
+    <a class="text-orange" href="{{page.next_in_category.url | relative_url }}">Next &raquo;</a>
+  {% else %}
+    <div></div>
+  {% endif %}
+</div>
 
 {% if page.images %}
-<div class="flex flex-wrap justify-center gap-4 my-10">
-{% for image in page.images %}
-{% if image.large %}
-<a href="{{ image.large }}" data-group="portfolio" class="js-smart-photo"><img src="{{image.thumb}}" /></a>
-{% else %}
-<img src="{{image.thumb}}" />
-{% endif %}
-{% endfor %}
-</div>
+  <div class="flex flex-wrap justify-center gap-4 my-10">
+    {% for image in page.images %}
+      {% if image.large %}
+        <a href="{{ image.large | relative_url }}" data-group="portfolio" class="js-smart-photo"><img src="{{ image.thumb | relative_url }}"/></a>
+      {% else %}
+        <img src="{{ image.thumb | relative_url }}"/>
+      {% endif %}
+    {% endfor %}
+  </div>
 {% endif %}
 
-<hr class="border-green-200" />
+<hr class="border-darkgray"/>
 
-<article class="my-8 prose-sm prose text-green-700  sm:prose">
-{{ content }}
+<article class="my-8 prose-sm prose text-green-700 sm:prose">
+  {{ content }}
 </article>
 
+
 <script>
-  window.addEventListener('DOMContentLoaded',function(){
+  window.addEventListener("DOMContentLoaded", function () {
     new SmartPhoto(".js-smart-photo");
   });
 </script>

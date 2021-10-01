@@ -32,7 +32,8 @@ In FlashDevelop or Flash Builder create a new Flex 4 project and add the Flextri
 
 For reference, here are a few screenshot of what we will be working towards.  The tree on the left will show the groups and contacts, and the area on the right will have the group editor at the top and the contact editor below.  We will also have some buttons to create, delete and save contacts and groups.
 
-[![Flextrine Contacts 1](/assets/uploads/2010/08/contacts1.jpg)](/assets/uploads/2010/08/contacts1.jpg)[![Flextrine Contacts 2](/assets/uploads/2010/08/contacts2.jpg)](/assets/uploads/2010/08/contacts2.jpg)
+![Flextrine Contacts 1]({{ "/assets/uploads/2010/08/contacts1.jpg" | relative_url }})
+![Flextrine Contacts 2]({{ "/assets/uploads/2010/08/contacts2.jpg" | relative_url }})
 
 ### Create the Main.mxml entry class
 
@@ -160,7 +161,7 @@ The second line calls the *loadAll()* method on the ContactGroup repository.  A
 
 If you now run the application it will look like this.
 
-[![Flextrine Contacts 3](/assets/uploads/2010/08/contacts3.jpg)](/assets/uploads/2010/08/contacts3.jpg)
+![Flextrine Contacts 3]({{ "/assets/uploads/2010/08/contacts3.jpg" | relative_url }})
 
 We can see that the two ContactGroups are loading from the database and that Flex databinding has updated the tree automatically to reflect the loaded entities.  Unfortunately the tree doesn’t realise that it should be showing contacts as children of the contact groups, so we need to explicitly tell it so by adding a *children* attribute to ContactGroup.  Flextrine allows you to add logic to your entities by seperating Flextrine specific code into an ‘EntityBase’ class, and then creating an empty main entity class which you can ammend.  The idea behind this is that if you later update your entities you can replace the EntityBase without losing any functionality you added to the main entity class.
 

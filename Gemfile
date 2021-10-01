@@ -8,6 +8,7 @@ gem "jekyll"
 gem "webrick"
 
 group :jekyll_plugins do
-  gem "jekyll-responsive-image"
   gem "jekyll-seo-tag"
+  gem "jekyll_picture_tag"
+  gem "jekyll-sitemap"
 end

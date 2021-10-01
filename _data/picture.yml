@@ -1,0 +1,4 @@
+presets:
+  thumbnail:
+    crop: "1:1"
+    widths: [150]

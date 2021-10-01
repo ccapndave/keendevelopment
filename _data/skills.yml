@@ -1,9 +1,53 @@
-- name: Functional Programming
+- name: Frontend
+  logo: react.svg
   sub_skills:
     - Elm
-    - ReasonML / ReScript
+    - Typescript
+    - Rescript
+    - React | Redux + Sagas
+    - Phoenix LiveView
+    - TailwindCSS
 
-- name: Object Oriented Programming
+- name: Backend
+  logo: backend.svg
   sub_skills:
-    - PHP
-    - Blah
+    - Elixir | Phoenix
+    - Node | Express
+    - PHP | Symfony + Sonata
+    - GraphQL
+    - Redis
+
+- name: Architecture
+  logo: lego.svg
+  sub_skills:
+    - Functional
+    - Object-oriented
+    - Test driven development
+    - Behaviour driven development
+    - Reactive programming
+
+- name: DevOps
+  logo: docker.svg
+  sub_skills:
+    - Docker
+    - Continuous Integration
+    - Continuous Deployment
+    - Amazon Web Services (AWS)
+    - Google Cloud
+
+- name: Database
+  logo: database.svg
+  sub_skills:
+    - PostgreSQL
+    - MySQL/MariaDB
+    - Oracle
+    - MongoDB
+
+- name: General
+  logo: bitcoin.svg
+  sub_skills:
+    - Blockchain
+    - Cardano smart contracts | Plutus
+    - Offline web applications
+    - Site generators | Jekyll
+    - Genetic algorithms

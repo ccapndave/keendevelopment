@@ -1,0 +1,11 @@
+{% if include.tags.size > 0 %}
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      {% for tag in include.tags %}
+        <li>
+          <span class="text-orange {% if forloop.first %} mr-1 {% elsif forloop.last %} ml-1 {% else %} mx-1 {% endif %}">{{ tag | upcase }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

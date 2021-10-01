@@ -1,0 +1,28 @@
+---
+layout: default
+date_format: "%b %d, %Y"
+---
+
+<div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="{{ "/" | relative_url }}">
+      <img class="hidden h-7 sm:inline" src="{{ "/assets/images/Keen_bold_neg 1.svg" | relative_url }}"/>
+    </a>
+    {% include menu.html %}
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">{{ page.title }}<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  {% include tags.html tags=page.tags %}
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    {{ page.date | date: layout.date_format }}
+  </div>
+
+  {{ content }}
+</div>

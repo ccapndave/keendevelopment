@@ -44,7 +44,7 @@ PureMVC also makes it possible for a mediator to directly retrieve a proxy and c
 
 ### Use case diagram
 
-![Use cases](/assets/uploads/2008/07/use-cases.gif)
+![Use cases](/assets/uploads/2008/07/use-cases.png)
 
 Here's the use case diagram for our user. Its useful to map these out at the start of the project as there is often a 1-1 mapping between use cases and commands. So now lets create these commands and map them to some notifications (we'll leave them empty for the moment, but fill them in later).
 

@@ -1,0 +1,9 @@
+<nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    {% for nav in site.data.navigation %}
+      <li class="{% if page.url == nav.link or (nav.type and page.type == nav.type) %}text-orange{% else %}text-white{% endif %}">
+        <a href="{{ nav.link | relative_url }}">{{ nav.label }}</a>
+      </li>
+    {% endfor %}
+  </ol>
+</nav>

@@ -9,6 +9,7 @@
     "autoprefixer": "^10.2.5",
     "concurrently": "^6.0.2",
     "cssnano": "^5.0.1",
+    "js-yaml": "^4.1.0",
     "postcss": "^8.2.10",
     "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.1.1"

@@ -1,7 +1,8 @@
 port: 1235
 
-keep:
+keep_files:
   - assets/css/tailwind.css
+  - generated
 
 include:
   - _pages
@@ -14,15 +15,9 @@ exclude:
 incremental: true
 
 plugins:
-  - jekyll-responsive-image
   - jekyll-seo-tag
-
-responsive_image:
-  template: _includes/responsive-picture.html
-  sizes:
-    - width: 320
-    - width: 480
-    - width: 800
+  - jekyll_picture_tag
+  - jekyll-sitemap
 
 defaults:
   - scope:
@@ -35,7 +30,17 @@ defaults:
     values:
       type: "portfolio"
 
+picture:
+  suppress_warnings: true
+  #ignore_missing_images: true
+
 # SEO stuff
 title: Keen Development
 tagline: Professional and reliable full-stack development
-description: Experienced full-stack web developer specialising in Elm, Rescript, Elixir, Typescript, Javascript, PHP and more.
+description: Experienced full-stack web developer specialising in Elm, Elixir, Phoenix, Typescript, React, Tailwind, HTML, CSS, PHP, Symfony, Sonata and more.
+home_text: I am a freelance full-stack web developer and consultant specialising in Elm, Elixir, Phoenix, Typescript, React, HTML, CSS, PHP, Symfony, Sonata and more. I am knowledgeable and experienced in a wide variety of technologies, languages, frameworks and platforms. I am highly skilled in software engineering and systems architecture and my work is always robust, reliable, maintainable and elegantly coded. I have over 20 years hands-on experience in the industry and hold a degree in Computer Science from the University of Edinburgh.
+
+# Blog
+archive_from: 2019-01-01 00:00:00
+
+baseurl: /keendevelopment

@@ -1,25 +1,23 @@
 <ul>
-  {% assign blogs = site.posts | where: "type", "post" | sort: "date" | reverse
-  %} {% if include.limit %} {% assign blogs = blogs | slice: 0, include.limit %}
-  {% endif %} {% for blog in blogs %}
-  <li class="py-2">
-    <a href="{{ blog.url }}" class="flex items-baseline">
-      {% assign category = blog.categories[0] | downcase %} {% assign colours =
-      site.data.category_colours[category] %}
-      <div
-        class="{{ colours }} items-center justify-center transition-opacity hidden w-12 h-5 px-1 mr-2 text-xs font-bold sm:flex place-self-center rounded-xl font-title"
-      >
-        {{ blog.categories[0] }}
-      </div>
-      <div
-        class="flex-1 mr-1 overflow-hidden text-sm text-gray-900 transition-colors hover:text-gray-500 whitespace-nowrap overflow-ellipsis sm:text-base"
-      >
-        {{ blog.title }}
-      </div>
-      <div class="text-xs text-gray-500 sm:text-sm">
-        {{ blog.date | date: "%b %d, %Y" }}
-      </div>
-    </a>
-  </li>
+  {% for blog in include.blogs %}
+    <li class="py-2 list-none">
+      <a href="{{ blog.url | relative_url }}" class="flex items-baseline">
+        {% assign category = blog.categories[0] | downcase %}
+        {% if site.data.category_colours contains category %}
+          {% assign colours = site.data.category_colours[category] %}
+        {% else %}
+          {% assign colours = site.data.category_colours["_"] %}
+        {% endif %}
+        <div class="{{ colours }} items-center justify-center transition-opacity hidden w-12 h-5 px-1 mr-4 text-xs sm:flex place-self-center rounded-xl font-title">
+          {{ blog.categories[0] }}
+        </div>
+        <div class="flex-1 mr-5 overflow-hidden text-xs text-gray-900 transition-colors hover:text-gray-500 whitespace-nowrap overflow-ellipsis sm:text-base">
+          {{ blog.title }}
+        </div>
+        <div class="text-xs text-gray-500 sm:text-sm">
+          {{ blog.date | date: "%b %d, %Y" }}
+        </div>
+      </a>
+    </li>
   {% endfor %}
 </ul>

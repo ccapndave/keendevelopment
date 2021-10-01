@@ -1,10 +1,10 @@
-name: Testing the GitHub Pages publication
+name: Publish Jekyll site
 
 on: push
 
 jobs:
   jekyll:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     env:
       NODE_ENV: production
 
@@ -26,13 +26,10 @@ jobs:
       - run: yarn install
       - run: yarn postcss assets/css/tailwind.css -o assets/css/tailwind.css
 
-      # Standard usage
-      - uses: helaili/jekyll-action@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Specify the target branch (optional)
+      # Build the site in the target branch
       - uses: helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: "gh-pages"
+          pre_build_commands: |
+            apk --update add vips vips-tools 

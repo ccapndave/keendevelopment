@@ -4,63 +4,57 @@ layout: default
 permalink: /
 ---
 
-<section class="mt-4 mb-10">
-  <header class="pb-5 text-xl font-bold font-title">
-    <span class="text-blue-400">About</span> me
-  </header>
-  <p class="prose-sm prose text-green-700 sm:prose">
-    I am a freelance full-stack web developer and consultant specialising in
-    Elm, Typescript, HTML5, PHP, Symfony 2, Flash and Flex. I am knowledgeable
-    and experienced in a wide variety of technologies, languages and platforms.
-    I am also highly skilled in software engineering and systems architecture
-    and my work is always robust, reliable, maintainable and elegantly coded. I
-    have over 15 years hands-on experience in the industry and hold a degree in
-    Computer Science from the University of Edinburgh.
-  </p>
-</section>
+<div class="flex flex-col gap-12">
+  <section class="h-[60rem] bg-code bg-cover flex flex-col items-center justify-between w-full">
+    <div class="flex justify-center w-full px-6 py-4 sm:justify-end">{% include menu.html %}</div>
 
-<hr class="border-green-200" />
+    <img class="w-1/3" src="{{ "/assets/images/Keen_bold_neg 1.svg" | relative_url }}"/>
 
-<a name="skills"></a>
-<section class="my-10">
-  <header class="pb-5 text-xl font-bold font-title">
-    My <span class="text-blue-400">Skills</span>
-  </header>
+    <section class="mx-5 mb-16 text-white sm:mx-28">
+      <header class="mb-4 text-xl font-bold">
+        About<span class="text-orange">_</span>
+      </header>
+      <p class="text-sm">
+        {{ site.home_text }}
+      </p>
+    </section>
+  </section>
 
-  {% include skills.html %}
-</section>
+  <section class="flex flex-col items-center justify-between w-full">
+    <section class="w-full px-5 mb-8 text-black sm:px-28">
+      <header class="mb-4 text-xl font-bold">
+        Skills<span class="text-orange">_</span>
+      </header>
+      <div class="w-full">
+        {% include skills.html %}
+      </div>
+    </section>
+  </section>
 
-<hr class="border-green-200" />
+  <section class="flex flex-col items-center justify-between w-full pt-12 bg-cover bg-code">
+    <section class="relative w-full px-5 mb-8 text-white sm:px-28">
+      <header class="mb-4 text-xl font-bold">
+        Portfolio<span class="text-orange">_</span>
+      </header>
+      <div class="w-full h-52">
+        <div class="absolute left-0 right-0 ">
+          {% include portfolio.html %}
+        </div>
+      </div>
+    </section>
+  </section>
 
-<a name="portfolio"></a>
-<section class="my-10">
-  <header class="pb-5 text-lg font-bold font-title">
-    My <span class="text-blue-400">Portfolio</span>
-  </header>
-
-  {% include portfolio.html %}
-</section>
-
-<hr class="border-green-200" />
-
-<a name="blog"></a>
-<section class="my-10">
-  <header class="pb-5 text-lg font-bold font-title">
-    Latest <span class="text-blue-400">Blogs</span>
-  </header>
-
-  {% include blog.html limit=5 %}
-
-  <div class="mx-16">
-    <div class="flex justify-center text-lg text-red-500">⋮</div>
-    <div class="flex items-center">
-      <hr class="flex-1 border-red-500 rounded border-1" />
-      <a
-        class="px-6 py-1 mx-4 text-sm text-white transition-colors bg-red-500 rounded-lg font-title hover:bg-red-400"
-        href="/blog.html"
-        >More posts</a
-      >
-      <hr class="flex-1 border-red-500 rounded border-1" />
-    </div>
-  </div>
-</section>
+  {% assign blogs = site.posts | where: "type", "post" | where_exp: "item", "item.date > site.archive_from" | sort: "date" | reverse | slice: 0, 5 %}
+  {% if blogs.size > 0 %}
+    <section class="flex flex-col items-center justify-between w-full">
+      <section class="w-full px-5 mb-8 text-black sm:px-28">
+        <header class="mb-4 text-xl font-bold">
+          Latest Posts<span class="text-orange">_</span>
+        </header>
+        <div class="w-full p-6 bg-white">
+          {% include blog.html blogs=blogs %}
+        </div>
+      </section>
+    </section>
+  {% endif %}
+</div>

@@ -1,0 +1,10 @@
+{% assign images = include.images | split: "," %}
+<div class="flex flex-wrap justify-center gap-4 mt-10">
+  {% for image in images %}
+    <a href="{{ image | relative_url }}" data-group="portfolio" class="js-smart-photo">
+      {% picture thumbnail "{{ image }}" 1:1 class="!m-0" width="150" height="150" %}
+    </a>
+  {% endfor %}
+</div>
+
+<hr class="!mt-8 border-darkgray"/>

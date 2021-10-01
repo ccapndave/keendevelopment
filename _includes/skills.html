@@ -1,20 +1,39 @@
-<div class="grid grid-cols-2 gap-2">
+<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
   {% for skill in site.data.skills %}
-  <div>
-    <section>
-      <header
-        class="px-5 py-3 text-center bg-blue-500 rounded-t-lg font-title text-blue-50"
-      >
-        {{ skill.name }}
-      </header>
-      <ul
-        class="py-3 pl-8 pr-5 text-sm font-normal border-b-2 border-l-2 border-r-2 border-green-200 rounded-b-lg"
-      >
-        {% for sub_skill in skill.sub_skills %}
-        <li>{{ sub_skill }}</li>
-        {% endfor %}
-      </ul>
+    <section class="relative inline-flex items-center justify-center w-full transition-colors duration-300 bg-white hover:bg-black" onmouseout="setBackVisibility(this, false)" onmouseover="setBackVisibility(this, true)" style="--aspect-ratio: 1/1;">
+      <div class="absolute inset-0 transition-opacity duration-300">
+        <div class="flex flex-col items-center justify-center w-full h-full gap-2">
+          <div class="flex items-center justify-center w-16 h-16"><img class="w-12 h-12" src="{{ "/assets/skills/" | append: skill.logo | relative_url }}"/></div>
+          <header class="text-sm text-center">{{ skill.name }}</header>
+        </div>
+      </div>
+
+      <div class="absolute inset-0 p-8 text-xs text-white transition-opacity duration-300 opacity-0">
+        <div class="">
+          <header class="font-bold text-orange">{{ skill.name }}</header>
+
+          <ul class="pt-1 pl-2 border-l">
+            {% for sub_skill in skill.sub_skills %}
+              <li class="mb-1">
+                <span class="text-orange">-</span>
+                {{ sub_skill }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     </section>
-  </div>
   {% endfor %}
 </div>
+
+<script>
+  function setBackVisibility(el, isBackVisible) {
+    function setVisibility(el, isVisible) {
+      el.classList.toggle("opacity-0", ! isVisible);
+      el.classList.toggle("opacity-1", isVisible)
+    }
+
+    var [front, back] = el.children;
+    setVisibility(front, ! isBackVisible)
+    setVisibility(back, isBackVisible)
+  }
+</script>

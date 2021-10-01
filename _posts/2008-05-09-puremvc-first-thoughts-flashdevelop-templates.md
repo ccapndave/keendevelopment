@@ -46,7 +46,7 @@ The View/Mediator decision is a little more controversial, and I've read more th
 
 PureMVC involves a lot of typing. Creating a Mediator from scratch is a whole lot of hassle. Luckily for you [FlashDevelop](https://www.flashdevelop.org) users I've updated some templates to work with PureMVC 2.0.3 (apologies to whoever wrote these in the first place - can't find the URL, but will link as soon as I do!). [Download them here](/assets/uploads/2008/05/puremvcflashdeveloptemplates.zip) and unzip to:
 
-C:Documents and Settings<user>Local SettingsApplication DataFlashDevelopTemplatesProjectFilesAS3Project
+`C:Documents and Settings\<user>\Local Settings\Application Data\FlashDevelop\Templates\ProjectFiles\AS3Project`
 
 However, even with templates taking away a lot of the setup work, there is **still **a lot of typing to do. Need to get a reference to a Proxy in your Command?
 
