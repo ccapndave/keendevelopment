@@ -2,12 +2,15 @@
 layout: portfolio
 title: Business Card Creator
 categories: []
-tags: []
+tags:
+  - Flash
+  - AS3
+  - PHP
+  - PDFLib
 permalink: "/portfolio/business-card-creator/"
-images:
-  - thumb: /assets/uploads/2015/01/businesscardplace.png
-    large: /assets/uploads/2015/01/businesscardplace.png
 ---
+
+{% include images.html images="/assets/uploads/2015/01/businesscardplace.png" %}
 
 This project was similar to some previous work I did, but more sophisticated.
 The user has complete freedom to add, style and place text on one of hundreds

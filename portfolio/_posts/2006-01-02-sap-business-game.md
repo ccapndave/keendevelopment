@@ -4,7 +4,12 @@ title: SAP Business Game
 show_on_home: true
 carousel_image: /assets/images/sap.png
 categories: []
-tags: []
+tags:
+  - Flash
+  - AS2
+  - PHP
+  - MySQL
+  - XML
 permalink: "/portfolio/sap-business-game/"
 ---
 

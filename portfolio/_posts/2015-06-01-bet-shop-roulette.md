@@ -4,7 +4,13 @@ title: Bet Shop Roulette
 show_on_home: true
 duration: 2 years
 categories: []
-tags: []
+tags:
+  - Flash
+  - AS3
+  - Air
+  - PHP
+  - AngularJS
+  - Adobe Media Server
 permalink: "/portfolio/bet-shop-roulette/"
 carousel_image: /assets/images/betshoproulette-carousel.png
 ---

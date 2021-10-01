@@ -5,7 +5,10 @@ show_on_home: true
 carousel_image: /assets/images/giftgenie-carousel.png
 duration: 2 years
 categories: []
-tags: []
+tags:
+  - Ruby
+  - Rails
+  - Facebook
 permalink: "/portfolio/gift-genie-facebook-application/"
 ---
 

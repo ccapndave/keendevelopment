@@ -5,7 +5,12 @@ show_on_home: true
 carousel_image: /assets/uploads/2015/01/rm_03-150x150.jpg
 duration: 1 year
 categories: []
-tags: []
+tags:
+  - Flex
+  - AS3
+  - PHP
+  - SQL Server
+  - XSLT
 permalink: "/portfolio/clarity-results-manager/"
 ---
 

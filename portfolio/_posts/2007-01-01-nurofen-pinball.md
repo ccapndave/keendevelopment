@@ -5,7 +5,9 @@ show_on_home: true
 carousel_image: /assets/images/pinball-carousel.png
 duration: 6 months
 categories: []
-tags: []
+tags:
+  - Flash
+  - AS3
 permalink: "/portfolio/nurofen-pinball/"
 ---
 
