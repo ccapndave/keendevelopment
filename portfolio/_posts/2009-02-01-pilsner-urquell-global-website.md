@@ -4,7 +4,7 @@ title: Pilsner Urquell Global Website
 show_on_home: true
 carousel_image: /assets/images/PU-carousel.jpeg
 duration: 1 year
-categories:
+tags:
   - PHP
   - Silverstripe
   - MySQL
