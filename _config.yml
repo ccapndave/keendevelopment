@@ -44,3 +44,12 @@ home_text: I am a freelance full-stack web developer and consultant specialising
 archive_from: 2019-01-01 00:00:00
 
 baseurl: /keendevelopment
+
+jekyll_compose:
+  default_front_matter:
+    posts:
+      layout: post
+      title:
+      categories:
+      tags: []
+      permalink:
