@@ -7,7 +7,7 @@ tags: []
 permalink: "/css-esbuild/"
 ---
 
-I've been changing a Phoenix project over from using (webpack)[https://github.com/webpack/webpack] to using (esbuild)[https://github.com/evanw/esbuild] and hit upon an annoying problem; if you have a pre-existing image in `priv/static/images` and you reference it like so:
+I've been changing a Phoenix project over from using [webpack](https://github.com/webpack/webpack) to using [esbuild](https://github.com/evanw/esbuild) and hit upon an annoying problem; if you have a pre-existing image in `priv/static/images` and you reference it like so:
 
 ```css
 .someelement {
@@ -23,3 +23,4 @@ It turns out that what we need to do is to tell esbuild that anything in `/image
 // In the esbuild options:
 external: ["images/*"]
 ```
+
