@@ -3,10 +3,8 @@ const fs = require("fs");
 
 const baseurl = (function () {
   const config = yaml.load(fs.readFileSync("./_config.yml", "utf8"));
-  return config.baseurl === undefined ? "" : config.baseurl + "/";
+  return config.baseurl === undefined ? "" : config.baseurl;
 })();
-
-console.log(baseurl);
 
 module.exports = {
   mode: "jit",
@@ -27,7 +25,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: (theme) => ({
-        code: `url('${baseurl}/assets/images/Background.png')`,
+        code: `url('${baseurl}assets/images/Background.png')`,
       }),
     },
     colors: {
