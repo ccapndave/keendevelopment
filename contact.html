@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Get in touch</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Get in touch | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Get in touch" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Experienced full-stack web developer specialising in Elm, Elixir, Phoenix, Typescript, React, Tailwind, HTML, CSS, PHP, Symfony, Sonata and more." />
+<meta property="og:description" content="Experienced full-stack web developer specialising in Elm, Elixir, Phoenix, Typescript, React, Tailwind, HTML, CSS, PHP, Symfony, Sonata and more." />
+<meta property="og:site_name" content="Keen Development" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Get in touch" />
+<script type="application/ld+json">
+{"description":"Experienced full-stack web developer specialising in Elm, Elixir, Phoenix, Typescript, React, Tailwind, HTML, CSS, PHP, Symfony, Sonata and more.","url":"/contact","@type":"WebPage","headline":"Get in touch","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-orange">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Get in touch<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    
+  </div>
+
+  <div class="hidden w-full p-5 px-8 mt-5 text-lg bg-green-600 rounded-lg text-green-50" id="contact-success">
+  <span class="pr-3">✓</span>
+  Your message was sent successfully.
+</div>
+
+<div class="hidden w-full p-5 px-8 mt-5 text-lg bg-red-600 rounded-lg text-red-50" id="contact-error">
+  <span class="pr-3">✖</span>
+  There was a problem sending your message.  Please try again.
+</div>
+
+<form id="contact-form" action="https://keendevelopment-contact.herokuapp.com/send_email" method="post" class="w-full my-10">
+  <script async defer src="https://www.recaptcha.net/recaptcha/api.js"></script>
+
+  <p class="my-6">
+    If you want to discuss a project or a job, don't hesitate to get in touch with me via the form below and I will reply to you shortly.
+  </p>
+
+  <input name="to" type="hidden" value="Qmgal7iiA0b-ts3mqqceNWFgWmAPJtpy372jCdHWEvg="/>
+  <input name="site" type="hidden" value="vRjVPSYbpgkEkFqNVaVoG81MbCXyCk3HiuGdy5xW3iU="/>
+
+  <div class="flex flex-col w-full mb-12" id="name-block">
+    <label class="block mb-2 font-bold" for="name">Name</label>
+    <input autofocus class="py-1 text-lg bg-transparent border-b-2 border-yellow-600 appearance-none focus:border-orange focus:outline-none focus:ring-transparent" id="input-name" name="name" placeholder="Your name" required type="text"/>
+  </div>
+
+  <div class="flex flex-col w-full my-12" id="email-block">
+    <label class="block mb-2 font-bold text-yellow-600" for="email">Email</label>
+    <input class="py-1 text-lg placeholder-yellow-800 bg-transparent border-b-2 border-yellow-600 appearance-none focus:border-orange focus:outline-none focus:ring-transparent" name="email" onfocus="document.querySelector('#email-block').scrollIntoView({ behavior: 'smooth' })" placeholder="Your email address" required type="email"/>
+  </div>
+
+  <div class="flex flex-col w-full my-12" id="message-block">
+    <label class="block mb-2 font-extrabold text-yellow-600" for="message">Message</label>
+    <textarea class="h-64 p-5 text-lg placeholder-yellow-800 bg-transparent border-2 border-yellow-600 rounded-lg appearance-none focus:border-orange focus:outline-none focus:ring-transparent" name="message" onfocus="document.querySelector('#message-block').scrollIntoView({ behavior: 'smooth' })" placeholder="What would you like to say?" required></textarea>
+  </div>
+
+  <div class="flex justify-center">
+    <div class="g-recaptcha" data-callback="recaptchaDone" data-callback="recaptchaDone" data-expired-callback="recaptchaExpired" data-sitekey="6Lf5f8gaAAAAAA-ccL8I5eK6AkRNtH0KAw25UK5h" data-theme="light"></div>
+  </div>
+
+  <div class="flex justify-center my-14">
+    <input class="w-64 h-20 text-xl font-extrabold text-white cursor-pointer bg-orange rounded-xl" type="submit" value="Send"/>
+  </div>
+</form>
+
+<div class="absolute inset-0 hidden overflow-hidden bg-black opacity-50" id="contact-loader">
+  <div class="flex items-center w-full h-full justify-cener">
+    <div class="loader">Loading...</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#input-name").addEventListener("focus", function () {
+      document.querySelector("#name-block").scrollIntoView({behavior: "smooth"})
+    });
+
+    checkSubmitButton();
+
+    const contactForm = document.querySelector("#contact-form");
+    const contactLoader = document.querySelector("#contact-loader");
+    const contactSuccess = document.querySelector("#contact-success");
+    const contactError = document.querySelector("#contact-error");
+
+    const lockForm = () => {
+      contactForm.classList.add("opacity-50", "pointer-events-none");
+      contactLoader.classList.remove("hidden");
+    }
+
+    const unlockForm = () => {
+      contactForm.classList.remove("opacity-50", "pointer-events-none");
+      contactLoader.classList.add("hidden");
+    }
+
+    contactForm.addEventListener("change", _ => {
+      checkSubmitButton();
+    });
+
+    contactForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      lockForm();
+
+      fetch(contactForm.getAttribute("action"), {
+        method: contactForm.getAttribute("method"),
+        body: new URLSearchParams(new FormData(contactForm))
+      })
+        .then(res => res.json())
+        .then(result => {
+          contactSuccess.classList.toggle("hidden", !result.success);
+          contactError.classList.toggle("hidden", result.success);
+
+          if (result.success) {
+            contactSuccess.classList.remove("hidden");
+            contactError.classList.add("hidden");
+            contactSuccess.scrollIntoView({behavior: "smooth"});
+            contactForm.reset();
+          } else {
+            contactSuccess.classList.add("hidden");
+            contactError.classList.remove("hidden");
+            contactError.scrollIntoView({behavior: "smooth"});
+          }
+
+          unlockForm();
+        })
+        .catch(e => {
+          console.error(e);
+          unlockForm();
+        });
+    });
+  }, false);
+
+  let recaptchSubmitted = false;
+
+  function recaptchaDone() {
+    recaptchSubmitted = true;
+    checkSubmitButton();
+  }
+
+  function recaptchaExpired() {
+    recaptchSubmitted = false;
+    checkSubmitButton();
+  }
+
+  function checkSubmitButton() {
+    const contactForm = document.querySelector("#contact-form");
+    const submitButton = contactForm.querySelector("input[type='submit']");
+    const enabled = contactForm.checkValidity() && recaptchSubmitted;
+    submitButton.classList.toggle("pointer-events-none", ! enabled);
+    submitButton.classList.toggle("opacity-50", ! enabled);
+  }
+</script>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

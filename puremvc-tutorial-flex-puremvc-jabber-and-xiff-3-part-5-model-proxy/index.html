@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 5 - Model & Proxy</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 5 - Model &amp; Proxy | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 5 - Model &amp; Proxy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 5 - Model &amp; Proxy" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 5 - Model &amp; Proxy","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 5 - Model & Proxy<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">MODEL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PUREMVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">REGISTERPROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">XIFF</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>The model is the ‘data’ of our application and the proxy is our interface onto that data.  For our particular application the model itself is basically our Jabber connection object, so the Proxy will encapsulate that and expose an interface with the following methods:</p>
+
+<ul>
+  <li><strong>connect</strong>(username:String, password:String, server:String):void</li>
+  <li><strong>disconnect</strong>():void</li>
+  <li><strong>sendMessage</strong>(message:Message):void</li>
+  <li><strong>getRosterDataProvider</strong>():ArrayCollection</li>
+</ul>
+
+<p>As you can see, the interface is very similar to our use case and commands, and this in no coincidence; each command is going to call the relevant method in its <strong>execute</strong> method.</p>
+
+<p>Create a Proxy in the <em>model</em> folder called <em>XMPPProxy.as</em> using <strong>Add-&gt;New Proxy…</strong> (if you don’t see this menu item be sure you’ve installed the PureMVC FlashDevelop templates from <a href="/puremvc-first-thoughts-flashdevelop-templates/">PureMVC: First thoughts &amp; FlashDevelop templates</a> correctly).</p>
+
+<p>I’m just going to include the Proxy code here without much explanation as it doesn’t really do anything overly complicated (all of the hard stuff has been done for us in the XIFF library :) )  Have a read through the comments of each method and everything should be clear.</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Proxy - PureMVC
+ */</span>
+<span class="kr">package</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">model</span> <span class="p">{</span>
+  <span class="kr">import</span> <span class="nx">flash</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">Event</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">flash</span><span class="p">.</span><span class="nx">system</span><span class="p">.</span><span class="nx">Security</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">ApplicationFacade</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">jivesoftware</span><span class="p">.</span><span class="nx">xiff</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">JID</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">jivesoftware</span><span class="p">.</span><span class="nx">xiff</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">XMPPSocketConnection</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">jivesoftware</span><span class="p">.</span><span class="nx">xiff</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Message</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">jivesoftware</span><span class="p">.</span><span class="nx">xiff</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Presence</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">jivesoftware</span><span class="p">.</span><span class="nx">xiff</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="o">*</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">jivesoftware</span><span class="p">.</span><span class="nx">xiff</span><span class="p">.</span><span class="nx">im</span><span class="p">.</span><span class="nx">Roster</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">puremvc</span><span class="p">.</span><span class="nx">as3</span><span class="p">.</span><span class="nx">interfaces</span><span class="p">.</span><span class="nx">IProxy</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">puremvc</span><span class="p">.</span><span class="nx">as3</span><span class="p">.</span><span class="nx">patterns</span><span class="p">.</span><span class="nx">proxy</span><span class="p">.</span><span class="nx">Proxy</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">mx</span><span class="p">.</span><span class="nx">collections</span><span class="p">.</span><span class="nx">ArrayCollection</span><span class="o">;</span>
+
+  <span class="cm">/**
+  * Proxy to XMPP server
+  */</span>
+  <span class="kr">public</span> <span class="kr">class</span> <span class="nx">XMPPProxy</span> <span class="kr">extends</span> <span class="nx">Proxy</span> <span class="kr">implements</span> <span class="nx">IProxy</span> <span class="p">{</span>
+
+    <span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">NAME</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"XMPPProxy"</span><span class="o">;</span>
+
+    <span class="kr">private</span> <span class="kd">var</span> <span class="nx">xmppSocketConnection</span><span class="o">:</span><span class="nx">XMPPSocketConnection</span><span class="o">;</span>
+    <span class="kr">private</span> <span class="kd">var</span> <span class="nx">roster</span><span class="o">:</span><span class="nx">Roster</span><span class="o">;</span>
+
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">XMPPProxy</span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="nb">Object</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kr">super</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">;</span>
+
+      <span class="nx">setupConnection</span><span class="p">()</span><span class="o">;</span>
+      <span class="nx">configureListeners</span><span class="p">()</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * Create the required XMPP objects and do any configuration on them that we might require
+    */</span>
+    <span class="kr">private</span> <span class="kd">function</span> <span class="nx">setupConnection</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">xmppSocketConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMPPSocketConnection</span><span class="p">()</span><span class="o">;</span>
+
+      <span class="nx">roster</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Roster</span><span class="p">()</span><span class="o">;</span>
+      <span class="nx">roster</span><span class="p">.</span><span class="nx">connection</span> <span class="o">=</span> <span class="nx">xmppSocketConnection</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">private</span> <span class="kd">function</span> <span class="nx">configureListeners</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="c1">// Add event listeners related to the connection</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">LoginEvent</span><span class="p">.</span><span class="nx">LOGIN</span><span class="p">,</span> <span class="nx">onLogin</span><span class="p">)</span><span class="o">;</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">XIFFErrorEvent</span><span class="p">.</span><span class="nx">XIFF_ERROR</span><span class="p">,</span> <span class="nx">onXiffError</span><span class="p">)</span><span class="o">;</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">DisconnectionEvent</span><span class="p">.</span><span class="nx">DISCONNECT</span><span class="p">,</span> <span class="nx">onDisconnect</span><span class="p">)</span><span class="o">;</span>
+
+      <span class="c1">// Add event listeners related to messages</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">MessageEvent</span><span class="p">.</span><span class="nx">MESSAGE</span><span class="p">,</span> <span class="nx">onMessage</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * Attempt to connect to a XMPP server
+    * 
+    * @param    username
+    * @param    password
+    * @param    server
+    */</span>
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">username</span><span class="o">:</span><span class="nx">String</span><span class="p">,</span> <span class="nx">password</span><span class="o">:</span><span class="nx">String</span><span class="p">,</span> <span class="nx">server</span><span class="o">:</span><span class="nx">String</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="c1">// Attempt to load a crossdomain permissions file</span>
+      <span class="nx">Security</span><span class="p">.</span><span class="nx">loadPolicyFile</span><span class="p">(</span><span class="nx">server</span> <span class="o">+</span> <span class="s2">"/crossdomain.xml"</span><span class="p">)</span><span class="o">;</span>
+
+      <span class="c1">// Connect using standard profile</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">username</span><span class="o">;</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">password</span><span class="o">;</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">server</span> <span class="o">=</span> <span class="nx">server</span><span class="o">;</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"standard"</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * Disconnect from a XMPP server.  If not currently connected this will have no effect.
+    */</span>
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">disconnect</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">()</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * Return the roster as a data provider
+    * 
+    * @return
+    */</span>
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">getRosterDataProvider</span><span class="p">()</span><span class="o">:</span><span class="nx">ArrayCollection</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">roster</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * Send a message to the server
+    *
+    * @param    message
+    */</span>
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">sendMessage</span><span class="p">(</span><span class="nx">message</span><span class="o">:</span><span class="nx">Message</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">xmppSocketConnection</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * The user has successfully logged on to the XMPP server
+    * 
+    * @param    connectionSuccessEvent
+    */</span>
+    <span class="kr">private</span> <span class="kd">function</span> <span class="nx">onLogin</span><span class="p">(</span><span class="nx">loginEvent</span><span class="o">:</span><span class="nx">LoginEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">roster</span><span class="p">.</span><span class="nx">setPresence</span><span class="p">(</span><span class="nx">Presence</span><span class="p">.</span><span class="nx">SHOW_CHAT</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">;</span>
+
+      <span class="nx">sendNotification</span><span class="p">(</span><span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">VALID_LOGIN</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * There has been a Jabber error - most likely an incorrect username/password error
+    * 
+    * @param    xiffErrorEvent
+    */</span>
+    <span class="kr">private</span> <span class="kd">function</span> <span class="nx">onXiffError</span><span class="p">(</span><span class="nx">xiffErrorEvent</span><span class="o">:</span><span class="nx">XIFFErrorEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">xiffErrorEvent</span><span class="p">.</span><span class="nx">errorCode</span> <span class="o">==</span> <span class="mi">400</span><span class="p">)</span>
+        <span class="nx">sendNotification</span><span class="p">(</span><span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">INVALID_LOGIN</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * The user has disconnected from the XMPP server
+    * 
+    * @param    disconnectionEvent
+    */</span>
+    <span class="kr">private</span> <span class="kd">function</span> <span class="nx">onDisconnect</span><span class="p">(</span><span class="nx">disconnectionEvent</span><span class="o">:</span><span class="nx">DisconnectionEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">sendNotification</span><span class="p">(</span><span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">DISCONNECT</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+    * Received a message from the server
+    * 
+    * @param    messageEvent
+    */</span>
+    <span class="kr">private</span> <span class="kd">function</span> <span class="nx">onMessage</span><span class="p">(</span><span class="nx">messageEvent</span><span class="o">:</span><span class="nx">MessageEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">sendNotification</span><span class="p">(</span><span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">RECEIVE_MESSAGE</span><span class="p">,</span> <span class="nx">messageEvent</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>One thing you will notice is that the proxy dispatches another few notifications that we haven’t included in our ApplicationFacade:</p>
+
+<ul>
+  <li>VALID_LOGIN</li>
+  <li>INVALID_LOGIN</li>
+  <li>RECEIVE_MESSAGE</li>
+  <li>DISCONNECT</li>
+</ul>
+
+<p>So lets go back to our ApplicationFacade and add them in:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">VALID_LOGIN</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"valid_login"</span><span class="o">;</span>
+<span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">INVALID_LOGIN</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"invalid_login"</span><span class="o">;</span>
+<span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">DISCONNECT</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"disconnect"</span><span class="o">;</span>
+<span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">RECEIVE_MESSAGE</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"receive_message"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>The final thing we need to do is register our new Proxy with PureMVC.  We do this in *StartupCommand.as *using the <strong>registerProxy</strong> method:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">execute</span><span class="p">(</span><span class="nx">notification</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+     <span class="nx">facade</span><span class="p">.</span><span class="nx">registerProxy</span><span class="p">(</span><span class="k">new</span> <span class="nx">XMPPProxy</span><span class="p">())</span><span class="o">;</span>
+ <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Its quite easy to forget to do this and end up with all kinds of strange errors, so be sure to remember to register any proxies you create.</p>
+
+<p>We’ve finally got the bones of our application up and running so now its <a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">on to the views and mediators</a>!</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

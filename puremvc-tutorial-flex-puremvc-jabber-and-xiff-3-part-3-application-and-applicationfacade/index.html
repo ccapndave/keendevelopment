@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 3 - Application and ApplicationFacade</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 3 - Application and ApplicationFacade | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 3 - Application and ApplicationFacade" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 3 - Application and ApplicationFacade" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 3 - Application and ApplicationFacade","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 3 - Application and ApplicationFacade<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">APPLICATION</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">APPLICATIONFACADE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">HELLO WORLD</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MXML</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PUREMVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">STARTUP NOTIFICATION</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">STARTUPCOMMAND</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">TUTORIAL</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>Every application needs an entry point. PureMVC projects can in fact be thought of as having two entry points - one is the AVM entry point; the first class that is actually executed (this is the ‘real’ entry point). The other is the <strong>ApplicationFacade</strong> which kicks off the PureMVC framework and this is the class that should be considered the centre of our application.</p>
+
+<p>FlashDevelop will probably have automatically created an entry point called <em>Main.mxml</em> - go ahead and delete this at this point as we will be replacing it with our own file.</p>
+
+<p>Our ‘Flex’ entry point will be called Application.mxml (my PureMVC project entry points are always named Application.mxml or Application.as - I’m not sure if this is an official PureMVC naming convention but its always a good idea to decide on a naming scheme and them stick to it). Navigate to the <strong>org.davekeen.xiffer</strong> directory in the project area of FlashDevelop, right click and select <strong>Add-&gt;New MXML File…</strong> and in the prompt box name the new file <strong>Application.mxml</strong> and click <strong>OK</strong>.</p>
+
+<p>Here’s the code for our application entry point:</p>
+
+<div class="language-mxml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;mx:Application</span> <span class="na">xmlns:mx=</span><span class="s">"http://www.adobe.com/2006/mxml"</span>
+    <span class="na">xmlns:view=</span><span class="s">"org.davekeen.xiffer.view.components.*"</span>
+    <span class="na">layout=</span><span class="s">"absolute"</span>
+    <span class="na">width=</span><span class="s">"760"</span> <span class="na">height=</span><span class="s">"440"</span>
+    <span class="na">verticalGap=</span><span class="s">"0"</span>
+    <span class="na">horizontalGap=</span><span class="s">"0"</span>
+    <span class="na">creationComplete=</span><span class="s">"facade.sendNotification(ApplicationFacade.STARTUP, this);"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;mx:Script&gt;</span>
+        <span class="cp">&lt;![CDATA[</span>
+        <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">ApplicationFacade</span><span class="o">;</span>
+
+        <span class="kr">private</span> <span class="kd">var</span> <span class="nx">facade</span><span class="o">:</span><span class="nx">ApplicationFacade</span> <span class="o">=</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">()</span><span class="o">;</span>
+        <span class="cp">]]&gt;</span>
+    <span class="nt">&lt;/mx:Script&gt;</span>
+<span class="nt">&lt;/mx:Application&gt;</span>
+</code></pre></div></div>
+
+<p>This MXML file has no function at all apart from sending a STARTUP notification, which will kick off our PureMVC application. Later we’ll add the top-level view <strong>components</strong> to this, but for now we’re just interested in getting the basic framework up and running. In order to let FlashDevelop know that this is the entry point right-click the file in the project area and select <strong>Always Compile</strong> from the popup menu.</p>
+
+<p>Now we need the ApplicationFacade. Right click on the <strong>xiffer</strong> folder in the project area and select <strong>Add-&gt;New ApplicationFacade…</strong> and name it <em>ApplicationFacade.as</em>. If you can’t see <strong>New ApplicationFacade…</strong> in the <strong>Add</strong> menu be sure you have installed the PureMVC FlashDevelop templates from <a href="/puremvc-first-thoughts-flashdevelop-templates/">PureMVC: First thoughts &amp; FlashDevelop templates</a> correctly.</p>
+
+<p>Finally we need a <strong>StartupCommand</strong>. Right click on the <strong>controller</strong> folder and select <strong>Add-&gt;New SimpleCommand…</strong> and name it <em>StartupCommand.as</em>. Let go for a classic - in the <strong>execute</strong> method add:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">trace</span><span class="p">(</span><span class="s2">"Hello world!"</span><span class="p">)</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Your **StartupCommand.as **should now look like this:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Simple Command - PureMVC
+ */</span>
+<span class="kr">package</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">controller</span> <span class="p">{</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">puremvc</span><span class="p">.</span><span class="nx">as3</span><span class="p">.</span><span class="nx">interfaces</span><span class="p">.</span><span class="nx">INotification</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">puremvc</span><span class="p">.</span><span class="nx">as3</span><span class="p">.</span><span class="nx">patterns</span><span class="p">.</span><span class="nx">command</span><span class="p">.</span><span class="nx">SimpleCommand</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">puremvc</span><span class="p">.</span><span class="nx">as3</span><span class="p">.</span><span class="nx">patterns</span><span class="p">.</span><span class="nx">observer</span><span class="p">.</span><span class="nx">Notification</span><span class="o">;</span>
+
+  <span class="cm">/**
+   * SimpleCommand
+   */</span>
+  <span class="kr">public</span> <span class="kr">class</span> <span class="nx">StartupCommand</span> <span class="kr">extends</span> <span class="nx">SimpleCommand</span> <span class="p">{</span>
+
+    <span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">execute</span><span class="p">(</span><span class="nx">note</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="kr">trace</span><span class="p">(</span><span class="s2">"Hello world!"</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And there we have a working Flex/PureMVC HelloWorld application! Run it and feel proud :)</p>
+
+<p><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Now lets add some notifications…</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

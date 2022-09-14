@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Restricting access to routes with react-router and guards</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Restricting access to routes with react-router and guards | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Restricting access to routes with react-router and guards" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A common requirement of a router is restricting access to particular routes based on some set of criteria, with probably the most common situation being to redirect a user away from a secured page when they are not logged in." />
+<meta property="og:description" content="A common requirement of a router is restricting access to particular routes based on some set of criteria, with probably the most common situation being to redirect a user away from a secured page when they are not logged in." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-11T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Restricting access to routes with react-router and guards" />
+<script type="application/ld+json">
+{"datePublished":"2015-04-11T00:00:00+00:00","dateModified":"2015-04-11T00:00:00+00:00","description":"A common requirement of a router is restricting access to particular routes based on some set of criteria, with probably the most common situation being to redirect a user away from a secured page when they are not logged in.","url":"/restricting-react-router-with-guards/","mainEntityOfPage":{"@type":"WebPage","@id":"/restricting-react-router-with-guards/"},"@type":"BlogPosting","headline":"Restricting access to routes with react-router and guards","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Restricting access to routes with react-router and guards<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">REACT</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Apr 11, 2015
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>A common requirement of a router is restricting access to particular routes based on some set of criteria, with probably the most common situation being to redirect a user away from a secured page when they are not logged in.</p>
+
+<p><a href="https://github.com/rackt/react-router">react-router</a> doesn’t offer any integrated way of enforcing routes within the route definitions themselves (although apparently if you don’t mind abandoning the pretty JSX route definitions and instead write the routes directly in code you might be able to use the <code class="language-plaintext highlighter-rouge">onEnter</code> property to do this).</p>
+
+<p>The provided examples for react-router include another, functional, solution which involves wrapping the component in another component implementing the <a href="https://github.com/rackt/react-router/blob/master/docs/api/components/RouteHandler.md#willtransitiontotransition-params-query-callback"><code class="language-plaintext highlighter-rouge">willTransitionTo</code></a> lifecycle method in order to implement the guard. You can see their solution at <a href="https://github.com/rackt/react-router/blob/master/examples/auth-flow/app.js#L43">https://github.com/rackt/react-router/blob/master/examples/auth-flow/app.js#L43</a></p>
+
+<p>I ended up abstracting this pattern into a set of two simple generalised functions which accept any function as the guard, allowing them to be used in different situations. There is a synchronous version (in which the guard function returns true or false) and an asynchronous version (in which the guard returns a Promise).</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Guard the Component router handler with the given function.  If the function fails
+ * (i.e. returns a falsey value) then redirect to the given state and parameters.
+ *
+ * @param fn The guard function, returning true (if the transition is allowed) or false if not
+ * @param Component The React component used as the route handler
+ * @param state The name of the state to redirect to if the guard fails
+ * @param params Optional parameters for the redirect state
+ * @returns {*}
+ */</span>
+
+<span class="kd">const</span> <span class="nx">guardRoute</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">Component</span><span class="p">,</span> <span class="p">{</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{}</span> <span class="p">})</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+        <span class="na">statics</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nx">willTransitionTo</span><span class="p">(</span><span class="nx">transition</span><span class="p">,</span> <span class="nx">currentParams</span><span class="p">,</span> <span class="nx">currentQuery</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fn</span><span class="p">(</span><span class="nx">currentParams</span><span class="p">))</span> <span class="nx">transition</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">&lt;</span><span class="nc">Component</span> <span class="si">{</span><span class="p">...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="si">}</span> <span class="p">/&gt;;</span>
+        <span class="p">},</span>
+
+        <span class="na">displayName</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">Component</span><span class="p">.</span><span class="nx">displayName</span><span class="p">}</span><span class="s2">(Guarded)`</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+ * Asynchronously guard the Component router handler with the given function.  If the
+ * function fails (i.e. the Promise resolves with a falsey value) then redirect to
+ * the given state and parameters.
+ *
+ * @param fn The guard function, returning a Promise
+ * @param Component The React component used as the route handler
+ * @param state The name of the state to redirect to if the guard fails
+ * @param params Optional parameters for the redirect state
+ * @returns {*}
+ */</span>
+
+<span class="kd">const</span> <span class="nx">guardRouteAsync</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">Component</span><span class="p">,</span> <span class="p">{</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{}</span> <span class="p">})</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+        <span class="na">statics</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nx">willTransitionTo</span><span class="p">(</span><span class="nx">transition</span><span class="p">,</span> <span class="nx">currentParams</span><span class="p">,</span> <span class="nx">currentQuery</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">fn</span><span class="p">(</span><span class="nx">currentParams</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="nx">transition</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+                    <span class="nx">callback</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">&lt;</span><span class="nc">Component</span> <span class="si">{</span><span class="p">...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="si">}</span> <span class="p">/&gt;;</span>
+        <span class="p">},</span>
+
+        <span class="na">displayName</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">Component</span><span class="p">.</span><span class="nx">displayName</span><span class="p">}</span><span class="s2">(Guarded)`</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Note that since the first parameter of the decorator functions is the guard itself, you can use partial application to create a new function with a particular guard already baked in:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// With lodash's partial method</span>
+<span class="kd">const</span> <span class="nx">isDaveLoggedInGuard</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">partial</span><span class="p">(</span><span class="nx">guardRoute</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">loggedInUser</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">dave</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// With bind</span>
+<span class="kd">const</span> <span class="nx">isDaveLoggedInGuard</span> <span class="o">=</span> <span class="nx">guardRoute</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">loggedInUser</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">dave</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The guards can then be applied by wrapping the route handler with the guard function:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span>
+    <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">name</span><span class="p">=</span><span class="s">"app"</span> <span class="na">path</span><span class="p">=</span><span class="s">"/"</span> <span class="na">handler</span><span class="p">=</span><span class="si">{</span><span class="nx">App</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">name</span><span class="p">=</span><span class="s">"login"</span> <span class="na">path</span><span class="p">=</span><span class="s">"login"</span> <span class="na">handler</span><span class="p">=</span><span class="si">{</span><span class="nx">Login</span><span class="si">}</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">name</span><span class="p">=</span><span class="s">"secret"</span> <span class="na">path</span><span class="p">=</span><span class="s">"secret"</span> <span class="na">handler</span><span class="p">=</span><span class="si">{</span><span class="nx">isDaveLoggedInGuard</span><span class="p">(</span><span class="nx">Secret</span><span class="p">,</span> <span class="p">{</span> <span class="na">state</span><span class="p">:</span> <span class="dl">"</span><span class="s2">login</span><span class="dl">"</span> <span class="p">})</span><span class="si">}</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">Route</span><span class="p">&gt;;</span>
+</code></pre></div></div>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

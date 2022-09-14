@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>ES6 with system.js not recognised</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ES6 with system.js not recognised | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="ES6 with system.js not recognised" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’m investigating using system.js with jspm for my next project so that I can use some ES6 goodness. All was happy and well with my tests, when without warning the browser simply stopped recognising a file as being ES6.  After much fiddling about I eventually figured out what was going on and have included the solution here in case anyone else gets bitten." />
+<meta property="og:description" content="I’m investigating using system.js with jspm for my next project so that I can use some ES6 goodness. All was happy and well with my tests, when without warning the browser simply stopped recognising a file as being ES6.  After much fiddling about I eventually figured out what was going on and have included the solution here in case anyone else gets bitten." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-01-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ES6 with system.js not recognised" />
+<script type="application/ld+json">
+{"datePublished":"2015-01-30T00:00:00+00:00","dateModified":"2015-01-30T00:00:00+00:00","description":"I’m investigating using system.js with jspm for my next project so that I can use some ES6 goodness. All was happy and well with my tests, when without warning the browser simply stopped recognising a file as being ES6.  After much fiddling about I eventually figured out what was going on and have included the solution here in case anyone else gets bitten.","url":"/es6-system-js-not-recognised/","mainEntityOfPage":{"@type":"WebPage","@id":"/es6-system-js-not-recognised/"},"@type":"BlogPosting","headline":"ES6 with system.js not recognised","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">ES6 with system.js not recognised<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jan 30, 2015
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I’m investigating using <a href="https://github.com/systemjs/systemjs">system.js</a> with <a href="http://jspm.io/">jspm</a> for my next project so that I can use some ES6 goodness. All was happy and well with my tests, when without warning the browser simply stopped recognising a file as being ES6.  After much fiddling about I eventually figured out what was going on and have included the solution here in case anyone else gets bitten.</p>
+
+<p>It turns out that the problem is that as of the current master branch system.js uses a regular expression to detect whether a file is ES6 or not (<a href="https://github.com/systemjs/systemjs/blob/99e547700201a7c55c262907238048ab904a5dd4/lib/extension-es6.js#L34">https://github.com/systemjs/systemjs/blob/99e547700201a7c55c262907238048ab904a5dd4/lib/extension-es6.js#L34</a>) and if you happen to be testing with a simple file like:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">es6</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ES6</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="nx">es6</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>then its not going to be recognised as being ES6 by system.js, instead throwing an error on the <strong>let</strong> statement.</p>
+
+<p>A solution is to add a dummy export at the end of the file, which matches the regular expression and lets system.js work as intended.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">es6</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ES6</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="nx">es6</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p>After figuring this out I eventually found a closed issue at https://github.com/systemjs/systemjs/issues/301 which mentions this same solution. It also says that you can include “format es6” at the top like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">format es6</span><span class="dl">"</span>
+
+<span class="kd">let</span> <span class="nx">es6</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ES6</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="nx">es6</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>but I have to say that this didn’t work for me (although there were no errors thrown, nothing was written to the console.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

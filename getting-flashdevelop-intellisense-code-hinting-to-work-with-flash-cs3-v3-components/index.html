@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Getting FlashDevelop intellisense code hinting to work with Flash CS3 v3 components</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Getting FlashDevelop intellisense code hinting to work with Flash CS3 v3 components | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Getting FlashDevelop intellisense code hinting to work with Flash CS3 v3 components" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Just a quick post here in response to a query I recently got from someone. Since FlashDevelop doesn’t have the source of the v3 component set the automatic code-hinting won’t work for components like fl.controls.Button or whatever." />
+<meta property="og:description" content="Just a quick post here in response to a query I recently got from someone. Since FlashDevelop doesn’t have the source of the v3 component set the automatic code-hinting won’t work for components like fl.controls.Button or whatever." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-05-10T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getting FlashDevelop intellisense code hinting to work with Flash CS3 v3 components" />
+<script type="application/ld+json">
+{"datePublished":"2008-05-10T00:00:00+00:00","dateModified":"2008-05-10T00:00:00+00:00","description":"Just a quick post here in response to a query I recently got from someone. Since FlashDevelop doesn’t have the source of the v3 component set the automatic code-hinting won’t work for components like fl.controls.Button or whatever.","url":"/getting-flashdevelop-intellisense-code-hinting-to-work-with-flash-cs3-v3-components/","mainEntityOfPage":{"@type":"WebPage","@id":"/getting-flashdevelop-intellisense-code-hinting-to-work-with-flash-cs3-v3-components/"},"@type":"BlogPosting","headline":"Getting FlashDevelop intellisense code hinting to work with Flash CS3 v3 components","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Getting FlashDevelop intellisense code hinting to work with Flash CS3 v3 components<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">ADD TO LIBRARY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">CODE HINTING</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">EXTERNAL LIBRARY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLASH COMPONENTS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLASHDEVELOP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">INTELLISENSE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NAMESPACE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NAMESPACES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SWC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">V3 COMPONENTS</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    May 10, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>Just a quick post here in response to a query I recently got from someone.  Since FlashDevelop doesn’t have the source of the v3 component set the automatic code-hinting won’t work for components like <strong>fl.controls.Button</strong> or whatever.</p>
+
+<p>In order to get FlashDevelop to pick up these classes do the following:</p>
+
+<ol>
+  <li>In Flash CS3 open the File-&gt;Publish Settings… dialog</li>
+  <li>Click on the <em>Flash</em> tab</li>
+  <li>Select ‘Export SWC’</li>
+  <li>Export your project</li>
+  <li>In FlashDevelop right-click on the generated swc file and select ‘Add to library’</li>
+  <li>Finally right-click on the generated swc file again, click <em>Options…</em> and select ‘External library (not included)</li>
+</ol>
+
+<p>Et voila!  Code hinting for all classes contained within the swf.  If you add more components to the movie they should automatically be picked up by Intellisense.</p>
+
+<p><strong>UPDATE: In fact none of this is necessary - just choosing a Flash IDE project in FlashDevelop links in the appropriate libraries from the start.  Thanks to Philippe for pointing this out!</strong></p>
+
+<p>On a further note (and in reponse to a question posted on the FlashDevelop forum), if for some reason you are unable to turn off ‘Automatically declare stage instances’ in Flash and want Intellisense to pick up the objects on the stage you can hack this by re-declaring the instances in a separate namespace.  For example, if you have a TextInput component and a TextField on your stage you could do:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">TextEntryView</span> <span class="kr">extends</span> <span class="nx">Sprite</span> <span class="p">{</span>  
+  <span class="kr">namespace</span> <span class="nx">dummy</span><span class="o">;</span>
+
+  <span class="nx">dummy</span> <span class="kd">var</span> <span class="nx">textInput</span><span class="o">:</span><span class="nx">TextInput</span><span class="o">;</span>
+  <span class="nx">dummy</span> <span class="kd">var</span> <span class="nx">textField</span><span class="o">:</span><span class="nx">TextField</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now typing <em>textField</em> into the IDE will automatically pop up a list of available properties and methods like usual.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

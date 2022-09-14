@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>CSS background images and ESBuild</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>CSS background images and ESBuild | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="CSS background images and ESBuild" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’ve been changing a Phoenix project over from using webpack to using esbuild and hit upon an annoying problem; if you have a pre-existing image in priv/static/images and you reference it like so:" />
+<meta property="og:description" content="I’ve been changing a Phoenix project over from using webpack to using esbuild and hit upon an annoying problem; if you have a pre-existing image in priv/static/images and you reference it like so:" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CSS background images and ESBuild" />
+<script type="application/ld+json">
+{"datePublished":"2021-11-17T00:00:00+00:00","dateModified":"2021-11-17T00:00:00+00:00","description":"I’ve been changing a Phoenix project over from using webpack to using esbuild and hit upon an annoying problem; if you have a pre-existing image in priv/static/images and you reference it like so:","url":"/css-esbuild/","mainEntityOfPage":{"@type":"WebPage","@id":"/css-esbuild/"},"@type":"BlogPosting","headline":"CSS background images and ESBuild","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">CSS background images and ESBuild<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Nov 17, 2021
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I’ve been changing a Phoenix project over from using <a href="https://github.com/webpack/webpack">webpack</a> to using <a href="https://github.com/evanw/esbuild">esbuild</a> and hit upon an annoying problem; if you have a pre-existing image in <code class="language-plaintext highlighter-rouge">priv/static/images</code> and you reference it like so:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.someelement</span> <span class="p">{</span>
+	<span class="nl">background-image</span><span class="p">:</span> <span class="sx">url(/images/myimage.png)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>… then esbuild will complain that it can’t find the image.  By fiddling with the paths its possible to get esbuild to find the image as expected, but then it will get bundled into the <code class="language-plaintext highlighter-rouge">priv/static/assets</code> folder resulting in a duplicate file.</p>
+
+<p>It turns out that what we need to do is to tell esbuild that anything in <code class="language-plaintext highlighter-rouge">/images</code> should be left how it is and it shouldn’t attempt to bundle the files, and we can do that using <code class="language-plaintext highlighter-rouge">external</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In the esbuild options:</span>
+<span class="nx">external</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">images/*</span><span class="dl">"</span><span class="p">]</span>
+</code></pre></div></div>
+
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

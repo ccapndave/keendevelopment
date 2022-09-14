@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>ERR_CONNECTION_REFUSED for localhost addresses on Chrome</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ERR_CONNECTION_REFUSED for localhost addresses on Chrome | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="ERR_CONNECTION_REFUSED for localhost addresses on Chrome" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I run my development environments with a Vagrant VM for each, with each project mapped to .localhost* in **/etc/hosts. So I can access project1.localhost, project2.localhost, etc." />
+<meta property="og:description" content="I run my development environments with a Vagrant VM for each, with each project mapped to .localhost* in **/etc/hosts. So I can access project1.localhost, project2.localhost, etc." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-05-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ERR_CONNECTION_REFUSED for localhost addresses on Chrome" />
+<script type="application/ld+json">
+{"datePublished":"2015-05-21T00:00:00+00:00","dateModified":"2015-05-21T00:00:00+00:00","description":"I run my development environments with a Vagrant VM for each, with each project mapped to .localhost* in **/etc/hosts. So I can access project1.localhost, project2.localhost, etc.","url":"/err_connection_refused-for-localhost-addresses-on-chrome/","mainEntityOfPage":{"@type":"WebPage","@id":"/err_connection_refused-for-localhost-addresses-on-chrome/"},"@type":"BlogPosting","headline":"ERR_CONNECTION_REFUSED for localhost addresses on Chrome","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">ERR_CONNECTION_REFUSED for localhost addresses on Chrome<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">CHROME</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">VAGRANT</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    May 21, 2015
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I run my development environments with a Vagrant VM for each, with each project mapped to <strong>.localhost* in **/etc/hosts</strong>. So I can access <em>project1.localhost</em>, <em>project2.localhost</em>, etc.</p>
+
+<p>Unfortunately as of yesterday, these addresses all completely stopped working in Chrome, instead giving an <strong>ERR_CONNECTION_REFUSED</strong> message. The strange thing was that I could still access the project directly by IP, and the <em>*.localhost</em> addresses still worked perfectly in Safari and Firefox.</p>
+
+<p>It actually turns out that this is a new security feature introduced in Chrome 43, which blocks any subdomains of localhost from being accessed from the web. Specifically this means URLs ending with .localhost. You can see an in depth explanation of the issue <a href="https://code.google.com/p/chromium/issues/detail?id=378566">here</a> and <a href="https://code.google.com/p/chromium/issues/detail?id=489973">here</a>.</p>
+
+<p>The solution is either to use a different browser (but no doubt other browser will also implement this measure at some point), or to simply change your domain names. I have changed everything from <em>*.localhost</em> to .local* and everything works as normal.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

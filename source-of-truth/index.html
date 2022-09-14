@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Shared Source of Truth in Phoenix LiveComponents</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Shared Source of Truth in Phoenix LiveComponents | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Shared Source of Truth in Phoenix LiveComponents" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As described in the LiveView documentation, stateful components need to be careful about where their source of truth is placed. There are two options:" />
+<meta property="og:description" content="As described in the LiveView documentation, stateful components need to be careful about where their source of truth is placed. There are two options:" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Shared Source of Truth in Phoenix LiveComponents" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-22T00:00:00+00:00","dateModified":"2021-09-22T00:00:00+00:00","description":"As described in the LiveView documentation, stateful components need to be careful about where their source of truth is placed. There are two options:","url":"/source-of-truth/","mainEntityOfPage":{"@type":"WebPage","@id":"/source-of-truth/"},"@type":"BlogPosting","headline":"Shared Source of Truth in Phoenix LiveComponents","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Shared Source of Truth in Phoenix LiveComponents<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Sep 22, 2021
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>As described in the LiveView <a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html#module-liveview-as-the-source-of-truth">documentation</a>, stateful components need to be careful about where their <em>source of truth</em> is placed.  There are two options:</p>
+
+<ul>
+  <li>use the LiveComponent itself as the source of truth</li>
+  <li>use the parent LiveView as the source of truth</li>
+</ul>
+
+<p>This isn’t a consideration specific to Phoenix, and needs to be thought about when architecting any component based system.  There are various approaches to manage this; for example, Elm deals with it by only allowing a single source of truth at the top level of the application. React works similarly to LiveView by making a conceptual split between <code class="language-plaintext highlighter-rouge">props</code> (which is equivalent to the <code class="language-plaintext highlighter-rouge">assigns</code> parameter in LiveView’s <code class="language-plaintext highlighter-rouge">update</code> callback) and <code class="language-plaintext highlighter-rouge">state</code> (which is equivalent to <code class="language-plaintext highlighter-rouge">socket.assigns</code>).</p>
+
+<p>However, for a specific class of components there is an option which hovers somewhere in between:</p>
+
+<ul>
+  <li>use the parent LiveView to initialise the state and from then on use the LiveComponent as the source of truth</li>
+</ul>
+
+<p>To present an (over)simplified example, lets suppose that you have a component that allows users to make multiple selections from a list of items.  We’ll initialize the component with <code class="language-plaintext highlighter-rouge">items</code> which is a list of items that can be selected and <code class="language-plaintext highlighter-rouge">selected_items</code> which is the initially selected items.  The pattern below uses the initial value of <code class="language-plaintext highlighter-rouge">selected_items</code> when the component mounts, and from then on the component maintains its own state.</p>
+
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SelectorComponent</span> <span class="k">do</span>
+	<span class="kn">use</span> <span class="no">Phoenix</span><span class="o">.</span><span class="no">LiveComponent</span>
+
+	<span class="nv">@local_assign_keys</span> <span class="p">[</span><span class="ss">:selected_items</span><span class="p">]</span>
+
+	<span class="k">def</span> <span class="n">render</span><span class="p">(</span><span class="n">assigns</span><span class="p">)</span> <span class="k">do</span>
+		<span class="c1"># Display the items and listen for clicks</span>
+	<span class="k">end</span>
+
+	<span class="k">def</span> <span class="n">mount</span><span class="p">(</span><span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+		<span class="n">socket</span>
+		<span class="o">|&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="ss">initialised?:</span> <span class="no">false</span><span class="p">)</span>
+	<span class="k">end</span>
+
+	<span class="k">def</span> <span class="n">update</span><span class="p">(</span><span class="n">assigns</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">initialised?</span> <span class="k">do</span>
+			<span class="c1"># On the first update assign everything</span>
+			<span class="n">socket</span>
+			<span class="o">|&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="n">assigns</span><span class="p">)</span>
+			<span class="o">|&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="ss">initialised?:</span> <span class="no">true</span><span class="p">)</span>
+		<span class="k">else</span>
+			<span class="c1"># From then on, only assign non-local properties so they don't get overwritten</span>
+			<span class="n">socket</span>
+			<span class="o">|&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="no">Map</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">assigns</span><span class="p">,</span> <span class="nv">@local_assign_keys</span><span class="p">))</span>
+		<span class="k">end</span>
+	<span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="is-this-a-good-idea">Is this a good idea?</h4>
+
+<p>Very probably not!  In most cases its better to use the parent LiveView as the source of truth by sending <code class="language-plaintext highlighter-rouge">selected_items</code> back to the LiveView and letting <code class="language-plaintext highlighter-rouge">update</code> be called normally.  However, if you don’t care about the LiveView state being in sync (i.e. when you only care about the DOM produced by the component), you might decide that the encapsulation makes it worthwhile.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

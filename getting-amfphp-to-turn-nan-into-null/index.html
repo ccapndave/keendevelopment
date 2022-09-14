@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Getting AMFPHP to turn NaN into null</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Getting AMFPHP to turn NaN into null | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Getting AMFPHP to turn NaN into null" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Annoyingly the NaN (not a number) value of Number objects in AS3 is often quite hard to translate into a server-side equivalent and ends up breaking AMFPHP, and apparently BlazeDS too." />
+<meta property="og:description" content="Annoyingly the NaN (not a number) value of Number objects in AS3 is often quite hard to translate into a server-side equivalent and ends up breaking AMFPHP, and apparently BlazeDS too." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-06-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getting AMFPHP to turn NaN into null" />
+<script type="application/ld+json">
+{"datePublished":"2010-06-17T00:00:00+00:00","dateModified":"2010-06-17T00:00:00+00:00","description":"Annoyingly the NaN (not a number) value of Number objects in AS3 is often quite hard to translate into a server-side equivalent and ends up breaking AMFPHP, and apparently BlazeDS too.","url":"/getting-amfphp-to-turn-nan-into-null/","mainEntityOfPage":{"@type":"WebPage","@id":"/getting-amfphp-to-turn-nan-into-null/"},"@type":"BlogPosting","headline":"Getting AMFPHP to turn NaN into null","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Getting AMFPHP to turn NaN into null<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">AMFBASEDESERIALIZER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">AMFPHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">DESERIALIZATION</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NAN</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NOT A NUMBER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NUMBER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">READDOUBLE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">SERIALIZATION</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jun 17, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>Annoyingly the NaN (not a number) value of Number objects in AS3 is often quite hard to translate into a server-side equivalent and ends up breaking AMFPHP, and apparently BlazeDS too.</p>
+
+<p>Here is a simple modification that will make AMFPHP turn NaN into a PHP null value on de-serialization.  Unfortunately on the return journey – trying to return NaN to AS3 – there doesn’t seem to be anything clever that can be done and the Flash Player insists on turning undefined numbers into 0.  A glance through the AMF spec doesn’t reveal anything useful, and if you need this functionality you are best off creating a custom class wrapping the value of the number and including a isNotANumber:Boolean or something that you can examine and set on the server.</p>
+
+<p>Anyway, here’s the code.  In AMFBaseDeserializer.php find the following function:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">readDouble</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nv">$bytes</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">raw_data</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">current_byte</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">current_byte</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">isBigEndian</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$bytes</span> <span class="o">=</span> <span class="nb">strrev</span><span class="p">(</span><span class="nv">$bytes</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nv">$zz</span> <span class="o">=</span> <span class="nb">unpack</span><span class="p">(</span><span class="s2">"dflt"</span><span class="p">,</span> <span class="nv">$bytes</span><span class="p">);</span> <span class="c1">// unpack the bytes</span>
+
+  <span class="k">return</span> <span class="nv">$zz</span><span class="p">[</span><span class="s1">'flt'</span><span class="p">];</span> <span class="c1">// return the number from the associative array</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and change the last line so it reads:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">readDouble</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nv">$bytes</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">raw_data</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">current_byte</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">current_byte</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">isBigEndian</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$bytes</span> <span class="o">=</span> <span class="nb">strrev</span><span class="p">(</span><span class="nv">$bytes</span><span class="p">);</span>
+  <span class="p">}</span> 
+  <span class="nv">$zz</span> <span class="o">=</span> <span class="nb">unpack</span><span class="p">(</span><span class="s2">"dflt"</span><span class="p">,</span> <span class="nv">$bytes</span><span class="p">);</span> <span class="c1">// unpack the bytes</span>
+
+  <span class="k">return</span> <span class="p">(</span><span class="nv">$zz</span><span class="p">[</span><span class="s1">'flt'</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'NAN'</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$zz</span><span class="p">[</span><span class="s1">'flt'</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// return the number from the associative array</span>
+<span class="p">}</span> 
+</code></pre></div></div>
+
+<p>Hope that helps someone!</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

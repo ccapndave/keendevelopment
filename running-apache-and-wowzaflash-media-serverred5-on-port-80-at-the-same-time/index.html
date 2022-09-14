@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Running Apache and Wowza/Flash Media Server/Red5 on port 80 at the same time</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Running Apache and Wowza/Flash Media Server/Red5 on port 80 at the same time | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Running Apache and Wowza/Flash Media Server/Red5 on port 80 at the same time" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="By default Wowza, Flash Media Server and Red5 run using RTMP over port 1935.  However, a lot of firewalls (especially in corporate environments) will block access to this port.  In an attempt to get around this the RTMPT protocol was developed, which basically wraps up the RTMP stream into a bunch of HTTP requests; these run over port 80 and are just normal HTTP, so even the most restrictive firewalls should allow this traffic through." />
+<meta property="og:description" content="By default Wowza, Flash Media Server and Red5 run using RTMP over port 1935.  However, a lot of firewalls (especially in corporate environments) will block access to this port.  In an attempt to get around this the RTMPT protocol was developed, which basically wraps up the RTMP stream into a bunch of HTTP requests; these run over port 80 and are just normal HTTP, so even the most restrictive firewalls should allow this traffic through." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-12-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Running Apache and Wowza/Flash Media Server/Red5 on port 80 at the same time" />
+<script type="application/ld+json">
+{"datePublished":"2010-12-15T00:00:00+00:00","dateModified":"2010-12-15T00:00:00+00:00","description":"By default Wowza, Flash Media Server and Red5 run using RTMP over port 1935.  However, a lot of firewalls (especially in corporate environments) will block access to this port.  In an attempt to get around this the RTMPT protocol was developed, which basically wraps up the RTMP stream into a bunch of HTTP requests; these run over port 80 and are just normal HTTP, so even the most restrictive firewalls should allow this traffic through.","url":"/running-apache-and-wowzaflash-media-serverred5-on-port-80-at-the-same-time/","mainEntityOfPage":{"@type":"WebPage","@id":"/running-apache-and-wowzaflash-media-serverred5-on-port-80-at-the-same-time/"},"@type":"BlogPosting","headline":"Running Apache and Wowza/Flash Media Server/Red5 on port 80 at the same time","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Running Apache and Wowza/Flash Media Server/Red5 on port 80 at the same time<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">APACHE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FMS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MOD_PROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MOD_PROXY_HTTP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">RED5</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">REVERSE PROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">RTMP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">RTMPT</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">WOWZA</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Dec 15, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>By default Wowza, Flash Media Server and Red5 run using RTMP over port 1935.  However, a lot of firewalls (especially in corporate environments) will block access to this port.  In an attempt to get around this the RTMPT protocol was developed, which basically wraps up the RTMP stream into a bunch of HTTP requests; these run over port 80 and are just normal HTTP, so even the most restrictive firewalls should allow this traffic through.</p>
+
+<p>Its usually very easy to use RTMPT with the media server – for example, in Wowza you don’t have to do anything at all except connect using rtmpt:// instead of rtmp:// from your Flash application.</p>
+
+<p>However, there is a potential problem; since Wowza (I will refer to Wowza from here on, but this should be applicable for all the media servers) is now running on port 80 it means that nothing else can run on port 80; and since Apache is likely to be running on port 80 that means its either Apache or Wowza, but not both.  Note that if you can get 2 IP addresses there is no problem; Apache runs on port 80 of one IP address and Wowza on port 80 of the other, and this is of course the ideal solution.  But there are cases when for technical or business reasons its simply not possible to get 2 IP addresses.</p>
+
+<p>So here is the trick getting access to both Apache and Wowza on port 80 of a single IP address:</p>
+
+<p>Leave Wowza running on port 1935, and Apache running on port 80 as normal.  Then:</p>
+
+<ol>
+  <li>In Apache enable <em>mod_proxy</em> and <em>mod_proxy_http</em></li>
+  <li>In your <VirtualHost> configuration section of Apache add the following code.  **This does not work in .htaccess**</VirtualHost></li>
+</ol>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Allow FMS to act as a reverse proxy for Wowza traffic over port 80</span>
+<span class="nc">ProxyPass</span> /open http://localhost:1935/open
+<span class="nc">ProxyPassReverse</span> /open http://localhost:1935/open
+<span class="nc">ProxyPass</span> /send http://localhost:1935/send
+<span class="nc">ProxyPassReverse</span> /send http://localhost:1935/send
+<span class="nc">ProxyPass</span> /idle http://localhost:1935/idle
+<span class="nc">ProxyPassReverse</span> /idle http://localhost:1935/idle
+<span class="nc">ProxyPass</span> /close http://localhost:1935/close
+<span class="nc">ProxyPassReverse</span> /close http://localhost:1935/close
+<span class="nc">ProxyPass</span> /fcs http://localhost:1935/fcs
+<span class="nc">ProxyPassReverse</span> /fcs http://localhost:1935/fcs
+
+<span class="p">&lt;</span><span class="nl">Proxy</span><span class="sr"> *:80</span><span class="p">&gt;
+</span>    <span class="nc">Order</span> Allow,Deny
+    <span class="nc">Allow</span> <span class="ss">from</span> <span class="ss">all</span>
+<span class="p">&lt;/</span><span class="nl">Proxy</span><span class="p">&gt;
+</span></code></pre></div></div>
+
+<p>And that’s it!  It works because RTMPT always accesses URLs at /open, /send, /close, /idle or /fcs.  <em>mod_proxy</em> grabs these requests and forwards them onto Wowza on port 1935.  Note that if you have Wowza running on a different IP or URL just change <em>localhost</em> to wherever it is located.</p>
+
+<p>The only thing to remember is that you can’t serve any pages from Apache at /open, /send, /close, /idle or /fcs.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

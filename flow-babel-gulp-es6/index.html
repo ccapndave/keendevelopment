@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Using Flow, Babel and gulp to type-check ES6 code (with sourcemaps)</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Using Flow, Babel and gulp to type-check ES6 code (with sourcemaps) | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Using Flow, Babel and gulp to type-check ES6 code (with sourcemaps)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="TL;DR - this post shows a method to use Flow, Babel and Gulp to transpile and type-check ES6 code, with support for sourcemaps in the resulting messages." />
+<meta property="og:description" content="TL;DR - this post shows a method to use Flow, Babel and Gulp to transpile and type-check ES6 code, with support for sourcemaps in the resulting messages." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Using Flow, Babel and gulp to type-check ES6 code (with sourcemaps)" />
+<script type="application/ld+json">
+{"datePublished":"2015-04-27T00:00:00+00:00","dateModified":"2015-04-27T00:00:00+00:00","description":"TL;DR - this post shows a method to use Flow, Babel and Gulp to transpile and type-check ES6 code, with support for sourcemaps in the resulting messages.","url":"/flow-babel-gulp-es6/","mainEntityOfPage":{"@type":"WebPage","@id":"/flow-babel-gulp-es6/"},"@type":"BlogPosting","headline":"Using Flow, Babel and gulp to type-check ES6 code (with sourcemaps)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Using Flow, Babel and gulp to type-check ES6 code (with sourcemaps)<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Apr 27, 2015
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>TL;DR - this post shows a method to use Flow, Babel and Gulp to transpile and type-check ES6 code, with support for sourcemaps in the resulting messages.</p>
+
+<h3 id="babel-flow">Babel, flow</h3>
+
+<p>A lot of the annoyances of developing with Javascript are starting to go away. In particular, ES6 has removed a lot of the fluff from JS and made the language a lot more elegant and fun to code in.</p>
+
+<p>The final missing piece of the Javascript puzzle are types. Javascript’s dynamic typing is both a strength and a weakness - its extremely expressive and powerful, allowing for very a lot of interesting abstractions. At the same time, things are <strong>so</strong> flexible that its very easy to shoot yourself in the foot without realising it.</p>
+
+<h3 id="flow-babel">Flow, babel</h3>
+
+<p>The boffins at Facebook have come to the same conclusion and have been working on <a href="http://flowtype.org/">Flow</a>, which is a static typechecker for Javascript. I find it very nice for a number of reasons, including these:</p>
+
+<ul>
+  <li>You turn it on for a particular file using a <code class="language-plaintext highlighter-rouge">/* @flow */</code> annotation. This means that you can implement typing bit by bit, and if a particular file is very dynamic then there is no need to type it at all.</li>
+  <li>Similarly to Typescript (and in stark constrast to Java-style languages) you can use <a href="http://en.wikipedia.org/wiki/Structural_type_system">structural types</a> for objects. This means that you can say that some function requires an object with property <code class="language-plaintext highlighter-rouge">name</code> and function <code class="language-plaintext highlighter-rouge">sayHello</code>. This means that <em>any</em> object satisfying these requirements can be passed into the function, whatever other properties it might have. This is at the heart of duck-typing and gives us the flexibility of dynamic typing along with some of the safety of strict typing.</li>
+  <li>Flow commands and annotations can be put into comment blocks meaning that they don’t cause your IDE to plaster your code with red squiggly lines.</li>
+  <li>And finally, it runs some kind of caching server which means that once it has warmed up it runs very fast!</li>
+</ul>
+
+<h3 id="putting-it-all-together">Putting it all together</h3>
+
+<p>My goal was to integrate flow typechecking into my build process (in my case this is gulp, but I am sure that the techniques here can be ported to grunt or whatever else you might be using). Here is my final <code class="language-plaintext highlighter-rouge">gulpfile.js</code> showing the <code class="language-plaintext highlighter-rouge">flow</code> and <code class="language-plaintext highlighter-rouge">flow:watch</code> tasks.  Note that this assumes that your ES6 source code is in a directory called <code class="language-plaintext highlighter-rouge">src</code>.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">gulp</span><span class="dl">"</span><span class="p">),</span>
+  <span class="nx">notify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">gulp-notify</span><span class="dl">"</span><span class="p">),</span>
+  <span class="nx">babel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">gulp-babel</span><span class="dl">"</span><span class="p">),</span>
+  <span class="nx">flow</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">gulp-flowtype</span><span class="dl">"</span><span class="p">),</span>
+  <span class="nx">sourcemaps</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">gulp-sourcemaps</span><span class="dl">"</span><span class="p">),</span>
+  <span class="nx">sourcemapReporter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">jshint-sourcemap-reporter</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">clientSrcDir</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">src</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">flowDest</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">tmp_build_flow</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="dl">"</span><span class="s2">flow:babel</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">gulp</span>
+    <span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">clientSrcDir</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/**/*.js</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">init</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">babel</span><span class="p">({</span> <span class="na">blacklist</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">flow</span><span class="dl">"</span><span class="p">]</span> <span class="p">}))</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">,</span> <span class="nx">notify</span><span class="p">.</span><span class="nx">onError</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;%= error.message %&gt;</span><span class="dl">"</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="nx">flowDest</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">end</span><span class="dl">"</span><span class="p">,</span> <span class="nx">cb</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="dl">"</span><span class="s2">flow</span><span class="dl">"</span><span class="p">,</span> <span class="p">[</span><span class="dl">"</span><span class="s2">flow:babel</span><span class="dl">"</span><span class="p">],</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">gulp</span>
+    <span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">flowDest</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/**/*.js</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+      <span class="nx">flow</span><span class="p">({</span>
+        <span class="na">all</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">weak</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">killFlow</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">beep</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">abort</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">reporter</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">reporter</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">errors</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">sourcemapReporter</span><span class="p">.</span><span class="nx">reporter</span><span class="p">(</span><span class="nx">errors</span><span class="p">,</span> <span class="p">{</span>
+              <span class="na">sourceRoot</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">clientSrcDir</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">,</span>
+            <span class="p">});</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+      <span class="p">})</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="dl">"</span><span class="s2">flow:watch</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="nx">clientSrcDir</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/**/*.js</span><span class="dl">"</span><span class="p">,</span> <span class="p">[</span><span class="dl">"</span><span class="s2">client:flow</span><span class="dl">"</span><span class="p">]);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">gulp-flowtype</code> is a gulp plugin that runs flow as part of a gulp pipeline.  It can be installed from npm using:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>gulp-flowtype <span class="nt">--save</span>
+</code></pre></div></div>
+
+<p>I have also built a simple reporter that supports sourcemaps. Furthermore if you happen to be using IntellJ or WebStorm and run the task through the builtin <strong>Gulp</strong> runner you should be able to click on the error messages from gulp and be taken directly to the position in the original, un-transpiled, file. Install the reporter with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>jshint-sourcemap-reporter <span class="nt">--save</span>
+</code></pre></div></div>
+
+<p>Finally it is necessary to add the ES6 transpilation directory to Flow’s source, and to ignore the ES6 source directory by editing the <code class="language-plaintext highlighter-rouge">.flowconfig</code> (created when you run <code class="language-plaintext highlighter-rouge">flow init</code>).  Therefore this should read:</p>
+
+<div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[<span class="n">ignore</span>]
+.*/<span class="n">src</span>/.*
+
+[<span class="n">include</span>]
+./<span class="n">build_flow</span>
+
+[<span class="n">libs</span>]
+
+[<span class="n">options</span>]
+</code></pre></div></div>
+
+<p>Note that if you fancy you can extends this pipeline further to do browerifying, concatentation, uglfying, etc, but personally I leave these tasks like this and have separate tasks for other purposes.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

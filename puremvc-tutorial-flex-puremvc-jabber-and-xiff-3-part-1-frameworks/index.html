@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 1 - Frameworks</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 1 - Frameworks | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 1 - Frameworks" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads Now that we’ve got a basic FlashDevelop project setup we can install the frameworks we’ll be using." />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads Now that we’ve got a basic FlashDevelop project setup we can install the frameworks we’ll be using." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 1 - Frameworks" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads Now that we’ve got a basic FlashDevelop project setup we can install the frameworks we’ll be using.","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 1 - Frameworks","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 1 - Frameworks<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">CLASSPATH</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">EJABBERD</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FRAMEWORK</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">STREAM</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">XIFF</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">XMPP</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+  <li>Now that we’ve got a basic FlashDevelop project setup we can install the frameworks we’ll be using.</li>
+</ul>
+
+<h4 id="puremvc">PureMVC</h4>
+
+<p>Download the PureMVC framework from <a href="https://trac.puremvc.org/PureMVC_AS3/wiki/Downloads">here</a>.  Put this into a directory somewhere on your machine and add this to the FlashDevelop project classpath like so:</p>
+
+<ol>
+  <li>Right click on ‘XIFFer’ and select <strong>Properties…</strong></li>
+  <li>Go to the <strong>Classpaths</strong> tab</li>
+  <li>Click <strong>Add Classpath…</strong> and in the directory selector choose the PureMVC <em>src</em> folder.</li>
+</ol>
+
+<h4 id="xiff">XIFF</h4>
+
+<p>XIFF is an excellent Actionscript XMPP (Jabber) framework that we’ll be using to take care of the internals of Jabber communication.  Its been around since Actionscript 2 but has recently been ported to Actionscript 3 (albeit in beta form).  Download it <a href="https://www.igniterealtime.org/projects/xiff/">here</a>, put it into a directory and add the classpath as above.</p>
+
+<p>As XIFF is currently in beta you’ll need to make a small change in order to get it to play nice with ejabberd - a common Jabber server written in Erlang.  Research tells me that this is actually a problem with ejabberd’s implementation rather than XIFF’s, but whatever the issue might be this will fix it :)</p>
+
+<ol>
+  <li>Open <em>org.jivesoftware.xiff.core.XMPPSocketConnection</em></li>
+  <li>Goto line 108</li>
+  <li>Remove the <strong>version=”1.0” /</strong> so that the line now reads:</li>
+</ol>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">openingStreamTag</span> <span class="o">=</span> <span class="s2">"&lt;?xml version="</span><span class="mf">1.0</span><span class="s2">"?&gt;&lt;stream:stream to="" + server + "" xmlns="</span><span class="nx">jabber</span><span class="o">:</span><span class="nx">client</span><span class="s2">" xmlns:stream="</span><span class="p">[</span><span class="nx">http</span><span class="o">:</span><span class="c1">//etherx.jabber.org/streams"](http://etherx.jabber.org/streams)&gt;";</span>
+</code></pre></div></div>
+
+<p>Now we’re all sorted with the bits we require and its time to <a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">set up our directories and packages</a>.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the entities</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the entities | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the entities" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion" />
+<meta property="og:description" content="Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-08-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the entities" />
+<script type="application/ld+json">
+{"datePublished":"2010-08-03T00:00:00+00:00","dateModified":"2010-08-03T00:00:00+00:00","description":"Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion","url":"/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-entities/","mainEntityOfPage":{"@type":"WebPage","@id":"/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-entities/"},"@type":"BlogPosting","headline":"Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the entities","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the entities<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">ENTITIES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">EXPLICITTYPE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEXTRINE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">INVERSEDBY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">JPA</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MANY TO ONE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MANYTOONE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MAPPEDBY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ONE TO MANY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ONETOMANY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">UML</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Aug 03, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-introduction/">Introduction</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-setting-up-the-server/">Setting up the server</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-entities/">Creating the entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-database-schema/">Creating the database schema</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-loading-the-entities/">Loading the entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-new-entities/">Creating new entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-deleting-entities/">Deleting entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-updating-entities/">Updating entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-conclusion/">Conclusion</a></li>
+</ul>
+
+<p>Now that Flextrine has been configured we need to create our entities.  <a href="https://code.google.com/p/flextrine2/wiki/Entities">Entities</a> are the objects that we want to enable for reading and writing to the database, and they are defined in PHP in the <em>entities</em> directory of the Flextrine server side component.</p>
+
+<p>The requirements for our simple address book are that we need to have groups containing contacts.  Unfortunately Group is a reserved word in SQL so we’ll call it ContactGroup.  ContactGroups have a name, and many Contacts, and Contacts have a name, telephone number, birthday and a contactGroup.  We are going to place all our entities in the **vo **package.  This gives us the class diagram below:</p>
+
+<p><img src="/assets/uploads/2010/08/entities.jpg" alt="Flextrine entities" /></p>
+
+<p>Create a folder called <em>vo</em> in the <em>entities</em> directory of the Flextrine server side component and create <em>ContactGroup.php</em> and <em>Contact.php</em> with the contents given below.  More information on writing entities can be found in the Doctrine documentation for <a href="https://www.doctrine-project.org/projects/orm/2.0/docs/reference/basic-mapping/en#basic-mapping">Basic Mapping</a> and <a href="https://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en#association-mapping">Association Mapping</a>.  The main thing to remember when creating entities is that:</p>
+
+<ul>
+  <li>All mapped attributes <strong>must</strong> be public</li>
+</ul>
+
+<h4 id="contactgroupphp">ContactGroup.php</h4>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kn">namespace</span> <span class="nn">vo</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">DoctrineCommonCollectionsArrayCollection</span><span class="p">;</span>
+<span class="cd">/**
+ * @Entity
+ */</span>
+
+<span class="kd">class</span> <span class="nc">ContactGroup</span> <span class="p">{</span>
+
+  <span class="cd">/** @Id @Column(type="integer") @GeneratedValue(strategy="IDENTITY") */</span>
+  <span class="k">public</span> <span class="nv">$id</span><span class="p">;</span>
+
+  <span class="cd">/** @Column(length=100, type="string") */</span>
+  <span class="k">public</span> <span class="nv">$name</span><span class="p">;</span>
+
+  <span class="cd">/**
+   * @OneToMany(targetEntity="Contact", mappedBy="contactGroup")
+   */</span>
+  <span class="k">public</span> <span class="nv">$contacts</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">contacts</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayCollection</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="contactphp">Contact.php</h4>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">vo</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">DoctrineCommonCollectionsArrayCollection</span><span class="p">;</span>
+
+<span class="cd">/**
+ * @Entity
+ */</span>
+
+<span class="kd">class</span> <span class="nc">Contact</span> <span class="p">{</span>
+
+  <span class="cd">/** @Id @Column(type="integer") @GeneratedValue(strategy="IDENTITY") */</span>
+  <span class="k">public</span> <span class="nv">$id</span><span class="p">;</span>
+
+  <span class="cd">/** @Column(length=80, type="string") */</span>
+  <span class="k">public</span> <span class="nv">$name</span><span class="p">;</span>
+
+  <span class="cd">/** @Column(length=50, type="string", nullable="true") */</span>
+  <span class="k">public</span> <span class="nv">$telephoneNumber</span><span class="p">;</span>
+
+  <span class="cd">/** @Column(type="date", nullable="true") */</span>
+  <span class="k">public</span> <span class="nv">$birthday</span><span class="p">;</span>
+
+  <span class="cd">/**
+   * @ManyToOne(targetEntity="ContactGroup", inversedBy="contacts")
+   */</span>
+  <span class="k">public</span> <span class="nv">$contactGroup</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now that we have created our entity definitions we need to <a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-database-schema/">create the matching database schema</a>.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

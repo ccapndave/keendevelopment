@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Serializing and unserializing SVG objects to arrays in Actionscript 3</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Serializing and unserializing SVG objects to arrays in Actionscript 3 | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Serializing and unserializing SVG objects to arrays in Actionscript 3" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Some time ago I was working on a project, part of which involved the development of an Actionscript 3 SVG parser that could read Illustrator generated files and turn them into a list of custom Circle, Polyline and Line objects (more details on the specifics of this coming in a later article)." />
+<meta property="og:description" content="Some time ago I was working on a project, part of which involved the development of an Actionscript 3 SVG parser that could read Illustrator generated files and turn them into a list of custom Circle, Polyline and Line objects (more details on the specifics of this coming in a later article)." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-04-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Serializing and unserializing SVG objects to arrays in Actionscript 3" />
+<script type="application/ld+json">
+{"datePublished":"2008-04-28T00:00:00+00:00","dateModified":"2008-04-28T00:00:00+00:00","description":"Some time ago I was working on a project, part of which involved the development of an Actionscript 3 SVG parser that could read Illustrator generated files and turn them into a list of custom Circle, Polyline and Line objects (more details on the specifics of this coming in a later article).","url":"/serializing-and-unserializing-svg-objects-to-arrays-in-actionscript-3/","mainEntityOfPage":{"@type":"WebPage","@id":"/serializing-and-unserializing-svg-objects-to-arrays-in-actionscript-3/"},"@type":"BlogPosting","headline":"Serializing and unserializing SVG objects to arrays in Actionscript 3","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Serializing and unserializing SVG objects to arrays in Actionscript 3<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">BYTEARRAY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">DECODE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ENCODE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">READBYTE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">REGISTERCLASSALIAS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SVG</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">WRITEBYTE</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Apr 28, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>Some time ago I was working on a project, part of which involved the development of an Actionscript 3 SVG parser that could read Illustrator generated files and turn them into a list of custom Circle, Polyline and Line objects (more details on the specifics of this coming in a later article).</p>
+
+<p>However, when the SVG file was large, i.e. &gt; 1MB, the parser can easily end up taking 10 seconds or more to generate these objects which is far from ideal.  So I got to thinking that since my SVG file was defined at compile time and remained constant, perhaps there was a way to serialize the generated objects, stuff them into a class, and then deserialize them at runtime.</p>
+
+<p>Enter <a href="https://livedocs.adobe.com/flex/2/langref/flash/utils/ByteArray.html">ByteArray</a> Using this class we can take any object and <strong>serialize</strong> it into an array with a simple function:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">encode</span><span class="p">(</span><span class="nx">object</span><span class="o">:*</span><span class="p">)</span><span class="o">:</span><span class="nx">Array</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">bytes</span><span class="o">:</span><span class="nx">ByteArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ByteArray</span><span class="p">()</span><span class="o">;</span>
+  <span class="nx">bytes</span><span class="p">.</span><span class="nx">writeObject</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span><span class="o">;</span>
+  <span class="nx">bytes</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="kd">var</span> <span class="nx">bytesArray</span><span class="o">:</span><span class="nx">Array</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Array</span><span class="p">()</span><span class="o">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">n</span><span class="o">:</span><span class="nx">uint</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span>
+    <span class="nx">bytesArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">readByte</span><span class="p">())</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="nx">bytesArray</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And to <strong>unserialize</strong> the array back into an object we use the opposite version of the function:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">decode</span><span class="p">(</span><span class="nx">array</span><span class="o">:</span><span class="nx">Array</span><span class="p">)</span><span class="o">:*</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="na">bytes</span><span class="p">:</span><span class="nx">ByteArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ByteArray</span><span class="p">()</span><span class="o">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="na">n</span><span class="p">:</span><span class="nx">uint</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span>
+    <span class="nx">bytes</span><span class="p">.</span><span class="nx">writeByte</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">n</span><span class="p">])</span><span class="o">;</span>
+
+  <span class="nx">bytes</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="k">return</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">readObject</span><span class="p">()</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This means that rather than using the parser at run-time, we instead run it beforehand and generate a bunch of arrays with the <strong>encode</strong> function (either writing them to a file, or hard-coding them into a class) and then call <strong>decode</strong> on this file at run-time hence missing out on a big chunk of processing time.</p>
+
+<p>There is one proviso to this - if you are using packages you’ll need to specifically tell the AS3 compiler to map these packages to their associated classes using <a href="https://livedocs.adobe.com/flex/2/langref/flash/net/package.html#registerClassAlias()">registerClassAlias</a>.</p>
+
+<p>For example, if one of the classes that you have encoded is ‘com.myproject.shapes.Circle’ then before using the decode function you will need to map the class in the constructor in the constructor.  The following code sample demonstrates all of this by mapping an object name, creating the object, encoding it and the decoding it:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">package</span> <span class="nx">com</span><span class="p">.</span><span class="nx">myproject</span><span class="p">.</span><span class="nx">factories</span> <span class="p">{</span>
+
+  <span class="kr">import</span> <span class="nx">flash</span><span class="p">.</span><span class="nx">net</span><span class="p">.</span><span class="nx">registerClassAlias</span><span class="o">;</span>
+  <span class="kr">import</span> <span class="nx">com</span><span class="p">.</span><span class="nx">myproject</span><span class="p">.</span><span class="nx">shapes</span><span class="p">.</span><span class="nx">Circle</span><span class="o">;</span>
+
+  <span class="kr">public</span> <span class="kr">class</span> <span class="nx">CircleFactory</span> <span class="p">{</span>
+    <span class="nx">registerClassAlias</span><span class="p">(</span><span class="s2">"com.myproject.shapes.Circle"</span><span class="p">,</span> <span class="nx">Circle</span><span class="p">)</span><span class="o">;</span>
+
+    <span class="kd">var</span> <span class="nx">circle</span><span class="o">:</span><span class="nx">Circle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">()</span><span class="o">;</span>
+
+    <span class="kd">var</span> <span class="nx">encodedCircle</span><span class="o">:</span><span class="nx">Array</span> <span class="o">=</span> <span class="nx">encode</span><span class="p">(</span><span class="nx">circle</span><span class="p">)</span><span class="o">;</span>
+    <span class="kd">var</span> <span class="nx">decodedCircle</span><span class="o">:</span><span class="nx">Circle</span> <span class="o">=</span> <span class="nx">decode</span><span class="p">(</span><span class="nx">encodedCircle</span><span class="p">)</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Et voila! Obviously this is no good if your input file changes at runtime, or is uploaded by the user, but for static files this is a great way to save on valuable processing time.  Although I haven’t tried this, it should also be possible to use this method to save structured OO data quickly if you don’t have the time or requirement to serialize to XML or another standard.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

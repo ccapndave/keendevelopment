@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 6 - The Application View & Mediator</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 6 - The Application View &amp; Mediator | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 6 - The Application View &amp; Mediator" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 6 - The Application View &amp; Mediator" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 6 - The Application View &amp; Mediator","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 6 - The Application View & Mediator<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">APPLICATION.MXML</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">APPLICATIONMEDIATOR</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FRAMEWORK</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MEDIATOR</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">STARTUP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TOP LEVEL MEDIATOR</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">VIEW GRANULARITY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">XIFF</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>Congratulations on getting this far - we’re getting closer to our working Jabber client :)  Before we get going with our first top-level mediator we’ll talk about views in a little more detail.  In PureMVC a view consists of:</p>
+
+<ul>
+  <li><strong>One or more view components</strong>.  This is the thing that the user actually sees and interacts with - in Flash it will be a Sprite or MovieClip, and in Flex it will be an MXML file (or an AS file extending a flex component).</li>
+  <li><strong>A mediator</strong>.  This is the PureMVC bit of the view and ‘heralds’ the view components.  Any interaction with the rest of the application is done through the mediator.  Note that although the mediator knows about the existence of the view components, the view components don’t know about existence of the mediator!</li>
+  <li><strong>Events</strong>.  Although not strictly a part of the view, I find it helpful to think of events within the same bundle.  View components communicate with their mediator via events and its common to create custom events for various interactions within the view component.  For example, when we come to the Login view we’re going to be dispatching a custom <em>LoginViewEvent *to the *LoginMediator</em> when the user clicks on the ‘connect’ button.</li>
+</ul>
+
+<p>PureMVC makes no assumptions about the way that you structure the tree of views and mediators, apart from requiring that there is one top-level mediator.  In the words of our great leader, Cliff Hall (the creator of PureMVC):</p>
+
+<blockquote>
+  <p>It is up to you as a developer to determine the granularity of the View Component that is handled a given Mediator. If a Mediator becomes too bloated dealing with all the children of its View Component simply create a Mediator for the more complicated child. For instance, if the child components of the Application instance are complicated enough to justify their own Mediators, then the ApplicationMediator typically creates and registers the appropriate Mediator for each of those children.</p>
+</blockquote>
+
+<p>This means that you start off with one mediator for your application entry point (i.e. Application.mxml) and then add extra mediators as needed.  In general you tend to have one mediator per visual ‘section’ of your application, but this is by no means enforced.</p>
+
+<p>Create our <em>ApplicationMediator.as</em> in the <em>view</em> folder with <strong>Add-&gt;New Mediator…</strong> (if you don’t see this menu item be sure you’ve installed the PureMVC FlashDevelop templates from <a href="/puremvc-first-thoughts-flashdevelop-templates/">PureMVC: First thoughts &amp; FlashDevelop templates</a> correctly).</p>
+
+<p>At this point its a good idea to add in a helper method to allow you to retrieve the view component that this mediator is looking after (in this case Application.mxml).  To do this add the following private getter:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="kr">get</span> <span class="nx">application</span><span class="p">()</span><span class="o">:</span><span class="nx">Application</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">viewComponent</span> <span class="nx">as</span> <span class="nx">Application</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This saves having to constantly case viewComponent to the correct class every time we use it.  Unfortunately I couldn’t find a way to get a FlashDevelop template to downcase the class name so we can’t generate this function within the template, but you’ll soon get into the habit of typing it each time you create a new mediator.</p>
+
+<p>Finally we need to add our new mediator to PureMVC using the <strong>registerMediator</strong> command in *StartupCommand.  *The <strong>execute</strong> method in this command should now read:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">execute</span><span class="p">(</span><span class="nx">notification</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="nx">facade</span><span class="p">.</span><span class="nx">registerProxy</span><span class="p">(</span><span class="k">new</span> <span class="nx">XMPPProxy</span><span class="p">())</span><span class="o">;</span>
+
+  <span class="nx">facade</span><span class="p">.</span><span class="nx">registerMediator</span><span class="p">(</span><span class="k">new</span> <span class="nx">ApplicationMediator</span><span class="p">(</span><span class="nx">notification</span><span class="p">.</span><span class="nx">getBody</span><span class="p">()</span> <span class="nx">as</span> <span class="nx">Application</span><span class="p">))</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice the argument passed to the Mediator - this is the view component that the mediator is supposed to look after (in this case Application.mxml).  <strong>notification.getBody()</strong> retrieves the argument passed along with the notification, and since we sent the notification (in Application.mxml) using <strong>facade.sendNotification(ApplicationFacade.STARTUP, this)</strong> that argument will be the Application object itself!</p>
+
+<p><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Now we’ll create the Login view and mediator.</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

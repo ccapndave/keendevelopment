@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 2 - Directory structure</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 2 - Directory structure | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 2 - Directory structure" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads We need to create a PureMVC-friendly folder structure for our application - right click on src and create org, then within that create davekeen, then within that create xiffer.  This will be the base package for our Jabber client.  Now we need folders for the various bits of our application.  Within xiffer create three folders named controller, view, model **and **events.  Finally within view create a folder called components.  We should have ended up with a folder structure that looks like this:" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads We need to create a PureMVC-friendly folder structure for our application - right click on src and create org, then within that create davekeen, then within that create xiffer.  This will be the base package for our Jabber client.  Now we need folders for the various bits of our application.  Within xiffer create three folders named controller, view, model **and **events.  Finally within view create a folder called components.  We should have ended up with a folder structure that looks like this:" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 2 - Directory structure" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads We need to create a PureMVC-friendly folder structure for our application - right click on src and create org, then within that create davekeen, then within that create xiffer.  This will be the base package for our Jabber client.  Now we need folders for the various bits of our application.  Within xiffer create three folders named controller, view, model **and **events.  Finally within view create a folder called components.  We should have ended up with a folder structure that looks like this:","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 2 - Directory structure","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 2 - Directory structure<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">COMPONENT</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">CONTROLLER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">DIRECTORY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MODEL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MXML</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PACKAGE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PUREMVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">VIEW</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>We need to create a PureMVC-friendly folder structure for our application - right click on src and create <strong>org</strong>, then within that create <strong>davekeen</strong>, then within that create <strong>xiffer</strong>.  This will be the base package for our Jabber client.  Now we need folders for the various bits of our application.  Within <strong>xiffer</strong> create three folders named <strong>controller, view, model **and **events</strong>.  Finally within <strong>view</strong> create a folder called <strong>components</strong>.  We should have ended up with a folder structure that looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org
+└── davekeen
+    └── xiffer
+        └── controller
+        └── events
+        └── model
+        └── view
+            └── components
+</code></pre></div></div>
+
+<p>Now is a good time to explain what each folder’s contents and functions are.  If you haven’t already done so you should have a read through <a href="https://puremvc.org/component/option,com_wrapper/Itemid,174/">the PureMVC best practices</a> and <a href="https://puremvc.org/component/option,com_wrapper/Itemid,35/">framework overview</a> as it will make things a lot clearer.</p>
+
+<h4 id="orgdavekeenxiffer">org.davekeen.xiffer</h4>
+
+<p>This is the base package of our application and will contain Application.mxml (the Flex entry point) and ApplicationFacade.as (the PureMVC entry point).  The rest of the application will be contained in the other folders.</p>
+
+<h4 id="orgdavekeenxiffercontroller">org.davekeen.xiffer.controller</h4>
+
+<p>The controller package contains <strong>commands</strong> which implement individual pieces of business logic.  For our Jabber client this will be things like login, logout and send message.</p>
+
+<h4 id="orgdavekeenxiffermodel">org.davekeen.xiffer.model</h4>
+
+<p>The model package contains <strong>proxies</strong> which are the bits of code that do all the dirty work.  All communication between our application and the Jabber server will happen within the proxy; in fact this is the only bit of the application that will even know that a Jabber server exists.</p>
+
+<h4 id="orgdavekeenxifferviewcomponents">org.davekeen.xiffer.view.components</h4>
+
+<p>The <strong>components</strong> packages contains our actual MXML files - the things we’ll see on the screen.  Cliff Hall has put a lot of thought into the design of PureMVC and these components know <em>nothing</em> about the framework or internals of our app.  When things happen they dispatch events, and they might expose public methods which the framework can invoke.</p>
+
+<h4 id="orgdavekeenxifferview">org.davekeen.xiffer.view</h4>
+
+<p>The view package contains <strong>mediators</strong> which control our <strong>components</strong>.  In some MVC frameworks this folder might contain the actual objects that are displayed (i.e. subclassing DisplayObject), but PureMVC adds an <a href="https://en.wikipedia.org/wiki/Mediator_pattern">extra level of abstraction</a>.  The <strong>mediators</strong> know about PureMVC, but the **components **are completely self-contained and rely on their associated mediators to do any application-wide communication.</p>
+
+<h4 id="orgdavekeenxifferevents">org.davekeen.xiffer.events</h4>
+
+<p>The majority of communication within PureMVC is done using <strong>notifications</strong>, but the only exception to this is communication from <strong>components</strong> to their <strong>mediators</strong> which is done using normal AS3 events.  Its also perfectly acceptable to put this package within the <strong>view</strong> folder.</p>
+
+<p><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Onto the next part…</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

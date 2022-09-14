@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 4 - Notifications, Commands & Use Cases</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 4 - Notifications, Commands &amp; Use Cases | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 4 - Notifications, Commands &amp; Use Cases" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 4 - Notifications, Commands &amp; Use Cases" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 4 - Notifications, Commands &amp; Use Cases","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 4 - Notifications, Commands & Use Cases<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">BUSINESS LOGIC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">COMMANDS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MEDIATORS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PUREMVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">REGISTERCOMMAND</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">USE CASE</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>Notifications are the nuts and bolts of a PureMVC application and are used to communicate between the various actors of your application. Notifications can be used for the following paths of communication:</p>
+
+<ul>
+  <li>Mediator -&gt; Mediator</li>
+  <li>Mediator -&gt; Command</li>
+  <li>Command -&gt; Command</li>
+  <li>Command -&gt; Mediator</li>
+  <li>Proxy -&gt; Mediator</li>
+  <li>Proxy -&gt; Command</li>
+</ul>
+
+<p>In other words, <strong>Commands</strong> and <strong>Mediators</strong> listen out for notifications, and everything can send them. The ‘pattern’ reason for Proxies not being able to directly listen for notifications is to try and encourage the developer to use a command to do this. In other words, if a mediator wanted to effect a change on a proxy it might send a* DO_SOMETHING* notification, which would invoke <em>DoSomethingCommand</em> which would then retrieve the <em>SomethingProxy *and call *doSomething()</em> on it. This is less complicated than it sounds and there will be examples of this in the code we’ll be writing.</p>
+
+<p>PureMVC also makes it possible for a mediator to directly retrieve a proxy and call methods on it that change its state, although this is often frowned upon by MVC purists. Having said that, there are some situations when it makes more sense to do this in simple cases rather than run through the Mediator-&gt;Command-&gt;Proxy chain (probably creating an extra command along the way). Always remember that MVC guidelines are just that - guidelines :)</p>
+
+<h3 id="use-case-diagram">Use case diagram</h3>
+
+<p><img src="/assets/uploads/2008/07/use-cases.png" alt="Use cases" /></p>
+
+<p>Here’s the use case diagram for our user. Its useful to map these out at the start of the project as there is often a 1-1 mapping between use cases and commands. So now lets create these commands and map them to some notifications (we’ll leave them empty for the moment, but fill them in later).</p>
+
+<p>To add an empty command right-click on the *controller *folder in the project area and select <strong>Add-&gt;New SimpleCommand…</strong> (if you don’t see this menu item be sure you’ve installed the PureMVC FlashDevelop templates from <a href="/puremvc-first-thoughts-flashdevelop-templates/">PureMVC: First thoughts &amp; FlashDevelop templates</a> correctly). Add these three commands:</p>
+
+<ul>
+  <li>LoginCommand.as</li>
+  <li>LogoutCommand.as</li>
+  <li>SendMessageCommand.as</li>
+</ul>
+
+<p>Now we need to setup our notification. Notification names are just strings, so we need to setup static constants for each one. For larger projects with a lot of notifications its usual to create extra classes to hold the constants, but since we are only going to have a few of them we’ll put them in ApplicationFacade.as.</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">LOGIN</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"login"</span><span class="o">;</span>
+<span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">LOGOUT</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"logout"</span><span class="o">;</span>
+<span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">SEND_MESSAGE</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"send_message"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Now we need to map these notifications to their associated commands. This means that whenever one of these notifications is sent PureMVC will automatically invoke its mapped command. To do this we call the <strong>registerCommand</strong> method in the <strong>initializeController</strong> method of ApplicationFacade (note that the STARTUP-&gt;StartupCommand notification was already setup in the FlashDevelop ApplicationFacade template).</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Register commands with the controller</span>
+<span class="kr">override</span> <span class="kr">protected</span> <span class="kd">function</span> <span class="nx">initializeController</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="kr">super</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">()</span><span class="o">;</span>
+  
+  <span class="nx">registerCommand</span><span class="p">(</span><span class="nx">STARTUP</span><span class="p">,</span> <span class="nx">StartupCommand</span><span class="p">)</span><span class="o">;</span>
+  
+  <span class="nx">registerCommand</span><span class="p">(</span><span class="nx">LOGIN</span><span class="p">,</span> <span class="nx">LoginCommand</span><span class="p">)</span><span class="o">;</span>
+  <span class="nx">registerCommand</span><span class="p">(</span><span class="nx">LOGOUT</span><span class="p">,</span> <span class="nx">LogoutCommand</span><span class="p">)</span><span class="o">;</span>
+  
+  <span class="nx">registerCommand</span><span class="p">(</span><span class="nx">SEND_MESSAGE</span><span class="p">,</span> <span class="nx">SendMessageCommand</span><span class="p">)</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Now let’s create our XMPP proxy…</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>How to stop SWFs caching in the browser once and for all</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to stop SWFs caching in the browser once and for all | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="How to stop SWFs caching in the browser once and for all" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As Flash and Flex developers know all too well, browsers have a habit of caching SWFs so that when you put up a new version it doesn’t always show up on client machines.  There are two classic ways to get around this – either by manually clearing your cache (and telling your clients to do the same) or by appending a random number to the end of the filename as a parameter which is then ignored by the application but fools the browser into thinking that the file has changed.  The first method is unreliable and the second method causes the SWF to reload every time you visit the page (even if it hasn’t changed) which munches up your bandwidth and your time." />
+<meta property="og:description" content="As Flash and Flex developers know all too well, browsers have a habit of caching SWFs so that when you put up a new version it doesn’t always show up on client machines.  There are two classic ways to get around this – either by manually clearing your cache (and telling your clients to do the same) or by appending a random number to the end of the filename as a parameter which is then ignored by the application but fools the browser into thinking that the file has changed.  The first method is unreliable and the second method causes the SWF to reload every time you visit the page (even if it hasn’t changed) which munches up your bandwidth and your time." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-03-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to stop SWFs caching in the browser once and for all" />
+<script type="application/ld+json">
+{"datePublished":"2010-03-13T00:00:00+00:00","dateModified":"2010-03-13T00:00:00+00:00","description":"As Flash and Flex developers know all too well, browsers have a habit of caching SWFs so that when you put up a new version it doesn’t always show up on client machines.  There are two classic ways to get around this – either by manually clearing your cache (and telling your clients to do the same) or by appending a random number to the end of the filename as a parameter which is then ignored by the application but fools the browser into thinking that the file has changed.  The first method is unreliable and the second method causes the SWF to reload every time you visit the page (even if it hasn’t changed) which munches up your bandwidth and your time.","url":"/how-to-stop-swfs-caching-in-the-browser-once-and-for-all/","mainEntityOfPage":{"@type":"WebPage","@id":"/how-to-stop-swfs-caching-in-the-browser-once-and-for-all/"},"@type":"BlogPosting","headline":"How to stop SWFs caching in the browser once and for all","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">How to stop SWFs caching in the browser once and for all<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">BROWSER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">BROWSER CACHE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">CACHE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">CACHING</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">EMBED</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLASH</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEX</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">RELOAD SWF</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SWF</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">SWFOBJECT</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Mar 13, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>As Flash and Flex developers know all too well, browsers have a habit of caching SWFs so that when you put up a new version it doesn’t always show up on client machines.  There are two classic ways to get around this – either by manually clearing your cache (and telling your clients to do the same) or by appending a random number to the end of the filename as a parameter which is then ignored by the application but fools the browser into thinking that the file has changed.  The first method is unreliable and the second method causes the SWF to reload every time you visit the page (even if it hasn’t changed) which munches up your bandwidth and your time.</p>
+
+<p>As it turns out, there is a third and far superior way!  With a tiny bit of PHP in your embed code you can make browsers refresh the SWF <strong>only</strong> when it has changed.  Note that this uses the <a href="http://code.google.com/p/swfobject/">SWFObject</a> library, but would work equally well with any embedding method.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">swfobject</span><span class="p">.</span><span class="nx">embedSWF</span><span class="p">(</span><span class="dl">"</span><span class="s2">MySWF.swf?version=&lt;?php echo filemtime('MySWF.swf'); ?&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">myDiv</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">100%</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">100%</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">10.0.0</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>It works by using the file modification timestamp of the swf as the version number with the result that browsers will refresh their cached copy if and only if you replace the swf with a new version.  Simple and extremely useful!</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

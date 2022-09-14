@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Silverstripe – overview and impressions</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Silverstripe – overview and impressions | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Silverstripe – overview and impressions" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I have recently been doing quite a lot of work with Silverstripe, a new(ish) open-source PHP MVC framework with an integrated CMS developed by a company in New Zealand.  Silverstripe has been gaining some decent support over the last year due to its interface, usability and extensibility." />
+<meta property="og:description" content="I have recently been doing quite a lot of work with Silverstripe, a new(ish) open-source PHP MVC framework with an integrated CMS developed by a company in New Zealand.  Silverstripe has been gaining some decent support over the last year due to its interface, usability and extensibility." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2009-12-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Silverstripe – overview and impressions" />
+<script type="application/ld+json">
+{"datePublished":"2009-12-15T00:00:00+00:00","dateModified":"2009-12-15T00:00:00+00:00","description":"I have recently been doing quite a lot of work with Silverstripe, a new(ish) open-source PHP MVC framework with an integrated CMS developed by a company in New Zealand.  Silverstripe has been gaining some decent support over the last year due to its interface, usability and extensibility.","url":"/silverstripe-overview-and-impressions/","mainEntityOfPage":{"@type":"WebPage","@id":"/silverstripe-overview-and-impressions/"},"@type":"BlogPosting","headline":"Silverstripe – overview and impressions","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Silverstripe – overview and impressions<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">ALLOWED_CHILDREN</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">CMS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">GETCMSFIELDS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NEW ZEALAND</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SAPPHIRE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">SILVERSTRIPE</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Dec 15, 2009
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I have recently been doing quite a lot of work with <a href="http://www.silverstripe.org">Silverstripe</a>, a new(ish) open-source PHP MVC framework with an integrated CMS developed by a company in New Zealand.  Silverstripe has been gaining some decent support over the last year due to its interface, usability and extensibility.</p>
+
+<h4 id="how-does-it-work">How does it work?</h4>
+
+<p>Silverstripe is made up of two elements.  The first, and most important, is <a href="http://www.silverstripe.org/sapphire">Sapphire</a>.  This is a PHP based MVC framework, similar in many ways to Ruby on Rails.  It provides support for views (via a custom templating language), controllers and models.  Models have a number of special static attributes which provide Sapphire with information about the model; for example, which fields should exist in the database for the model and their datatypes are contained in the <strong>$db</strong> attribute, one-to-many relationships are defined in <strong>$has_many</strong>, and many more.  Sapphire then implements a database rebuild task which brings the database up to date with any changes in the code; this can either be run in the browser or from the command line for use in deployment and build scripts.  On a lower level Sapphire’s base Object.php class implements a kind of PHPified mixin system using the concept of extensions.  Unfortunately PHP isn’t really the best language for this kind of thing, but given the limitations and as long as you remember to follow some rules this is a fairly powerful system for extending and decorating objects.</p>
+
+<p>The second part of the system is the Silverstripe CMS module.  This is a web application built on Sapphire (just as any site you create will be another web application built on Sapphire) which implements a very nice AJAX based CMS for your site with a tree on the left hand side and a content area on the right hand side.  The basic CMS is sufficient for most simple sites, but it can be extended hugely using extensions, decorators and plugins.</p>
+
+<p><img src="/assets/uploads/2009/12/resizedimage600496silverstripe220screenshot.png" alt="Silverstripe" /></p>
+
+<p>The CMS module uses the object extension system to add a number of CMS specific special attributes to the model such as <strong>$allowed_children</strong>, <strong>$icon</strong> and <strong>$default_child</strong> which set various properties and permissions on the tree when that particular model is used in the CMS, and you can override <strong>getCMSFields()</strong> in the model to specify which fields are editable for a particular page, what kind of editors to use and which database fields they link to.  For example, the following in a Silverstripe model will create a natty CMS editor with a checkbox, title and HTML editor (using tiny_mce2) which automatically populates and saves to the database.  Nice eh?</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="nv">$db</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'YesNo'</span> <span class="o">=&gt;</span> <span class="s1">'Boolean'</span><span class="p">,</span>
+  <span class="s1">'Title'</span> <span class="o">=&gt;</span> <span class="s1">'Text'</span><span class="p">,</span>
+  <span class="s1">'ContentHTMLText'</span> <span class="o">=&gt;</span> <span class="s1">'HTMLText'</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="k">function</span> <span class="n">getCMSFields</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nv">$fields</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="nf">getCMSFields</span><span class="p">();</span>
+
+  <span class="nv">$fields</span><span class="o">-&gt;</span><span class="nf">addFieldsToTab</span><span class="p">(</span><span class="s1">'Root.Content.Main'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nc">CheckboxField</span><span class="p">(</span><span class="s1">'YesNo'</span><span class="p">,</span> <span class="s1">'Check for yes'</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">TextField</span><span class="p">(</span><span class="s1">'Title'</span><span class="p">,</span> <span class="s1">'Enter title'</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">HTMLEditorField</span><span class="p">(</span><span class="s1">'Content'</span><span class="p">)</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="views-and-the-templating-language">Views and the templating language</h4>
+
+<p>Sapphire implements its own basic templating language (in *.ss files).  Its quite limited when compared to a more mature product like <a href="http://www.smarty.net">Smarty</a>, but most of the time it is sufficient for what you will need.  You can embed another templates within a template, and access methods in the controller.  Occasionally this forces you to put logic in the controller or model that really belongs in the view, but conversely it stops you overloading your views with logic that doesn’t belong there :)</p>
+
+<h4 id="impressions">Impressions</h4>
+
+<p>Silverstripe is still a fairly young system and there are a few middling to serious problems with it.  Some specific things are problems with using the draft/published versioning system together with has_many relationships, issues with deployment when using staging and live servers, lack of hierarchical URLs and a number of other things that pop up from time to time.  However, we have just deployed a global Flash/HTML solution for a large company with multiple content editors; most of the way has been plain sailing and we never encountered an issue with Silverstripe that couldn’t be worked around one way or another.</p>
+
+<p>In summary Sapphire/Silverstripe is a great piece of software and I recommend it to all web developers everywhere!  Its open source so it will continue to be improved by the community and I have no doubt that Silverstripe’s major problems will be addressed in the next few iterations.  The official ‘Silverstripe book’ has just been released in English which will no doubt help bring the system to a larger market.</p>
+
+<p>Silverstripe (commercial) – <a href="http://www.silverstripe.com">www.silverstripe.com</a></p>
+
+<p>Silverstripe (open source) – <a href="http://www.silverstripe.org">www.silverstripe.org</a></p>
+
+<p>Silverstripe book (Amazon UK) - <a href="http://www.amazon.co.uk/SilverStripe-Complete-Guide-Development-Wiley/dp/0470681837">http://www.amazon.co.uk/SilverStripe-Complete-Guide-Development-Wiley/dp/0470681837</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

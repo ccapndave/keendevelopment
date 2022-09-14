@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Using Wordpress portfolio tags and types in a theme</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Using Wordpress portfolio tags and types in a theme | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Using Wordpress portfolio tags and types in a theme" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’ve been using the Wordpress portfolio feature on my blog and website, but it turns out that portfolio tags are dealt with differently from post tags, as they are part of a custom content type with their own taxonomy.  I searched around for the theme code to insert a tag list but the best I could find was this post (which obviously worked at some point), but a bit of database examination showed that the name of the taxonomy must have changed since this post was written, and they are now named jetpack-portfolio-tag *(and *jetpack-portfolio-type for the type)." />
+<meta property="og:description" content="I’ve been using the Wordpress portfolio feature on my blog and website, but it turns out that portfolio tags are dealt with differently from post tags, as they are part of a custom content type with their own taxonomy.  I searched around for the theme code to insert a tag list but the best I could find was this post (which obviously worked at some point), but a bit of database examination showed that the name of the taxonomy must have changed since this post was written, and they are now named jetpack-portfolio-tag *(and *jetpack-portfolio-type for the type)." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-01-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Using Wordpress portfolio tags and types in a theme" />
+<script type="application/ld+json">
+{"datePublished":"2015-01-26T00:00:00+00:00","dateModified":"2015-01-26T00:00:00+00:00","description":"I’ve been using the Wordpress portfolio feature on my blog and website, but it turns out that portfolio tags are dealt with differently from post tags, as they are part of a custom content type with their own taxonomy.  I searched around for the theme code to insert a tag list but the best I could find was this post (which obviously worked at some point), but a bit of database examination showed that the name of the taxonomy must have changed since this post was written, and they are now named jetpack-portfolio-tag *(and *jetpack-portfolio-type for the type).","url":"/using-wordpress-portfolio-tags-types-theme/","mainEntityOfPage":{"@type":"WebPage","@id":"/using-wordpress-portfolio-tags-types-theme/"},"@type":"BlogPosting","headline":"Using Wordpress portfolio tags and types in a theme","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Using Wordpress portfolio tags and types in a theme<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">PHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">WORDPRESS</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jan 26, 2015
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I’ve been using the <a href="https://en.support.wordpress.com/portfolios/">Wordpress portfolio feature</a> on my blog and website, but it turns out that portfolio tags are dealt with differently from post tags, as they are part of a custom content type with their own taxonomy.  I searched around for the theme code to insert a tag list but the best I could find was <a href="https://wordpress.org/support/topic/display-portfolio-category-and-tags">this post</a> (which obviously worked at some point), but a bit of database examination showed that the name of the taxonomy must have changed since this post was written, and they are now named <em>jetpack-portfolio-tag *(and *jetpack-portfolio-type</em> for the type).</p>
+
+<p>Therefore the code to insert a list of Wordpress portfolio tags into a theme is:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="nf">the_terms</span><span class="p">(</span><span class="nf">get_the_ID</span><span class="p">(),</span> <span class="s1">'jetpack-portfolio-tag'</span><span class="p">,</span> <span class="nv">$before</span><span class="p">,</span> <span class="nv">$separator</span><span class="p">,</span> <span class="nv">$after</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>using the optional <strong>$before</strong>, <strong>$separator</strong> and <strong>$after</strong> parameters to taste.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Introduction</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Introduction | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Introduction" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads I like Actionscript 3, I like Flex, I like Flash and I especially like PureMVC. In fact, I like them so much that its about time I wrote a fully fledged tutorial to help the rest of you like them as much as I do. The code we are going to recreate here started life as a technical test for a job I was interested in. Unfortunately it ended up not being for me, but the code itself lends itself excellently to demonstrating how to use PureMVC as well as creating a decent application along the way. As you have probably guessed from the title we’ll be creating a simple but fully functional Jabber chat client. Its not exactly going to be feature rich, but by the end of this tutorial your application will allow you to login, logout, show your buddy list and have one-to-one chats with your friends. Chatrooms, invites and all the other bits of Jabber goodness are left as an exercise for the reader :)" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads I like Actionscript 3, I like Flex, I like Flash and I especially like PureMVC. In fact, I like them so much that its about time I wrote a fully fledged tutorial to help the rest of you like them as much as I do. The code we are going to recreate here started life as a technical test for a job I was interested in. Unfortunately it ended up not being for me, but the code itself lends itself excellently to demonstrating how to use PureMVC as well as creating a decent application along the way. As you have probably guessed from the title we’ll be creating a simple but fully functional Jabber chat client. Its not exactly going to be feature rich, but by the end of this tutorial your application will allow you to login, logout, show your buddy list and have one-to-one chats with your friends. Chatrooms, invites and all the other bits of Jabber goodness are left as an exercise for the reader :)" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Introduction" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads I like Actionscript 3, I like Flex, I like Flash and I especially like PureMVC. In fact, I like them so much that its about time I wrote a fully fledged tutorial to help the rest of you like them as much as I do. The code we are going to recreate here started life as a technical test for a job I was interested in. Unfortunately it ended up not being for me, but the code itself lends itself excellently to demonstrating how to use PureMVC as well as creating a decent application along the way. As you have probably guessed from the title we’ll be creating a simple but fully functional Jabber chat client. Its not exactly going to be feature rich, but by the end of this tutorial your application will allow you to login, logout, show your buddy list and have one-to-one chats with your friends. Chatrooms, invites and all the other bits of Jabber goodness are left as an exercise for the reader :)","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Introduction","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Introduction<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">INTRODUCTION</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">JABBER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">JABBER CLIENT</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PUREMVC</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TEMPLATES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">XIFF</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>I like Actionscript 3, I like Flex, I like Flash and I especially like PureMVC.  In fact, I like them so much that its about time I wrote a fully fledged tutorial to help the rest of you like them as much as I do.  The code we are going to recreate here started life as a technical test for a job I was interested in.  Unfortunately it ended up not being for me, but the code itself lends itself excellently to demonstrating how to use PureMVC as well as creating a decent application along the way.  As you have probably guessed from the title we’ll be creating a simple but fully functional Jabber chat client.  Its not exactly going to be feature rich, but by the end of this tutorial your application will allow you to login, logout, show your buddy list and have one-to-one chats with your friends.  Chatrooms, invites and all the other bits of Jabber goodness are left as an exercise for the reader :)</p>
+
+<p>Before we start I should also humbly point out that there are many ways to program using PureMVC - what I’ve presented in this tutorial is the way that <em>I</em> like to do it, and the way that makes the most sense to me.  However there are many equally valid ways to develop within a framework and you shouldn’t take my word as gospel, but work in whichever way you find suits you best.</p>
+
+<p>Note that I’ve programmed the client using Flex merely because its quicker to create popup windows, form elements, etc in Flex than Flash.  However, the bones of the app are valid in both so even if you don’t use Flex often you should still be able to get something out of this.</p>
+
+<p>Before we get going, you’ll need the following:</p>
+
+<ul>
+  <li><a href="https://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+3">Flex SDK 2 or 3</a>.  Its free!</li>
+  <li><a href="https://www.flashdevelop.org/community/viewforum.php?f=11">FlashDevelop 3</a> (you can also use <a href="https://www.adobe.com/products/flex/">Flex Builder 3</a> but this tutorial is written on the assumption that you are using FlashDevelop)</li>
+  <li>FlashDevelop templates for PureMVC - you can get these from <a href="/puremvc-first-thoughts-flashdevelop-templates/">PureMVC: First thoughts &amp; FlashDevelop templates</a>.  The post includes instructions on how to install them.</li>
+  <li><a href="/files/xiffer_tutorial_1.zip">The full source code for the project.</a> It will probably be helpful for you to keep this open as you progress through the tutorial.</li>
+</ul>
+
+<p>Now we have the tools, its time to setup our project.  We’re going to create an empty FlashDevelop project ready to receive our code.  Open FlashDevelop and select <strong>Project-&gt;New Project</strong>.  Choose <strong>Flex 3 project</strong> from the list, name the project ‘XIFFer’, check ‘Create directory for project’ and finally click OK to create the new project.</p>
+
+<p>Finally we need to set the dimensions of our Flex application</p>
+
+<ol>
+  <li>Right click on ‘XIFFer’ and select <strong>Properties…</strong></li>
+  <li>Set the dimensions to 760 x 400 px</li>
+  <li>Click <strong>OK</strong></li>
+</ol>
+
+<p>We’ve got everything we need to get going!  <a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Continue onto the next part…</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

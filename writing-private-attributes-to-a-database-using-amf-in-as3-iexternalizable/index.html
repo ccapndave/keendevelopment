@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Writing private attributes to a database using AMF in AS3 (IExternalizable)</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Writing private attributes to a database using AMF in AS3 (IExternalizable) | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Writing private attributes to a database using AMF in AS3 (IExternalizable)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Yesterday may have been one of the most frustrating days of my entire career. The brief - simple; take a bunch of classes acting as models (with a single top-level model containing all others in a tree hierarchy) and write their contents to a database. Client-side technology is Flash CS3 with Actionscript 3, server-side technologies are PHP 5 and MySQL. After having a look at the problem I decided that the quickest and most elegant way of achieving this would be to use Flash Remoting with AMFPHP on the server and to use custom class mapping to effectively pass the top level model and all its children to the server so they arrive with the same class structure as they left." />
+<meta property="og:description" content="Yesterday may have been one of the most frustrating days of my entire career. The brief - simple; take a bunch of classes acting as models (with a single top-level model containing all others in a tree hierarchy) and write their contents to a database. Client-side technology is Flash CS3 with Actionscript 3, server-side technologies are PHP 5 and MySQL. After having a look at the problem I decided that the quickest and most elegant way of achieving this would be to use Flash Remoting with AMFPHP on the server and to use custom class mapping to effectively pass the top level model and all its children to the server so they arrive with the same class structure as they left." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-06-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Writing private attributes to a database using AMF in AS3 (IExternalizable)" />
+<script type="application/ld+json">
+{"datePublished":"2008-06-01T00:00:00+00:00","dateModified":"2008-06-01T00:00:00+00:00","description":"Yesterday may have been one of the most frustrating days of my entire career. The brief - simple; take a bunch of classes acting as models (with a single top-level model containing all others in a tree hierarchy) and write their contents to a database. Client-side technology is Flash CS3 with Actionscript 3, server-side technologies are PHP 5 and MySQL. After having a look at the problem I decided that the quickest and most elegant way of achieving this would be to use Flash Remoting with AMFPHP on the server and to use custom class mapping to effectively pass the top level model and all its children to the server so they arrive with the same class structure as they left.","url":"/writing-private-attributes-to-a-database-using-amf-in-as3-iexternalizable/","mainEntityOfPage":{"@type":"WebPage","@id":"/writing-private-attributes-to-a-database-using-amf-in-as3-iexternalizable/"},"@type":"BlogPosting","headline":"Writing private attributes to a database using AMF in AS3 (IExternalizable)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Writing private attributes to a database using AMF in AS3 (IExternalizable)<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">AMF</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">AMF3</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">AMFPHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">IEXTERNALIZABLE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">OBJECTENCODING</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PRIVATE ATTRIBUTES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">READEXTERNAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SERIALIZE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SERIALIZING</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">WEBORB</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">WRITEEXTERNAL</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jun 01, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>Yesterday may have been one of the most frustrating days of my entire career.  The brief - simple; take a bunch of classes acting as models (with a single top-level model containing all others in a tree hierarchy) and write their contents to a database.  Client-side technology is Flash CS3 with Actionscript 3, server-side technologies are PHP 5 and MySQL.  After having a look at the problem I decided that the quickest and most elegant way of achieving this would be to use Flash Remoting with <a href="http://www.amfphp.org/">AMFPHP</a> on the server and to use <a href="http://www.amfphp.org/docs/classmapping.html">custom class mapping</a> to effectively pass the top level model and all its children to the server so they arrive with the same class structure as they left.</p>
+
+<p>The code to make a Flash Remoting call is pretty standard stuff (note that this assumes the existence of onResult and onFault handlers):</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myService</span><span class="o">:</span><span class="nx">NetConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NetConnection</span><span class="p">()</span><span class="o">;</span>
+<span class="nx">myService</span><span class="p">.</span><span class="nx">objectEncoding</span> <span class="o">=</span> <span class="nx">ObjectEncoding</span><span class="p">.</span><span class="nx">AMF0</span><span class="o">;</span>
+<span class="nx">myService</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"http://localhost/amfphp/gateway.php"</span><span class="p">)</span><span class="o">;</span>
+
+<span class="kd">var</span> <span class="nx">responder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Responder</span><span class="p">(</span><span class="nx">onResult</span><span class="p">,</span> <span class="nx">onFault</span><span class="p">)</span><span class="o">;</span>
+<span class="nx">myService</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s2">"MyService.write_data"</span><span class="p">,</span> <span class="nx">responder</span><span class="p">,</span> <span class="nx">myDataModel</span><span class="p">)</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Once I’d implemented this along with a simple AMFPHP service containing the <em>write_data</em> function I was surprised to find that no data was getting passed to the server.  After a lot of fiddling around I discovered the reason why:</p>
+
+<p><strong>By default AMF only encodes public attributes.</strong></p>
+
+<p>This is pretty annoying since no programmer worth their salt is going to be making all the attributes of their model public.  That’s fine, thought I, I’ll implement some public getters:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyDataModel</span> <span class="p">{</span>
+  <span class="kr">private</span> <span class="kd">var</span> <span class="nx">myInt</span><span class="o">:</span><span class="nx">uint</span><span class="o">;</span>
+  <span class="kr">private</span> <span class="kd">var</span> <span class="nx">myString</span><span class="o">:</span><span class="nx">String</span><span class="o">;</span>
+
+  <span class="kr">public</span> <span class="kd">function</span> <span class="kr">get</span> <span class="nx">dbMyInt</span><span class="p">()</span><span class="o">:</span><span class="nx">uint</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">myInt</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="kr">public</span> <span class="kd">function</span> <span class="kr">get</span> <span class="nx">dbMyString</span><span class="p">()</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">myString</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Beautiful.  Except for one thing.</p>
+
+<p><strong>By default AMF only encodes real attributes.</strong></p>
+
+<p>So this doesn’t work at all - the getters are completely ignored and still no data is passed to the server.</p>
+
+<h3 id="the-official-solution">The ‘official’ solution</h3>
+
+<p>Finally I hit upon the real solution - use the <a href="http://www.cgdou.net/flash/as3reference/flash/utils/IExternalizable.html">IExternalizable</a> interface to override the default behaviour of the AMF encoder and select what you want to encode/decode.  Note that in order to use this you need to set the object encoding to AMF3 with *myService.objectEncoding = ObjectEncoding.AMF3 *(and you need to use AMFPHP 1.9+ as earlier versions don’t support AMF3).</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyDataModel</span> <span class="kr">implements</span> <span class="nx">IExternalizable</span> <span class="p">{</span>
+  <span class="kr">private</span> <span class="kd">var</span> <span class="nx">myInt</span><span class="o">:</span><span class="nx">uint</span><span class="o">;</span>
+  <span class="kr">private</span> <span class="kd">var</span> <span class="nx">myString</span><span class="o">:</span><span class="nx">String</span><span class="o">;</span>
+
+  <span class="kr">public</span> <span class="kd">function</span> <span class="nx">writeExternal</span><span class="p">(</span><span class="nx">output</span><span class="o">:</span><span class="nx">IDataOutput</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">output</span><span class="p">.</span><span class="nx">writeInt</span><span class="p">(</span><span class="nx">myInt</span><span class="p">)</span><span class="o">;</span>
+    <span class="nx">output</span><span class="p">.</span><span class="nx">writeUTF</span><span class="p">(</span><span class="nx">myString</span><span class="p">)</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="kr">public</span> <span class="kd">function</span> <span class="nx">readExternal</span><span class="p">(</span><span class="nx">input</span><span class="o">:</span><span class="nx">IDataInput</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">myInt</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">readInt</span><span class="p">()</span><span class="o">;</span>
+    <span class="nx">myString</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">readUTF</span><span class="p">()</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Perfect, except for one thing… as soon as you implement IExternalizable AMFPHP no longer works, giving the classic NetConnection.Call.BadVersion - and no amount of fiddling seems to fix it.  In desperation I turned to WebORB PHP, but it has the same problem (see <a href="http://www.themidnightcoders.com/forum/default.aspx?g=posts&amp;m=1586">this</a> forum post) and I didn’t have time to properly work out <a href="http://code.google.com/p/sabreamf/">SabreAMF</a>.  From reading around various forums and blogs it appears that IExternalizable works fine with <a href="http://opensource.adobe.com/wiki/display/blazeds/BlazeDS">BlazeDS</a>, but I have seen no reports of it working with anything else.</p>
+
+<h3 id="a-working-solution">A working solution</h3>
+
+<p>By this point I’d pretty much given up doing it ‘properly’; the job needed to get done and this had taken far too long already.  I created a class that acts as a superclass for all models:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">SerializableModel</span> <span class="p">{</span>
+  <span class="kr">public</span> <span class="kd">function</span> <span class="nx">toObject</span><span class="p">()</span><span class="o">:</span><span class="nb">Object</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">()</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>By making all classes override this function explicitly adding their private attributes we circumvent the problems with IExternalizable and end up with an associative array on the PHP side which we can iterate through.  Unfortunately this doesn’t allow us to map the classes to equivalent PHP classes on the server, but this does at least get the job done.</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyDataModel</span> <span class="kr">extends</span> <span class="nx">SerializableModel</span> <span class="p">{</span>
+  <span class="kr">private</span> <span class="kd">var</span> <span class="nx">myInt</span><span class="o">:</span><span class="nx">uint</span><span class="o">;</span>
+  <span class="kr">private</span> <span class="kd">var</span> <span class="nx">myString</span><span class="o">:</span><span class="nx">String</span><span class="o">;</span>
+  
+  <span class="kr">public</span> <span class="kr">override</span> <span class="kd">function</span> <span class="nx">toObject</span><span class="p">()</span><span class="o">:</span><span class="nb">Object</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">object</span><span class="o">:</span><span class="nb">Object</span> <span class="o">=</span> <span class="kr">super</span><span class="p">.</span><span class="nx">toObject</span><span class="p">()</span><span class="o">;</span>
+    
+    <span class="nx">object</span><span class="p">.</span><span class="nx">myInt</span> <span class="o">=</span> <span class="nx">myInt</span><span class="o">;</span>
+    <span class="nx">object</span><span class="p">.</span><span class="nx">myString</span> <span class="o">=</span> <span class="nx">myString</span><span class="o">;</span>
+          
+    <span class="k">return</span> <span class="nx">object</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Finally in the remote method call we pass the object constructed by this function using:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myService</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s2">"MyService.write_data"</span><span class="p">,</span> <span class="nx">responder</span><span class="p">,</span> <span class="nx">myDataModel</span><span class="p">.</span><span class="nx">toObject</span><span class="p">())</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="a-better-solution">A better solution?</h3>
+
+<p>I’d love to hear one!  Please post comments with any suggestions or ideas on how to do this better.  Even better, if anyone knows how to patch AMFPHP 1.9 to accept AMF messages constructed with the IExternalizable interface I would love to see it.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

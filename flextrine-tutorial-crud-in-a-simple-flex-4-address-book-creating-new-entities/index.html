@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating new entities</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating new entities | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating new entities" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion" />
+<meta property="og:description" content="Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-08-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating new entities" />
+<script type="application/ld+json">
+{"datePublished":"2010-08-03T00:00:00+00:00","dateModified":"2010-08-03T00:00:00+00:00","description":"Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion","url":"/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-new-entities/","mainEntityOfPage":{"@type":"WebPage","@id":"/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-new-entities/"},"@type":"BlogPosting","headline":"Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating new entities","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating new entities<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">AS3 LISTENERS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ASSOCIATION</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">BIDIRECTIONAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">DETACHED</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ENTITYMANAGER PERSIST</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEXTRINE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLUSH</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MANAGED</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MANY TO ONE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ONE TO MANY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ONETOMANY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PERSIST</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">REMOVED</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Aug 03, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-introduction/">Introduction</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-setting-up-the-server/">Setting up the server</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-entities/">Creating the entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-database-schema/">Creating the database schema</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-loading-the-entities/">Loading the entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-new-entities/">Creating new entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-deleting-entities/">Deleting entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-updating-entities/">Updating entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-conclusion/">Conclusion</a></li>
+</ul>
+
+<p>To add new entities to the repository we use the EntityManager.persist() method.  Let’s link up the <strong>Add group</strong> and <strong>Add contact</strong> buttons and get them to create and persist new entities.</p>
+
+<p>Modify the <em>Button</em> MXML tags for <strong>Add Group</strong> and <strong>Add Contact</strong> so that they call addNewGroup() and addNewContact() when they are clicked.  We can only add contacts within a group, so we will also make sure that you can only click addNewContact() if a ContactGroup is selected in the tree.</p>
+
+<div class="language-mxml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;s:Button</span> <span class="na">label=</span><span class="s">"New group"</span> <span class="na">click=</span><span class="s">"onNewGroupClick()"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;s:Button</span> <span class="na">label=</span><span class="s">"New contact"</span> <span class="na">click=</span><span class="s">"onNewContactClick()"</span> <span class="na">enabled=</span><span class="s">"</span><span class="p">{</span><span class="nx">tree</span><span class="p">.</span><span class="nx">selectedItem</span> <span class="k">is</span> <span class="nx">ContactGroup</span><span class="p">}</span><span class="s">"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>Firstly we’ll make the onNewGroupClick() function.  It really is as simple as creating a new ContactGroup(), assigning some properties and calling EntityManger.persist().</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="nx">onNewGroupClick</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">contactGroup</span><span class="o">:</span><span class="nx">ContactGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ContactGroup</span><span class="p">()</span><span class="o">;</span>
+  <span class="nx">contactGroup</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">"New group"</span><span class="o">;</span>
+  <span class="nx">em</span><span class="p">.</span><span class="nx">persist</span><span class="p">(</span><span class="nx">contactGroup</span><span class="p">)</span><span class="o">;</span>
+
+  <span class="c1">// Select the new ContactGroup in the tree</span>
+  <span class="nx">tree</span><span class="p">.</span><span class="nx">selectedItem</span> <span class="o">=</span> <span class="nx">contactGroup</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And that’s it :)  When the user clicks <strong>Add Group</strong> a new ContactGroup entity is created, a name is assigned to it and it is <em>persisted</em> to Flextrine.  This means that the new contactGroup is added to <em>entities</em> in the <em>ContactGroup</em> entity repository (triggering databinding and updating the tree), and the new entity is marked for insertion into the database.  Note that Flextrine doesn’t actually do anything with the database when we call persist, it just notes that we need to insert it on the next *flush – *we’ll worry about flushing after we have created onNewContactClick().</p>
+
+<p><code class="language-plaintext highlighter-rouge">onNewContactClick()</code> is very similar:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="nx">onNewContactClick</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">selectedContactGroup</span><span class="o">:</span><span class="nx">ContactGroup</span> <span class="o">=</span> <span class="nx">tree</span><span class="p">.</span><span class="nx">selectedItem</span> <span class="nx">as</span> <span class="nx">ContactGroup</span><span class="o">;</span>
+  
+  <span class="kd">var</span> <span class="nx">contact</span><span class="o">:</span><span class="nx">Contact</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Contact</span><span class="p">()</span><span class="o">;</span>
+  <span class="nx">contact</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">"New contact"</span><span class="o">;</span>
+  
+  <span class="nx">contact</span><span class="p">.</span><span class="nx">contactGroup</span> <span class="o">=</span> <span class="nx">selectedContactGroup</span><span class="o">;</span>
+  <span class="nx">selectedContactGroup</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">addItem</span><span class="p">(</span><span class="nx">contact</span><span class="p">)</span><span class="o">;</span>
+  
+  <span class="nx">em</span><span class="p">.</span><span class="nx">persist</span><span class="p">(</span><span class="nx">contact</span><span class="p">)</span><span class="o">;</span>
+  
+  <span class="c1">// Select the new Contact in the tree</span>
+  <span class="nx">tree</span><span class="p">.</span><span class="nx">selectedItem</span> <span class="o">=</span> <span class="nx">contact</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>There is one important subtlety here.  Just like JPA, Flextrine does <strong>not</strong> automatically handle both ends of a bi-directional association, and its the developer’s job to manage the domain model.  Let’s talk about this in more detail.  Our association between ContactGroup and Contact is <em>OneToMany bi-directional</em>.  This means that a ContactGroup has many Contacts, and a Contact has one ContactGroup.  Therefore when we create a new Contact we need to do the following:</p>
+
+<ul>
+  <li>Set <em>newContact.contactGroup</em> to <em>selectedContactGroup</em></li>
+  <li>Add <em>newContact</em> to <em>selectedContactGroup.contacts</em></li>
+</ul>
+
+<p>In this way we maintain both sides of the bi-directional association.  If we were to <strong>change</strong> the contactGroup of an existing contact we would need to add another step:</p>
+
+<ul>
+  <li>Remove <em>contact</em> from its current <em>contactGroup.contacts</em></li>
+  <li>Set <em>contact.contactGroup</em> to <em>selectedContactGroup</em></li>
+  <li>Set <em>newContact.contactGroup</em> to <em>selectedContactGroup</em></li>
+</ul>
+
+<p>Let’s encapsulate this functionality within Contact and ContactGroup by creating <em>ContactGroup.addContact</em>, <em>ContactGroup.removeContact</em> and <em>Contact.setContactGroup</em>.  These are called <strong>association helpers</strong> and its very likely that future versions of Flextrine will auto-generate these for you.  However, for now we’ll code them by hand.</p>
+
+<h4 id="contactgroupas">ContactGroup.as</h4>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">package</span> <span class="nx">vo</span> <span class="p">{</span>
+  <span class="kr">import</span> <span class="nx">mx</span><span class="p">.</span><span class="nx">collections</span><span class="p">.</span><span class="nx">ArrayCollection</span><span class="o">;</span>
+  
+  <span class="p">[</span><span class="nx">RemoteClass</span><span class="p">(</span><span class="nx">alias</span><span class="o">=</span><span class="s2">"vo/ContactGroup"</span><span class="p">)]</span>
+  <span class="p">[</span><span class="nx">Entity</span><span class="p">]</span>
+  <span class="kr">public</span> <span class="kr">class</span> <span class="nx">ContactGroup</span> <span class="kr">extends</span> <span class="nx">ContactGroupEntityBase</span> <span class="p">{</span>
+  
+    <span class="kr">public</span> <span class="kd">function</span> <span class="kr">get</span> <span class="nx">children</span><span class="p">()</span><span class="o">:</span><span class="nx">ArrayCollection</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">contacts</span><span class="o">;</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">addContact</span><span class="p">(</span><span class="nx">contact</span><span class="o">:</span><span class="nx">Contact</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">contact</span><span class="p">.</span><span class="nx">setContactGroup</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">removeContact</span><span class="p">(</span><span class="nx">contact</span><span class="o">:</span><span class="nx">Contact</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="nx">contacts</span><span class="p">.</span><span class="nx">removeItemAt</span><span class="p">(</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">getItemIndex</span><span class="p">(</span><span class="nx">contact</span><span class="p">))</span><span class="o">;</span>
+    <span class="p">}</span>
+  
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="contactas">Contact.as</h4>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">package</span> <span class="nx">vo</span> <span class="p">{</span>
+  <span class="kr">import</span> <span class="nx">mx</span><span class="p">.</span><span class="nx">collections</span><span class="p">.</span><span class="nx">ArrayCollection</span><span class="o">;</span>
+  
+  <span class="p">[</span><span class="nx">RemoteClass</span><span class="p">(</span><span class="nx">alias</span><span class="o">=</span><span class="s2">"vo/Contact"</span><span class="p">)]</span>
+  <span class="p">[</span><span class="nx">Entity</span><span class="p">]</span>
+  <span class="kr">public</span> <span class="kr">class</span> <span class="nx">Contact</span> <span class="kr">extends</span> <span class="nx">ContactEntityBase</span> <span class="p">{</span>
+  
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">setContactGroup</span><span class="p">(</span><span class="nx">contactGroup</span><span class="o">:</span><span class="nx">ContactGroup</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">contactGroup</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">contactGroup</span><span class="p">.</span><span class="nx">removeContact</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">contactGroup</span> <span class="o">=</span> <span class="nx">contactGroup</span><span class="o">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">contactGroup</span><span class="p">)</span> <span class="nx">contactGroup</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">addItem</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+  
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And now we can change <code class="language-plaintext highlighter-rouge">onNewContactClick()</code> to simply read:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="nx">onNewContactClick</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">selectedContactGroup</span><span class="o">:</span><span class="nx">ContactGroup</span> <span class="o">=</span> <span class="nx">tree</span><span class="p">.</span><span class="nx">selectedItem</span> <span class="nx">as</span> <span class="nx">ContactGroup</span><span class="o">;</span>
+  
+  <span class="kd">var</span> <span class="nx">contact</span><span class="o">:</span><span class="nx">Contact</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Contact</span><span class="p">()</span><span class="o">;</span>
+  <span class="nx">contact</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">"New contact"</span><span class="o">;</span>
+  <span class="nx">selectedContactGroup</span><span class="p">.</span><span class="nx">addContact</span><span class="p">(</span><span class="nx">contact</span><span class="p">)</span><span class="o">;</span>
+  <span class="nx">em</span><span class="p">.</span><span class="nx">persist</span><span class="p">(</span><span class="nx">contact</span><span class="p">)</span><span class="o">;</span>
+  
+  <span class="c1">// Select the new Contact in the tree</span>
+  <span class="nx">tree</span><span class="p">.</span><span class="nx">selectedItem</span> <span class="o">=</span> <span class="nx">contact</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>These complications are only relevant for bi-directional association.  If, for example, <em>ContactGroup</em> has many <em>Contacts</em>, but <em>ContactGroups</em> don’t know anything about their <em>Contacts</em> this would be a ManyToOne uni-directional association and all we would need to do would be to set <em>contactGroup</em> on the <em>Contact</em> to maintain the domain model.</p>
+
+<h3 id="flushing">Flushing</h3>
+
+<p>At this point nothing has actually been written to the database - all that has happened is that Flextrine has marked our persisted objects for insertion.  In order to tell Flextrine to execute its queue of operations against the database we use <code class="language-plaintext highlighter-rouge">EntityManager.flush()</code>.  This will create new entities, update changed entities and delete removed entities in the database.</p>
+
+<p>One thing to consider is if for some reason the flush fails (for example if we were to try and delete a ContactGroup without deleting its child Contacts) the client will be out of sync with what is in the database so we are going to add a <em>responder</em> to <code class="language-plaintext highlighter-rouge">flush()</code> that will simply reload all the data fresh from the database in case of an error.</p>
+
+<p>Note that once the <code class="language-plaintext highlighter-rouge">flush()</code> has completely successfully our persisted ContactGroup and Contact entities will have their <em>id</em> fields automatically updated with the auto increment id from the database.</p>
+
+<p>Update the <strong>Save</strong> button to call <code class="language-plaintext highlighter-rouge">onSaveClick()</code>:</p>
+
+<div class="language-mxml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;s:Button</span> <span class="na">label=</span><span class="s">"Save"</span> <span class="na">click=</span><span class="s">"onSaveClick()"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>And implement the method and the responders:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="nx">onSaveClick</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="nx">enabled</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+  <span class="nx">em</span><span class="p">.</span><span class="nx">flush</span><span class="p">().</span><span class="nx">addResponder</span><span class="p">(</span><span class="k">new</span> <span class="nx">AsyncResponder</span><span class="p">(</span><span class="nx">onSaveResult</span><span class="p">,</span> <span class="nx">onSaveFault</span><span class="p">))</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="kr">private</span> <span class="kd">function</span> <span class="nx">onSaveResult</span><span class="p">(</span><span class="nx">result</span><span class="o">:</span><span class="nb">Object</span><span class="p">,</span> <span class="nx">token</span><span class="o">:</span><span class="nb">Object</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="nx">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="kr">private</span> <span class="kd">function</span> <span class="nx">onSaveFault</span><span class="p">(</span><span class="nx">result</span><span class="o">:</span><span class="nb">Object</span><span class="p">,</span> <span class="nx">token</span><span class="o">:</span><span class="nb">Object</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="nx">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+  
+  <span class="nx">em</span><span class="p">.</span><span class="nx">clear</span><span class="p">()</span><span class="o">;</span>
+  <span class="nx">em</span><span class="p">.</span><span class="nx">getRepository</span><span class="p">(</span><span class="nx">ContactGroup</span><span class="p">).</span><span class="nx">loadAll</span><span class="p">()</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice that if there is an error we call EntityManager.clear() before reloading the data – this empties out all the current entities in the repositories.</p>
+
+<p>In the next section of the tutorial we’ll see how we can <a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-deleting-entities/">delete entities</a>.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

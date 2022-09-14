@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>AMFPHP, PHP 5.3 and namespaces</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>AMFPHP, PHP 5.3 and namespaces | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="AMFPHP, PHP 5.3 and namespaces" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I spent a very frustrating day discovering that AMFPHP (trunk) doesn’t support class mapping to PHP classes that exist in the brand new PHP 5.3 namespaces.  So, if you happen to have the following class mapping:" />
+<meta property="og:description" content="I spent a very frustrating day discovering that AMFPHP (trunk) doesn’t support class mapping to PHP classes that exist in the brand new PHP 5.3 namespaces.  So, if you happen to have the following class mapping:" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-04-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AMFPHP, PHP 5.3 and namespaces" />
+<script type="application/ld+json">
+{"datePublished":"2010-04-03T00:00:00+00:00","dateModified":"2010-04-03T00:00:00+00:00","description":"I spent a very frustrating day discovering that AMFPHP (trunk) doesn’t support class mapping to PHP classes that exist in the brand new PHP 5.3 namespaces.  So, if you happen to have the following class mapping:","url":"/amfphp-php-53-and-namespaces/","mainEntityOfPage":{"@type":"WebPage","@id":"/amfphp-php-53-and-namespaces/"},"@type":"BlogPosting","headline":"AMFPHP, PHP 5.3 and namespaces","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">AMFPHP, PHP 5.3 and namespaces<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">AMF</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">AMFPHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">AMFPHP CLASS MAPPING</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLASH REMOTING</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MAPCLASS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">NAMESPACES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PHP 5.3</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PHP NAMESPACE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">VALUE OBJECTS</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Apr 03, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I spent a very frustrating day discovering that AMFPHP (trunk) doesn’t support class mapping to PHP classes that exist in the brand new PHP 5.3 namespaces.  So, if you happen to have the following class mapping:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">namespace</span> <span class="nn">vo</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+  <span class="nv">$_explicitType</span> <span class="o">=</span> <span class="s2">"vo.User"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">package</span> <span class="nx">vo</span><span class="o">;</span>
+
+<span class="p">[</span><span class="nx">RemoteClass</span><span class="p">(</span><span class="nx">alias</span><span class="o">=</span><span class="s2">"vo.User"</span><span class="p">)]</span>
+<span class="kr">class</span> <span class="nx">User</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>… AMFPHP won’t pick up the fact that these are supposed to be the same class and will create an associative array when you send User as a parameter to a service.  It works fine in the opposite direction (i.e. returning User back to AS3 is ok).</p>
+
+<p>I tried out <a href="http://framework.zend.com/download/amf">ZendAMF</a> and <a href="http://www.themidnightcoders.com/products/weborb-for-php/overview.html">WebORB for PHP</a>, but eventually decided that whilst they definitely have their merits, these frameworks are way too heavyweight for my application; ZendAMF requires the whole Zend Framework stack in order to work and WebORB is 22MB!  Instead I set about patching AMFPHP to support namespaces.  And here it is!</p>
+
+<p>In <strong>amfphp/core/amf/io/AMFBaseSerializer.php</strong> change line 392 to:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$classname</span> <span class="o">=</span> <span class="p">(</span><span class="nb">strstr</span><span class="p">(</span><span class="nv">$typeIdentifier</span><span class="p">,</span> <span class="s2">"/"</span><span class="p">))</span> <span class="o">?</span> <span class="nb">str_replace</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="nv">$typeIdentifier</span><span class="p">)</span> <span class="o">:</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$mappedClass</span><span class="p">,</span> <span class="nv">$lastPlace</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Then if you want to class map to a PHP class in a namespace instead of using . notation, put forward slashes (/).  In fact PHP in its infinite wisdom uses backslashes () to delimit namespaces but as these denote escape characters terrible things happen when we start serializing strings and rather than have to escape the backslash all the time I just plumped for the forward slash.  Therefore our example, which in PHP namespace notation refers to the class <strong>voUser</strong> would change to:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">namespace</span> <span class="nn">vo</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+  <span class="nv">$_explicitType</span> <span class="o">=</span> <span class="s2">"/vo/User"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>… and our AS3 class would become:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">package</span> <span class="nx">vo</span><span class="o">;</span>
+
+<span class="p">[</span><span class="nx">RemoteClass</span><span class="p">(</span><span class="nx">alias</span><span class="o">=</span><span class="s2">"/vo/User"</span><span class="p">)]</span>
+<span class="kr">class</span> <span class="nx">User</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Tada! AS3 to PHP class mapping working as expected again!</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

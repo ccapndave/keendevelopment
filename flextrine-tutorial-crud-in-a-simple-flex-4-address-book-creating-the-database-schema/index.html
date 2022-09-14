@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the database schema</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the database schema | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the database schema" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion" />
+<meta property="og:description" content="Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-08-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the database schema" />
+<script type="application/ld+json">
+{"datePublished":"2010-08-03T00:00:00+00:00","dateModified":"2010-08-03T00:00:00+00:00","description":"Introduction Setting up the server Creating the entities Creating the database schema Loading the entities Creating new entities Deleting entities Updating entities Conclusion","url":"/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-database-schema/","mainEntityOfPage":{"@type":"WebPage","@id":"/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-database-schema/"},"@type":"BlogPosting","headline":"Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the database schema","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Flextrine Tutorial – CRUD in a simple Flex 4 address book: Creating the database schema<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">DATABASE SCHEMA</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">DOCTRINE 2</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ENTITIES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEXTRINE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEXTRINE MANAGER</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ORM</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SQL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">UPDATE SCHEMA</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Aug 03, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-introduction/">Introduction</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-setting-up-the-server/">Setting up the server</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-entities/">Creating the entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-the-database-schema/">Creating the database schema</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-loading-the-entities/">Loading the entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-creating-new-entities/">Creating new entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-deleting-entities/">Deleting entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-updating-entities/">Updating entities</a></li>
+  <li><a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-conclusion/">Conclusion</a></li>
+</ul>
+
+<p>Once we have defined the entities in the <em>entities</em> directory of the Flextrine server component it is very simple to create the appropriate database schema.</p>
+
+<h3 id="creating-the-database-schema">Creating the database schema</h3>
+
+<p>Browse to <a href="http://localhost/flextrinemanager">http://localhost/flextrinemanager</a> (or whatever URL you pointed to the <em>manager</em> directory).  You should see a screen like this:</p>
+
+<p><img src="/assets/uploads/2010/08/flextrinemanager1.jpg" alt="Flextrine Manager 1" /></p>
+
+<p>Enter the URL of the Flextrine server side component (<a href="http://localhost/contacts">http://localhost/contacts</a>) in the <strong>FLEXTRINE PROJECT URL</strong> input and <strong>Click to refresh</strong><em>.</em>  The Flextrine manager will examine your project and update the manager to show the entities and database.  Now click on <strong>Create schema</strong> to automatically generate the appropriate tables in the database.  The manager should now look like this:</p>
+
+<p><img src="/assets/uploads/2010/08/flextrinemanager2.jpg" alt="Flextrine Manager 2" /></p>
+
+<p>Under the hood Doctrine 2 has parsed the annotations in ContactGroup and Contact and has determined the appropriate tables and columns that will be required to persist the objects.  Although you will never need to edit the schema manually, the following SQL is what was actually executed when you clicked <strong>CREATE SCHEMA</strong>.  Notice that Doctrine enforces referential integrity through MySQL constraints so that, for example, you cannot delete a ContactGroup which has any Contacts referring to it.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span>  <span class="nv">`contact`</span><span class="p">.</span><span class="nv">`contactgroup`</span> <span class="p">(</span>
+  <span class="nv">`id`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="nv">`name`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">PRIMARYKEY</span> <span class="p">(</span><span class="nv">`id`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span>  <span class="nv">`contact`</span><span class="p">.</span><span class="nv">`contact`</span> <span class="p">(</span>
+  <span class="nv">`id`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOTNULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="nv">`name`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="k">NOTNULL</span><span class="p">,</span>
+  <span class="nv">`telephoneNumber`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="nv">`birthday`</span> <span class="nb">date</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="nv">`contactGroup_id`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">PRIMARYKEY</span> <span class="p">(</span><span class="nv">`id`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="nv">`contactGroup_id`</span> <span class="p">(</span><span class="nv">`contactGroup_id`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="nv">`contact_ibfk_1`</span> <span class="n">FOREIGNKEY</span> <span class="p">(</span><span class="nv">`contactGroup_id`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="nv">`contactgroup`</span> <span class="p">(</span><span class="nv">`id`</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Now that the schema has been created you can use <strong>UPDATE SCHEMA</strong> whenever you add/remove entities or attributes within entities to update the schema without losing any data that is already in the database.  This gives you a very efficient workflow as your entities expand over the lifetime of a project.</p>
+
+<p>We now have everything we need in the Flextrine server side component and in the database.  Its time to <a href="/flextrine-tutorial-crud-in-a-simple-flex-4-address-book-loading-the-entities/">start writing some Flex code</a>!</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

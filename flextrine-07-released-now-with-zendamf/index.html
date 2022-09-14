@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Flextrine 0.7 released – now with ZendAMF!</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Flextrine 0.7 released – now with ZendAMF! | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Flextrine 0.7 released – now with ZendAMF!" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="After much soul searching I eventually decided to put in the time to convert Flextrine from using AMFPHP to ZendAMF. There were a few reasons I decided to make this move, but eventually it boiled down to the fact that quite a few people had asked me to do so. In retrospect it was certainly the right thing to do – ZendAMF has the green light from Adobe, its licence is LGPL instead of GPL and the cleaner code base means that the changes Flextrine requires can be implemented as overridden classes instead of having to modify the ZendAMF core. This particularly is great news because it means that you can use Flextrine directly with the standard Zend framework installation, whereas previously you could only use the version of AMFPHP bundled with Flextrine." />
+<meta property="og:description" content="After much soul searching I eventually decided to put in the time to convert Flextrine from using AMFPHP to ZendAMF. There were a few reasons I decided to make this move, but eventually it boiled down to the fact that quite a few people had asked me to do so. In retrospect it was certainly the right thing to do – ZendAMF has the green light from Adobe, its licence is LGPL instead of GPL and the cleaner code base means that the changes Flextrine requires can be implemented as overridden classes instead of having to modify the ZendAMF core. This particularly is great news because it means that you can use Flextrine directly with the standard Zend framework installation, whereas previously you could only use the version of AMFPHP bundled with Flextrine." />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-09-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Flextrine 0.7 released – now with ZendAMF!" />
+<script type="application/ld+json">
+{"datePublished":"2010-09-15T00:00:00+00:00","dateModified":"2010-09-15T00:00:00+00:00","description":"After much soul searching I eventually decided to put in the time to convert Flextrine from using AMFPHP to ZendAMF. There were a few reasons I decided to make this move, but eventually it boiled down to the fact that quite a few people had asked me to do so. In retrospect it was certainly the right thing to do – ZendAMF has the green light from Adobe, its licence is LGPL instead of GPL and the cleaner code base means that the changes Flextrine requires can be implemented as overridden classes instead of having to modify the ZendAMF core. This particularly is great news because it means that you can use Flextrine directly with the standard Zend framework installation, whereas previously you could only use the version of AMFPHP bundled with Flextrine.","url":"/flextrine-07-released-now-with-zendamf/","mainEntityOfPage":{"@type":"WebPage","@id":"/flextrine-07-released-now-with-zendamf/"},"@type":"BlogPosting","headline":"Flextrine 0.7 released – now with ZendAMF!","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Flextrine 0.7 released – now with ZendAMF!<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">AMFPHP</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">AS3</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ASSOCIATIONS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">DOCTRINE 2</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ENTITIES</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ENTITY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEX</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEX 4</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FLEXTRINE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">GPL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">JPA</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MYSQL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ORM</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">PERSISTENCE</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">RELEASED</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">ZEND AMF</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">ZENDAMF</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Sep 15, 2010
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>After much soul searching I eventually decided to put in the time to convert Flextrine from using AMFPHP to ZendAMF. There were a few reasons I decided to make this move, but eventually it boiled down to the fact that quite a few people had asked me to do so. In retrospect it was certainly the right thing to do – ZendAMF has the green light from Adobe, its licence is LGPL instead of GPL and the cleaner code base means that the changes Flextrine requires can be implemented as overridden classes instead of having to modify the ZendAMF core. This particularly is great news because it means that you can use Flextrine directly with the standard Zend framework installation, whereas previously you could only use the version of AMFPHP bundled with Flextrine.</p>
+
+<p>Functionally speaking things remain exactly the same, and we continue to approach our stable release alongside Doctrine 2.</p>
+
+<p>The new version of Flextrine can be downloaded from <a href="http://www.flextrine.com">www.flextrine.com</a>. Note that if you are upgrading from a previous version of Flextrine you will need to regenerate your AS3 entities.</p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

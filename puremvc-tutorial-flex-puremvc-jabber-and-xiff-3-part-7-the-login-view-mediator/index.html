@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 7 - The Login View & Mediator</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 7 - The Login View &amp; Mediator | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 7 - The Login View &amp; Mediator" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:description" content="Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 7 - The Login View &amp; Mediator" />
+<script type="application/ld+json">
+{"datePublished":"2008-07-19T00:00:00+00:00","dateModified":"2008-07-19T00:00:00+00:00","description":"Introduction Part 1 - Frameworks Part 2 - Directory structure Part 3 - Application and ApplicationFacade Part 4 - Notifications, Commands &amp; Use Cases Part 5 - Model &amp; Proxy Part 6 - The Application View &amp; Mediator Part 7 - The Login View &amp; Mediator Part 8 - The Roster View &amp; Mediator Part 9 - The Chat View &amp; Mediator Conclusion, Demo &amp; Downloads","url":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/","mainEntityOfPage":{"@type":"WebPage","@id":"/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/"},"@type":"BlogPosting","headline":"PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 7 - The Login View &amp; Mediator","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">PureMVC Tutorial - Flex, PureMVC, Jabber and XIFF 3: Part 7 - The Login View & Mediator<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+  <div class="flex justify-between">
+    <ul class="flex flex-wrap my-2 text-xs divide-x-2 font-extralight">
+      
+        <li>
+          <span class="text-orange  mr-1 ">APPLICATIONMEDIATOR</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">CUSTOM EVENT</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">FRAMEWORK</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">HANDLENOTIFICATION</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">LISTENERS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">LISTNOTIFICATIONINTERESTS</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">MEDIATOR</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">REGISTERMEDIATOR</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">RETRIEVEPROXY</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">SUB COMPONENT</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  mx-1 ">TUTORIAL</span>
+        </li>
+      
+        <li>
+          <span class="text-orange  ml-1 ">XIFF</span>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Jul 19, 2008
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <ul>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-introduction/">Introduction</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-1-frameworks/">Part 1 - Frameworks</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-2-directory-structure/">Part 2 - Directory structure</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-3-application-and-applicationfacade/">Part 3 - Application and ApplicationFacade</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-4-notifications-commands-use-cases/">Part 4 - Notifications, Commands &amp; Use Cases</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-5-model-proxy/">Part 5 - Model &amp; Proxy</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-6-the-application-view-mediator/">Part 6 - The Application View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-7-the-login-view-mediator/">Part 7 - The Login View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Part 8 - The Roster View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-9-the-chat-view-mediator/">Part 9 - The Chat View &amp; Mediator</a></li>
+  <li><a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-conclusion-demo-downloads/">Conclusion, Demo &amp; Downloads</a></li>
+</ul>
+
+<p>In this part of the tutorial we’ll create the login bar, and by the end of this section our application will be able to connect to any XMPP server with a username &amp; password!</p>
+
+<p>In the <em>components</em> package create a new MXML file name <em>LoginView.mxml</em> and in the <em>view</em> package create a new mediator called <em>LoginMediator.as</em> using <strong>Add-&gt;New Mediator…</strong> (if you don’t see this menu item be sure you’ve installed the PureMVC FlashDevelop templates from <a href="/puremvc-first-thoughts-flashdevelop-templates/">PureMVC: First thoughts &amp; FlashDevelop templates</a> correctly).</p>
+
+<p>As we explained in the previous section add a helper method to the LoginMediator to cast the viewComponent:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="kr">get</span> <span class="nx">loginView</span><span class="p">()</span><span class="o">:</span><span class="nx">LoginView</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">viewComponent</span> <span class="nx">as</span> <span class="nx">LoginView</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that in order to get the application to compile you’ll need to explicitly import the <em>LoginView</em> using:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">LoginView</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Now we want to add the <em>LoginView</em> to the display list by including it in <em>Application.mxml</em> (giving it an id of <em>loginView</em> so we can reference it from the mediator).  Add this MXML within the <code class="language-plaintext highlighter-rouge">&lt;mx:Application&gt;</code> tag (stick it at the end just before <code class="language-plaintext highlighter-rouge">&lt;/mx:Application&gt;</code>):</p>
+
+<div class="language-mxml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mx:Canvas</span> <span class="na">left=</span><span class="s">"0"</span> <span class="na">top=</span><span class="s">"0"</span> <span class="na">right=</span><span class="s">"0"</span> <span class="na">bottom=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;view:LoginView</span> <span class="na">id=</span><span class="s">"loginView"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/mx:Canvas&gt;</span>
+</code></pre></div></div>
+
+<p>Now we need to register our mediator with PureMVC.  Now this point is important to understand as it seems to confuse  - <strong>since LoginView is a sub-component of Application we need to register the view within the Application’s mediator</strong>.  This can be made into a general rule:</p>
+
+<ul>
+  <li>If the mediator you are registering heralds the top level component (i.e. <em>Application.mxml</em>) register it in <em>StartupCommand.</em></li>
+  <li>If the mediator you are registering heralds a child of another component register it in the constructor of that component’s mediator.</li>
+</ul>
+
+<p>Just to confuse things I’d better point out that this rule doesn’t apply in quite the same way if you are dynamically creating and removing mediators, but we’ll save that for another tutorial.</p>
+
+<p>Anyway, the upshot of all that is that we call <strong>registerMediator</strong> in the constructor of <strong>ApplicationMediator</strong>:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">function</span> <span class="nx">ApplicationMediator</span><span class="p">(</span><span class="nx">viewComponent</span><span class="o">:</span><span class="nb">Object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// pass the viewComponent to the superclass where </span>
+  <span class="c1">// it will be stored in the inherited viewComponent property</span>
+  <span class="kr">super</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">viewComponent</span><span class="p">)</span><span class="o">;</span>
+
+  <span class="nx">facade</span><span class="p">.</span><span class="nx">registerMediator</span><span class="p">(</span><span class="k">new</span> <span class="nx">LoginMediator</span><span class="p">(</span><span class="nx">application</span><span class="p">.</span><span class="nx">loginView</span><span class="p">))</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here is the code for <em>LoginView.mxml</em>.  As this is a PureMVC tutorial, not a Flex one, I’m not going to go in any detail about how it works, but these are the only things you need to care about:</p>
+
+<ul>
+  <li>
+    <p>When the user clicks ‘Connect’ it dispatches a <em>LoginViewEvent.LOGIN</em> event containing the username, password and server.</p>
+  </li>
+  <li>
+    <p>When the user clicks ‘DIsconnect’ it dispatches a <em>LoginViewEvent.LOGOUT</em> event.</p>
+  </li>
+  <li>
+    <p>It exposes a <strong>showInvalidLoginAlert()</strong> method that pops up a ‘Invalid username/password’ window.</p>
+  </li>
+</ul>
+
+<div class="language-mxml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+ <span class="nt">&lt;mx:Canvas</span> <span class="na">xmlns:mx=</span><span class="s">"http://www.adobe.com/2006/mxml"</span> <span class="na">xmlns=</span><span class="s">"*"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;mx:Script&gt;</span>
+         <span class="cp">&lt;![CDATA[</span>
+         <span class="kr">import</span> <span class="nx">mx</span><span class="p">.</span><span class="nx">controls</span><span class="p">.</span><span class="nx">Alert</span><span class="o">;</span>
+         <span class="kr">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">LoginViewEvent</span><span class="o">;</span>
+
+        <span class="cm">/**
+         * Dispatch a connect event to the mediator
+         */</span>
+        <span class="kr">private</span> <span class="kd">function</span> <span class="nx">onConnectClick</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+             <span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">LoginViewEvent</span><span class="p">(</span><span class="nx">LoginViewEvent</span><span class="p">.</span><span class="nx">LOGIN</span><span class="p">,</span> <span class="nx">usernameTextInput</span><span class="p">.</span><span class="nx">text</span><span class="p">,</span> <span class="nx">passwordTextInput</span><span class="p">.</span><span class="nx">text</span><span class="p">,</span> <span class="nx">serverComboBox</span><span class="p">.</span><span class="nx">text</span><span class="p">))</span><span class="o">;</span>
+         <span class="p">}</span>
+
+        <span class="cm">/**
+         * Dispatch a disconnect event to the mediator
+         */</span>
+        <span class="kr">private</span> <span class="kd">function</span> <span class="nx">onDisconnectClick</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+             <span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">LoginViewEvent</span><span class="p">(</span><span class="nx">LoginViewEvent</span><span class="p">.</span><span class="nx">LOGOUT</span><span class="p">))</span><span class="o">;</span>
+         <span class="p">}</span>
+
+        <span class="cm">/**
+         * Enable or disable the connect button depending on whether or not the user has entered something into both username and password fields
+         */</span>
+        <span class="kr">private</span> <span class="kd">function</span> <span class="nx">usernamePasswordChange</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+             <span class="nx">connectButton</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="p">(</span><span class="nx">usernameTextInput</span><span class="p">.</span><span class="nx">text</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">passwordTextInput</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">;</span>
+         <span class="p">}</span>
+
+        <span class="cm">/**
+         * Show an invalid login alert and clear the username and password fields
+         */</span>
+        <span class="kr">public</span> <span class="kd">function</span> <span class="nx">showInvalidLoginAlert</span><span class="p">()</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+            <span class="c1">// Popup an alert</span>
+             <span class="nx">Alert</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s2">"Invalid username/password"</span><span class="p">,</span> <span class="s2">"Error"</span><span class="p">,</span> <span class="nx">Alert</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="o">;</span>
+
+             <span class="c1">// Clear the input fields and notify the change handler (this will disable the connect button)</span>
+             <span class="nx">usernameTextInput</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">""</span><span class="o">;</span>
+             <span class="nx">passwordTextInput</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">""</span><span class="o">;</span>
+             <span class="nx">usernamePasswordChange</span><span class="p">()</span><span class="o">;</span>
+         <span class="p">}</span>
+
+         <span class="cp">]]&gt;</span>
+     <span class="nt">&lt;/mx:Script&gt;</span>
+
+     <span class="nt">&lt;mx:Form</span> <span class="na">defaultButton=</span><span class="s">"</span><span class="p">{</span><span class="nx">connectButton</span><span class="p">}</span><span class="s">"</span> <span class="na">paddingTop=</span><span class="s">"0"</span> <span class="na">paddingBottom=</span><span class="s">"0"</span> <span class="na">paddingLeft=</span><span class="s">"0"</span> <span class="na">paddingRight=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+
+         <span class="nt">&lt;mx:HBox&gt;</span>
+
+             <span class="nt">&lt;mx:Label</span> <span class="na">text=</span><span class="s">"Username:"</span> <span class="na">selectable=</span><span class="s">"false"</span> <span class="na">fontSize=</span><span class="s">"14"</span> <span class="nt">/&gt;</span>
+             <span class="nt">&lt;mx:TextInput</span> <span class="na">id=</span><span class="s">"usernameTextInput"</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">change=</span><span class="s">"usernamePasswordChange()"</span> <span class="nt">/&gt;</span>
+
+             <span class="nt">&lt;mx:Label</span> <span class="na">text=</span><span class="s">"Password:"</span> <span class="na">selectable=</span><span class="s">"false"</span> <span class="na">fontSize=</span><span class="s">"14"</span> <span class="nt">/&gt;</span>
+             <span class="nt">&lt;mx:TextInput</span> <span class="na">id=</span><span class="s">"passwordTextInput"</span> <span class="na">change=</span><span class="s">"usernamePasswordChange()"</span> <span class="na">displayAsPassword=</span><span class="s">"true"</span> <span class="na">width=</span><span class="s">"100"</span> <span class="nt">/&gt;</span>
+
+             <span class="nt">&lt;mx:Label</span> <span class="na">text=</span><span class="s">"Server:"</span> <span class="na">fontSize=</span><span class="s">"14"</span> <span class="nt">/&gt;</span>
+             <span class="nt">&lt;mx:ComboBox</span> <span class="na">id=</span><span class="s">"serverComboBox"</span> <span class="na">editable=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+                 <span class="nt">&lt;mx:ArrayCollection&gt;</span>
+                     <span class="nt">&lt;mx:String&gt;</span>jabber.se<span class="nt">&lt;/mx:String&gt;</span>
+                     <span class="nt">&lt;mx:String&gt;</span>jabber.org<span class="nt">&lt;/mx:String&gt;</span>
+                 <span class="nt">&lt;/mx:ArrayCollection&gt;</span>
+             <span class="nt">&lt;/mx:ComboBox&gt;</span>
+
+             <span class="nt">&lt;mx:Button</span> <span class="na">id=</span><span class="s">"connectButton"</span> <span class="na">label=</span><span class="s">"Connect"</span> <span class="na">enabled=</span><span class="s">"false"</span> <span class="na">click=</span><span class="s">"onConnectClick()"</span> <span class="nt">/&gt;</span>
+             <span class="nt">&lt;mx:Button</span> <span class="na">id=</span><span class="s">"disconnectButton"</span> <span class="na">label=</span><span class="s">"Disconnect"</span> <span class="na">enabled=</span><span class="s">"false"</span> <span class="na">click=</span><span class="s">"onDisconnectClick()"</span> <span class="nt">/&gt;</span>
+
+         <span class="nt">&lt;/mx:HBox&gt;</span>
+
+     <span class="nt">&lt;/mx:Form&gt;</span>
+
+ <span class="nt">&lt;/mx:Canvas&gt;</span>
+</code></pre></div></div>
+
+<p>We’ll also need to create the custom <em>LoginViewEvent *(in the *events</em> folder):</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">package</span> <span class="nx">org</span><span class="p">.</span><span class="nx">davekeen</span><span class="p">.</span><span class="nx">xiffer</span><span class="p">.</span><span class="nx">events</span> <span class="p">{</span>
+  <span class="kr">import</span> <span class="nx">flash</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">Event</span><span class="o">;</span>
+
+  <span class="cm">/**
+  * Events passed between the login view component and its mediator
+  * 
+  * @author Dave Keen
+  */</span>
+  <span class="kr">public</span> <span class="kr">class</span> <span class="nx">LoginViewEvent</span> <span class="kr">extends</span> <span class="nx">Event</span> <span class="p">{</span>
+
+    <span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">REGISTER</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"login_view_register"</span><span class="o">;</span>
+    <span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">LOGIN</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"login_view_login"</span><span class="o">;</span>
+    <span class="kr">public</span> <span class="kr">static</span> <span class="kr">const</span> <span class="nx">LOGOUT</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="s2">"login_view_logout"</span><span class="o">;</span>
+
+    <span class="kr">private</span> <span class="kd">var</span> <span class="nx">username</span><span class="o">:</span><span class="nx">String</span><span class="o">;</span>
+    <span class="kr">private</span> <span class="kd">var</span> <span class="nx">password</span><span class="o">:</span><span class="nx">String</span><span class="o">;</span>
+    <span class="kr">private</span> <span class="kd">var</span> <span class="nx">server</span><span class="o">:</span><span class="nx">String</span><span class="o">;</span>
+
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">LoginViewEvent</span><span class="p">(</span><span class="nx">type</span><span class="o">:</span><span class="nx">String</span><span class="p">,</span> <span class="nx">username</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">password</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">server</span><span class="o">:</span><span class="nx">String</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">bubbles</span><span class="o">:</span><span class="nx">Boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">cancelable</span><span class="o">:</span><span class="nx">Boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="kr">super</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">bubbles</span><span class="p">,</span> <span class="nx">cancelable</span><span class="p">)</span><span class="o">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">username</span><span class="o">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">password</span><span class="o">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">server</span> <span class="o">=</span> <span class="nx">server</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">getUsername</span><span class="p">()</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">username</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">getPassword</span><span class="p">()</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">password</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">public</span> <span class="kd">function</span> <span class="nx">getServer</span><span class="p">()</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">server</span><span class="o">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">public</span> <span class="kr">override</span> <span class="kd">function</span> <span class="nx">clone</span><span class="p">()</span><span class="o">:</span><span class="nx">Event</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="k">new</span> <span class="nx">LoginViewEvent</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">server</span><span class="p">,</span> <span class="nx">bubbles</span><span class="p">,</span> <span class="nx">cancelable</span><span class="p">)</span><span class="o">;</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now we’re ready to start the interesting bit - implementing our <em>LoginMediator</em>.  These are the steps I take when implementing a mediator:</p>
+
+<ol>
+  <li>
+    <p>Add listeners for all the events dispatched from the view component to the constructor and create event listener methods for them.</p>
+  </li>
+  <li>
+    <p>Identify which notifications this mediator is interested in and add them to the <strong>listNotificationInterests</strong> method’s array and the <strong>handleNotification</strong> method’s switch statement.</p>
+  </li>
+  <li>
+    <p>Fill in the event listener methods and switch statement clauses.</p>
+  </li>
+</ol>
+
+<p>Now we’ll do each of these steps in turn for our <em>LoginMediator</em>.</p>
+
+<h4 id="1-add-listeners">1. Add listeners</h4>
+
+<p>Our view component dispatches LoginViewEvent.LOGIN and LoginViewEvent.LOGOUT event, so we’ll add our listeners in the constructor and add two empty event listener methods:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">function</span> <span class="nx">LoginMediator</span><span class="p">(</span><span class="nx">viewComponent</span><span class="o">:</span><span class="nb">Object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// pass the viewComponent to the superclass where </span>
+  <span class="c1">// it will be stored in the inherited viewComponent property</span>
+  <span class="kr">super</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">viewComponent</span><span class="p">)</span><span class="o">;</span>
+
+  <span class="nx">loginView</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">LoginViewEvent</span><span class="p">.</span><span class="nx">LOGIN</span><span class="p">,</span> <span class="nx">onConnectClick</span><span class="p">)</span><span class="o">;</span>
+  <span class="nx">loginView</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">LoginViewEvent</span><span class="p">.</span><span class="nx">LOGOUT</span><span class="p">,</span> <span class="nx">onDisconnectClick</span><span class="p">)</span><span class="o">;</span>
+ <span class="p">}</span>
+  
+<span class="cm">/**
+ * The connect button was clicked in the view
+ * 
+ * @param    loginViewEvent
+ */</span>
+<span class="kr">private</span> <span class="kd">function</span> <span class="nx">onConnectClick</span><span class="p">(</span><span class="nx">loginViewEvent</span><span class="o">:</span><span class="nx">LoginViewEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span> <span class="p">}</span>
+  
+<span class="cm">/**
+ * The disconnect button was clicked in the view
+ * 
+ * @param    loginViewEvent
+ */</span>
+<span class="kr">private</span> <span class="kd">function</span> <span class="nx">onDisconnectClick</span><span class="p">(</span><span class="nx">loginViewEvent</span><span class="o">:</span><span class="nx">LoginViewEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="2-add-notifications">2. Add notifications</h4>
+
+<p>The login view is interest in knowing if a client is connected or not (so that it can enable/disable the ‘Connect’ &amp; ‘Disconnect’ buttons accordingly.  It is also interested in knowing if a login attempt was invalid so that it can popup the ‘Invalid username/password’ alert.  This translates into listening for <strong>ApplicationFacade.VALID_LOGIN</strong>, <strong>ApplicationFacade.INVALID_LOGIN</strong> and <strong>ApplicationFacade.DISCONNECT</strong>.</p>
+
+<p>Firstly we’ll add these to the <strong>listNotificationInterests</strong> method:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">listNotificationInterests</span><span class="p">()</span><span class="o">:</span><span class="nx">Array</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[</span>
+    <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">VALID_LOGIN</span><span class="p">,</span>
+    <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">INVALID_LOGIN</span><span class="p">,</span>
+    <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">DISCONNECT</span>
+  <span class="p">]</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now we’ll add empty clauses for each notification in the <strong>handleNotification</strong> method’s switch statement:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">handleNotification</span><span class="p">(</span><span class="nx">note</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">note</span><span class="p">.</span><span class="nx">getName</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">VALID_LOGIN</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">INVALID_LOGIN</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">DISCONNECT</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>        
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="3-fill-in-the-event-listeners-and-switch-clauses">3. Fill in the event listeners and switch clauses</h4>
+
+<p>Let do the switch clauses first.  Its all simple stuff - in the event of a valid login we want to enable the ‘Disconnect’ button and disable the ‘Connect’ button, in the event of a disconnect we want to enable the ‘Connect’ button and disable the ‘Disconnect’ button, and in the event of an invalid login we want to popup the ‘Invalid username/password’ alert box:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">handleNotification</span><span class="p">(</span><span class="nx">note</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">note</span><span class="p">.</span><span class="nx">getName</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">VALID_LOGIN</span><span class="o">:</span>
+      <span class="nx">loginView</span><span class="p">.</span><span class="nx">connectButton</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+      <span class="nx">loginView</span><span class="p">.</span><span class="nx">disconnectButton</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">INVALID_LOGIN</span><span class="o">:</span>
+      <span class="nx">loginView</span><span class="p">.</span><span class="nx">showInvalidLoginAlert</span><span class="p">()</span><span class="o">;</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">DISCONNECT</span><span class="o">:</span>
+      <span class="nx">loginView</span><span class="p">.</span><span class="nx">connectButton</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+      <span class="nx">loginView</span><span class="p">.</span><span class="nx">disconnectButton</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>        
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And now lets fill in our event listeners.  Again, these are very simple - all they do is send the appropriate notification which will then get auto-mapped to the appropriate command - in this case either <em>LoginCommand</em> or <em>LogoutCommand</em>.</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kd">function</span> <span class="nx">onConnectClick</span><span class="p">(</span><span class="nx">loginViewEvent</span><span class="o">:</span><span class="nx">LoginViewEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="nx">sendNotification</span><span class="p">(</span><span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">LOGIN</span><span class="p">,</span> <span class="nx">loginViewEvent</span><span class="p">)</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="kr">private</span> <span class="kd">function</span> <span class="nx">onDisconnectClick</span><span class="p">(</span><span class="nx">loginViewEvent</span><span class="o">:</span><span class="nx">LoginViewEvent</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="nx">sendNotification</span><span class="p">(</span><span class="nx">ApplicationFacade</span><span class="p">.</span><span class="nx">LOGOUT</span><span class="p">,</span> <span class="nx">loginViewEvent</span><span class="p">)</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice that for the parameter of the notifications I am just passing the same <em>LoginViewEvent</em> we received from the view component.  It could be argued that this breaks encapsulation as the commands shouldn’t really know anything about events.  However, after coding a few PureMVC projects I’ve noticed that its very common for the event you receive from the view to contain the same bits of information needed by the relevant command - in this case LoginCommand needs to know the username, password and server which is exactly the information contained in a <em>LoginViewEvent</em>.  Because of this I don’t really see the need to create an extra object, and when passing an event as notification parameter I just think of it as a value object instead of an event, but you are certainly justified in taking another view on this.</p>
+
+<p>Now that we have the mediator calling the <em>LoginCommand</em> and <em>LogoutCommand</em> we’d better fill these in.  Commands can do various different things, but a very common pattern for commands, and what we’ll be using here, is:</p>
+
+<ol>
+  <li>
+    <p>Retrieve the proxy we want to do something with using <strong>retrieveProxy</strong>.</p>
+  </li>
+  <li>
+    <p>Call a method on that proxy, possibly with parameters ripped out of the notification parameter.</p>
+  </li>
+</ol>
+
+<p>With that in mind we can very simply implement <em>LoginCommand.as</em>:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">execute</span><span class="p">(</span><span class="nx">note</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">loginViewEvent</span><span class="o">:</span><span class="nx">LoginViewEvent</span> <span class="o">=</span> <span class="nx">note</span><span class="p">.</span><span class="nx">getBody</span><span class="p">()</span> <span class="nx">as</span> <span class="nx">LoginViewEvent</span><span class="o">;</span>
+  <span class="kd">var</span> <span class="nx">xmppProxy</span><span class="o">:</span><span class="nx">XMPPProxy</span> <span class="o">=</span> <span class="nx">facade</span><span class="p">.</span><span class="nx">retrieveProxy</span><span class="p">(</span><span class="nx">XMPPProxy</span><span class="p">.</span><span class="nx">NAME</span><span class="p">)</span> <span class="nx">as</span> <span class="nx">XMPPProxy</span><span class="o">;</span>
+  <span class="nx">xmppProxy</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">loginViewEvent</span><span class="p">.</span><span class="nx">getUsername</span><span class="p">(),</span> <span class="nx">loginViewEvent</span><span class="p">.</span><span class="nx">getPassword</span><span class="p">(),</span> <span class="nx">loginViewEvent</span><span class="p">.</span><span class="nx">getServer</span><span class="p">())</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>… and <em>LogoutCommand.as</em>:</p>
+
+<div class="language-as3 highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">override</span> <span class="kr">public</span> <span class="kd">function</span> <span class="nx">execute</span><span class="p">(</span><span class="nx">note</span><span class="o">:</span><span class="nx">INotification</span><span class="p">)</span><span class="o">:</span><span class="nb">void</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">xmppProxy</span><span class="o">:</span><span class="nx">XMPPProxy</span> <span class="o">=</span> <span class="nx">facade</span><span class="p">.</span><span class="nx">retrieveProxy</span><span class="p">(</span><span class="nx">XMPPProxy</span><span class="p">.</span><span class="nx">NAME</span><span class="p">)</span> <span class="nx">as</span> <span class="nx">XMPPProxy</span><span class="o">;</span>
+  <span class="nx">xmppProxy</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">()</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Guess what?  We have a working application!  Compile the application and play about with it - you’ll be able to log in and out of Jabber servers to your heart’s content :)  If you download a proper jabber client (<a href="https://www.jabber.org/clients">https://www.jabber.org/clients</a> has a big list of clients for various platforms) you’ll be able to see your user coming on and offline as you click ‘Connect’ and ‘Disconnect’.</p>
+
+<p>Be proud!  All that’s left for us to do now is to create a buddy list (called the <em>Roster</em> in Jabber parlance) and the chat windows themselves.  If you’ve come this far maybe you’d like to have a go yourself without reading further.  If not, read on - <a href="/puremvc-tutorial-flex-puremvc-jabber-and-xiff-3-part-8-the-roster-view-mediator/">Roster view here we come.</a></p>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>

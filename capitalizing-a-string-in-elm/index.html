@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="min-h-full min-w-[250px]">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Capitalizing a string in Elm</title>
+    <link href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/css/native.css" rel="stylesheet"/>
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Capitalizing a string in Elm | Keen Development</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Capitalizing a string in Elm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I seem to semi-regularly need a function to capitalize a string in Elm, and this isn’t included in either the core String library or NoRedInk’s String.Extra. So here is a super simple implementation:" />
+<meta property="og:description" content="I seem to semi-regularly need a function to capitalize a string in Elm, and this isn’t included in either the core String library or NoRedInk’s String.Extra. So here is a super simple implementation:" />
+<meta property="og:site_name" content="Keen Development" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-02-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Capitalizing a string in Elm" />
+<script type="application/ld+json">
+{"datePublished":"2016-02-12T00:00:00+00:00","dateModified":"2016-02-12T00:00:00+00:00","description":"I seem to semi-regularly need a function to capitalize a string in Elm, and this isn’t included in either the core String library or NoRedInk’s String.Extra. So here is a super simple implementation:","url":"/capitalizing-a-string-in-elm/","mainEntityOfPage":{"@type":"WebPage","@id":"/capitalizing-a-string-in-elm/"},"@type":"BlogPosting","headline":"Capitalizing a string in Elm","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="max-w-screen-xl mx-auto bg-lightgray overscroll-y-none">
+    <div class="absolute left-0 right-0 h-12 shadow-md bg-code">
+  <div class="flex justify-center w-full px-6 py-3 sm:justify-between">
+    <a href="/">
+      <img class="hidden h-7 sm:inline" src="/assets/images/Keen_bold_neg%201.svg"/>
+    </a>
+    <nav class="flex items-center text-base">
+  <ol class="flex gap-4">
+    
+      <li class="text-white">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="/contact">Contact</a>
+      </li>
+    
+      <li class="text-white">
+        <a href="https://www.github.com/ccapndave">Github</a>
+      </li>
+    
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="px-5 pt-20 m-auto max-w-prose">
+  <header class="flex justify-between">
+    <div class="text-xl font-bold tracking-wide">Capitalizing a string in Elm<span class="font-normal text-orange">_</span>
+    </div>
+  </header>
+
+  
+
+  <div class="flex items-center text-sm font-normal text-darkgray whitespace-nowrap">
+    Feb 12, 2016
+  </div>
+
+  <article class="my-8 prose-sm prose text-green-700 sm:prose">
+  <p>I seem to semi-regularly need a function to capitalize a string in Elm, and this isn’t included in either the core String library or NoRedInk’s String.Extra. So here is a super simple implementation:</p>
+
+<div class="language-elm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kt">String</span> <span class="k">exposing</span> <span class="p">(</span><span class="n">left</span><span class="o">,</span> <span class="n">dropLeft</span><span class="o">,</span> <span class="n">toUpper</span><span class="p">)</span>
+
+<span class="n">capitalize</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">-&gt;</span> <span class="kt">String</span>
+<span class="n">capitalize</span> <span class="n">str</span> <span class="o">=</span>
+  <span class="p">(</span><span class="n">left</span> <span class="mi">1</span> <span class="o">&gt;&gt;</span> <span class="n">toUpper</span><span class="p">)</span> <span class="n">str</span> <span class="o">++</span> <span class="n">dropLeft</span> <span class="mi">1</span> <span class="n">str</span>
+</code></pre></div></div>
+
+</article>
+</div>
+
+  </body>
+
+  <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</html>
