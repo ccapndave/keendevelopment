@@ -1,9 +1,9 @@
 - label: Home
   link: /
 
-- label: Blog
-  link: /blog
-  type: post
+# - label: Blog
+#   link: /blog
+#   type: post
 
 # - label: Portfolio
 #   link: /portfolio

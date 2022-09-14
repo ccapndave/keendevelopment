@@ -22,6 +22,7 @@
   sub_skills:
     - Functional
     - Object-oriented
+    - Actor model (OTP)
     - Test driven development
     - Behaviour driven development
     - Reactive programming

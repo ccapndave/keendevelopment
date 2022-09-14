@@ -44,7 +44,7 @@ permalink: /
     </section>
   </section>
 
-  {% assign blogs = site.posts | where: "type", "post" | where_exp: "item", "item.date > site.archive_from" | sort: "date" | reverse | slice: 0, 5 %}
+  <!-- {% assign blogs = site.posts | where: "type", "post" | where_exp: "item", "item.date > site.archive_from" | sort: "date" | reverse | slice: 0, 5 %}
   {% if blogs.size > 0 %}
     <section class="flex flex-col items-center justify-between w-full">
       <section class="w-full px-5 mb-8 text-black sm:px-28">
@@ -56,5 +56,5 @@ permalink: /
         </div>
       </section>
     </section>
-  {% endif %}
+  {% endif %} -->
 </div>
